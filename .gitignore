@@ -19,3 +19,7 @@
 *.zip
 *.tar.gz
 *.rar
+/.metadata/
+
+### Maven ###
+apiKey.properties
