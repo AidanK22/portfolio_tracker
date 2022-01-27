@@ -24,4 +24,21 @@ public class PositionService {
 	public List<Position> findAllPositions() {
 		return this.positionRepo.findAll();
 	}
+	//find by id
+	public Position findPositionById(Long id) {
+		return this.positionRepo.findById(id).orElse(null);
+	}
+	//find position by user id
+	public List<Position> findPositionsByOwner(Long id){
+		return this.positionRepo.findAllByOwner(id);
+	}
+	//update position
+	public Position updatePosition(Position p, int apiId) {
+		p.setApiId(apiId);
+		return this.positionRepo.save(p);
+	}
+	//delete position by id
+		public void deletePositionById(Long id) {
+			positionRepo.deleteById(id);
+		}
 }

@@ -18,9 +18,11 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.aidan.portfoliotrackerv1.classes.Base;
+import com.aidan.portfoliotrackerv1.classes.PropertiesReader;
 import com.aidan.portfoliotrackerv1.models.Position;
 import com.aidan.portfoliotrackerv1.models.User;
 import com.aidan.portfoliotrackerv1.models.Watchlist;
+import com.aidan.portfoliotrackerv1.repositories.WatchlistRepo;
 import com.aidan.portfoliotrackerv1.services.PositionService;
 import com.aidan.portfoliotrackerv1.services.WatchlistService;
 import com.aidan.portfoliotrackerv1.services.UserService;
@@ -36,7 +38,11 @@ public class UserController {
 	private final WatchlistService watchlistService;
 	@Autowired
 	private UserValidator userValidator;
+    @Autowired
+    private WatchlistRepo watchlistRepo;
     
+    //api key
+    private String apiKey = PropertiesReader.getProperty("API_KEY");
 	//base URL
 	private String baseURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/";
 	
@@ -64,6 +70,8 @@ public class UserController {
     //Login and Register User
     @GetMapping("/")
     public String index(@ModelAttribute("user") User user) {
+    	Long id = (long) 1;
+//    	System.out.println(watchlistRepo.findAllByWatcher(id));
     	return "LoginRegister.jsp";
     }
     
@@ -87,9 +95,11 @@ public class UserController {
     	if(isAuthenticated) {
     		User u = userService.findByEmail(email);
     		session.setAttribute("userId", u.getId());
+
     		return "redirect:/dashboard";
     	}else {        // else, add error messages and return the login page
     		flashAttrib.addFlashAttribute("loginError", "Invalid username or password. Try again.");
+    		
     		return "redirect:/";
     	}
 
@@ -104,18 +114,29 @@ public class UserController {
     		return "redirect:/";
     	}else {
 	    	User u = userService.findUserById(userId);
-	    	List<Position> positions = positionService.findAllPositions();
-	    	List<Watchlist> watchlist = watchlistService.findAllInWatchlist();
-	    	Base base = restTemplate.getForObject(this.baseURL + "/listings/latest?start=1&limit=200&", Base.class);
-
+	    	List<Position> positions = positionService.findAllPositions();	//findPositionsByOwner(userId)
+	    	List<Watchlist> watchlist = watchlistService.findAllInWatchlist(); 	//findWatchlistByWatcher(userId)
+	    	Base base = restTemplate.getForObject(this.baseURL + "listings/latest?start=1&limit=200&" + apiKey, Base.class);
+	    	
+	    	//positions
+	    	
+	    	
+	    	//watchlist
+	    	
+	    	//account value
+//	    	var accountValue = 0;
+//	    	for(var i=0; i<positions.size(); i++) {
+//	    		
+//	    	}
 	    	model.addAttribute("user", u);
 	    	model.addAttribute("positions", positions);
 	    	model.addAttribute("watchlist", watchlist);
 	    	model.addAttribute("currencies", base.getData());
+
 	    	return "dashboard.jsp";
     	}
     }
-    
+
     //logout 
     @RequestMapping("/logout")
     public String logout(HttpSession session) {

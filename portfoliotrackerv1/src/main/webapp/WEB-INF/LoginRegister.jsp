@@ -16,6 +16,9 @@
 </head>
 <body>
 	<div class="container">
+		<div class="row ">
+			<h1>Welcome to AK's Portfolio Tracker</h1>
+			<h4>Please register or login</h4>
 		<div class="row">
 		
 			<div class="col bg-light m-2 border">

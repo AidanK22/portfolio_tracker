@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="positions")
@@ -22,10 +22,11 @@ public class Position {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Size(min=1, message="Position size must not be 0.")
+	@NotNull( message="Position size must not be a null value.")
 	private int positionSize;
 	
-
+	private int apiId;
+	
 	@Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
@@ -52,9 +53,19 @@ public class Position {
     	this.owner = owner;
     }
     //-------------------------
+    //api id getter & setter
+    
+    public int getApiId() {
+		return apiId;
+	}
+	public void setApiId(int apiId) {
+		this.apiId = apiId;
+	}
+    
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}

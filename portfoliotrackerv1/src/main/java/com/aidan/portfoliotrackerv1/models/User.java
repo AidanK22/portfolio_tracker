@@ -74,7 +74,7 @@ public class User {
 	public List<Position> getPositions() {
 		return positions;
 	}
-	public void setIdeas(List<Position> positions) {
+	public void setPositions(List<Position> positions) {
 		this.positions = positions;
 	}
 	//---------------------------------------

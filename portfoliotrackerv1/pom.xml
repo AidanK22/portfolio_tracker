@@ -90,6 +90,13 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!-- Unirest Java -->
+	    <dependency>
+		    <groupId>com.konghq</groupId>
+		    <artifactId>unirest-java</artifactId>
+		    <version>3.13.6</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
