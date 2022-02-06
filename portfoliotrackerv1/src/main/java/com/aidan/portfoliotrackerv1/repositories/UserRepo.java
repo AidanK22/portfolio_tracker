@@ -8,4 +8,5 @@ import com.aidan.portfoliotrackerv1.models.User;
 @Repository
 public interface UserRepo extends CrudRepository<User, Long> {
 	User findByEmail(String email);
+
 }

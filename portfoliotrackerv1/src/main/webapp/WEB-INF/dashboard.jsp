@@ -3,6 +3,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
 	<!-- For any Bootstrap that uses JS or jQuery-->
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <meta charset="ISO-8859-1">
 <title>Dashboard</title>
 </head>
@@ -35,6 +37,9 @@
 				    
 				    <div class=" navbar-text ">
 				    	<a href="/top200" class="btn text-white m-1 m-right-5">Top 200 coins</a>
+				    </div>
+				    <div class=" navbar-text ">
+				    	<a href="/risk_calculator" class="btn text-white m-1 m-right-5">Risk Calculator</a>
 				    </div>
 				    
 			    </div>
@@ -69,18 +74,27 @@
 									    		<th class="fixed-cell th-sm">Price</th>
 									    		<th class="fixed-cell th-sm">Change</th>
 									    		
-									    	</tr>		
-									    	<c:forEach items="${user.watchlist}" var="watchlistItem" varStatus="loop">
-									    		<c:forEach items="${currencies}" var="currency">
-									    			<c:if test="${watchlistItem.apiId == currency.id}">
-											    		<tr>
-															<td><a href="info/${currency.id }" class="btn text-dark btn-outline-light">${currency.symbol}</a></td>
-															<td><p>$${currency.quote.usd.price}</p></td>
-															<td><p>${currency.quote.usd.percentChange24h}%</p></td>
-														</tr>
-													</c:if>
-												</c:forEach>
-									    	</c:forEach>
+									    	</tr>
+									    	<c:choose>
+										    	<c:when test="${user.watchlist == null }">
+										    		<tr>
+										    			<td><p>Your WatchList is empty</td>
+										    		</tr>
+										    	</c:when>
+										    	<c:otherwise>	
+										    	<c:forEach items="${user.watchlist}" var="watchlistItem" varStatus="loop">
+										    		<c:forEach items="${pcurrencies}" var="pcurrency">
+										    			<c:if test="${watchlistItem.apiId == pcurrency.id}">
+												    		<tr>
+																<td><a href="info/${pcurrency.id }" class="btn text-dark btn-outline-light">${pcurrency.symbol}</a></td>
+																<td><p>$${pcurrency.quote.USD.price}</p></td>
+																<td><p>${pcurrency.quote.USD.percent_change_24h}%</p></td>
+															</tr>
+														</c:if>
+													</c:forEach>
+										    	</c:forEach>
+												</c:otherwise>	
+									    	</c:choose>
 								    	</table>
 							    	</div>
 								</div> 
@@ -100,7 +114,7 @@
 						    <div class="card-body">
 						    
 						    	<h5 class="card-title">Account Value</h5>
-						    	<h6>$65,000</h6>
+						    	<h6>$<c:out value="${accountValue }"/></h6>
 						    	
 						    </div>
 						    <div class="card-footer">
@@ -136,8 +150,31 @@
 												    		<tr>
 												    			<td>${currency.name}</td>
 																<td><a href="info/${currency.id }" class="btn text-dark btn-outline-light">${currency.symbol}</a></td>
-																<td><p>$${currency.quote.usd.price}</p></td>
-																<td><p>${currency.quote.usd.percentChange24h}%</p></td>
+																<td>
+																<!-- PRICE  -->
+																<c:set var = "checkPrice" value="${currency.quote.usd.percentChange24h }"/>
+																<c:choose>
+																	
+																	<c:when test="${fn:contains(checkPrice, '-')}">
+																		<h4 class="text-danger fas fa-sort-down"> $${currency.quote.usd.price } </h4>
+																	</c:when>
+																	<c:otherwise>
+																		<h4 class="text-success fas fa-caret-up"> $${currency.quote.usd.price } </h4>
+																	</c:otherwise>
+																</c:choose>
+																</td>
+																<td>
+																<!-- PERCENT CHANGE -->
+																	<c:set var = "checkPercent" value="${currency.quote.usd.percentChange24h }"/>
+																	<c:choose>
+																		<c:when test="${fn:contains(checkPercent, '-')}">
+																			<h4 class="text-danger fas fa-sort-down"> ${currency.quote.usd.percentChange24h }% </h4>
+																		</c:when>
+																		<c:otherwise>
+																			<h4 class="text-success fas fa-caret-up"> ${currency.quote.usd.percentChange24h }% </h4>
+																		</c:otherwise>
+																	</c:choose>
+																</td>
 															</tr>
 			
 													</c:forEach>
@@ -178,24 +215,34 @@
 					    		<th class="">Position Value</th>
 					    		<th class="">Actions</th>
 									    		
-					    	</tr>		
-				    	<c:forEach items="${user.positions}" var="position" varStatus="loop">
-				    		<c:forEach items="${currencies}" var="currency">
-				    			<c:if test="${position.apiId == currency.id}">
-						    		<tr>
-										<td><a href="info/${currency.id }" class="btn text-dark btn-outline-light">${currency.symbol}</a></td>
-										<td><p>$${currency.quote.usd.price}</p></td>
-										<td><p>${position.positionSize}</p></td>
-										<td><p>$${position.positionSize * currency.quote.usd.price}</p></td>
-										<td class="text-start"><a href="/position/${position.id}/edit" class="btn btn-sm text-dark btn-outline-light">Edit</a>|
-										<form class="delete-form" action="/position/${position.id}/delete" method="POST">
-										<input type="hidden" name="_method" value="delete">
-										<input type="submit" value="Close" class="btn btn-sm text-danger m-2"></form></p></td>
-										 
+					    	</tr>
+					    	<c:choose>
+					    		<c:when test="${user.positions == null }">
+					    			<tr>
+										<td><p>Your Positions are empty</td>
 									</tr>
-								</c:if>
-							</c:forEach>
-				    	</c:forEach>
+					    		</c:when>
+					    		<c:otherwise>		
+							    	<c:forEach items="${user.positions}" var="position" varStatus="loop">
+							    		<c:forEach items="${pcurrencies}" var="pcurrency">
+											<c:if test="${position.apiId == pcurrency.id }">
+												<tr>
+													<td><a href="info/${pcurrency.id }" class="btn text-dark btn-outline-light">${pcurrency.symbol}</a></td>
+													<td><p>$${pcurrency.quote.USD.price}</p></td>
+													<td><p>${position.positionSize}</p></td>
+													<td><p>$${position.positionSize * pcurrency.quote.USD.price}</p></td>
+													<td class="text-start"><a href="/position/${position.id}/edit" class="btn btn-sm text-dark btn-outline-light">Edit</a>|
+													<form class="delete-form" action="/position/${position.id}/delete" method="POST">
+													<input type="hidden" name="_method" value="delete">
+													<input type="submit" value="Close" class="btn btn-sm text-danger m-2"></form></p></td>
+													 
+												</tr>
+											</c:if>
+											
+										</c:forEach>
+			  				    	</c:forEach>
+		  				    	</c:otherwise>
+  				    		</c:choose>
 				    </table>
 			    </div>
 			</div>

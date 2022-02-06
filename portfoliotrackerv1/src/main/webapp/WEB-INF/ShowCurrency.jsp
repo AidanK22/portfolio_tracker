@@ -3,6 +3,8 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +13,7 @@
 	<!-- For any Bootstrap that uses JS or jQuery-->
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <meta charset="ISO-8859-1">
 <title>Currency Info</title>
 </head>
@@ -38,6 +41,9 @@
 				    </div>
 				    <div class=" navbar-text ">
 				    	<a href="/top200" class="btn text-white m-1 m-right-5">Top 200 coins</a>
+				    </div>
+				    <div class=" navbar-text ">
+				    	<a href="/risk_calculator" class="btn text-white m-1 m-right-5">Risk Calculator</a>
 				    </div>
 				    
 			    </div>
@@ -73,7 +79,7 @@
 						<div class="row align-items-center mt-4" >
 							<div class="col">
 								<c:choose>
-									<c:when test="${isInWatchlist == 'no' }">
+									<c:when test="${WatchlistItemId == null }">
 										<div class="row">
 											<form:form action="/info/${currency.id}/add_to_watchlist" method="post" modelAttribute="thisWatchlist" class="form">
 															
@@ -91,7 +97,7 @@
 									</c:when>
 									<c:otherwise>
 										<div class="row mt-4">
-											<form class="delete-form" action="/info/${currency.id}/remove_from_watchlist" method="POST">
+											<form class="delete-form" action="/${WatchlistItemId}/remove_from_watchlist" method="POST">
 												<div class="form-group ">
 													
 													<input type="hidden" name="_method" value="delete">
@@ -108,7 +114,32 @@
 			 		
 					<div class="price col m-4 ml-5 pl-5">
 						<div class="row ml-5">
-							<h3 class="">Current Price:</h3><h4> $${currency.quote.USD.price } | ${currency.quote.USD.percent_change_24h }%</h4>
+							<h3 class="">Current Price:</h3>
+							<!-- PRICE  -->
+							<c:set var = "checkPrice" value="${currency.quote.USD.percent_change_24h }"/>
+							<c:choose>
+								
+								<c:when test="${fn:contains(checkPrice, '-')}">
+									<h4 class="text-danger fas fa-sort-down"> $${currency.quote.USD.price } </h4>
+								</c:when>
+								<c:otherwise>
+									<h4 class="text-success fas fa-caret-up"> $${currency.quote.USD.price } </h4>
+								</c:otherwise>
+							</c:choose>
+							
+							
+							<!-- PERCENT CHANGE -->
+							<c:set var = "checkPercent" value="${currency.quote.USD.percent_change_24h }"/>
+							<c:choose>
+								
+								<c:when test="${fn:contains(checkPercent, '-')}">
+									<h4 class="text-danger"> ${currency.quote.USD.percent_change_24h }% </h4>
+								</c:when>
+								<c:otherwise>
+									<h4 class="text-success"> ${currency.quote.USD.percent_change_24h }% </h4>
+								</c:otherwise>
+							</c:choose>
+							
 						</div>
 					</div>
 					
@@ -126,7 +157,7 @@
 									<div class="form-group">
 										<form:errors path="positionSize" class="errors"/>
 										<form:label path="positionSize" for="positionSize">Position Size</form:label>
-										<form:input path="positionSize" type="int" name="positionSize" id="positionSize" class="form-control"/>
+										<form:input path="positionSize" type="float" name="positionSize" id="positionSize" class="form-control"/>
 										
 									</div>
 									<form:hidden path="owner" value="${user.id }"/>

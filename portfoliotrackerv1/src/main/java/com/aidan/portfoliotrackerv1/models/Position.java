@@ -23,7 +23,7 @@ public class Position {
 	private Long id;
 	
 	@NotNull( message="Position size must not be a null value.")
-	private int positionSize;
+	private float positionSize;
 	
 	private int apiId;
 	
@@ -48,7 +48,7 @@ public class Position {
     public Position() {
     	
     }
-    public Position(int positionSize, User owner) {
+    public Position(float positionSize, User owner) {
     	this.positionSize = positionSize;
     	this.owner = owner;
     }
@@ -82,10 +82,10 @@ public class Position {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	public int getPositionSize() {
+	public float getPositionSize() {
 		return positionSize;
 	}
-	public void setPositionSize(int positionSize) {
+	public void setPositionSize(float positionSize) {
 		this.positionSize = positionSize;
 	}
 	public User getOwner() {

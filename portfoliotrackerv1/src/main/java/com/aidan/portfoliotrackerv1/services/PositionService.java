@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aidan.portfoliotrackerv1.models.Position;
+import com.aidan.portfoliotrackerv1.models.User;
 import com.aidan.portfoliotrackerv1.repositories.PositionRepo;
 
 @Service
@@ -28,10 +29,12 @@ public class PositionService {
 	public Position findPositionById(Long id) {
 		return this.positionRepo.findById(id).orElse(null);
 	}
+	
 	//find position by user id
-	public List<Position> findPositionsByOwner(Long id){
-		return this.positionRepo.findAllByOwner(id);
+	public List<Position> findPositionsByOwner(User owner){
+		return this.positionRepo.findAllByOwner(owner);
 	}
+	
 	//update position
 	public Position updatePosition(Position p, int apiId) {
 		p.setApiId(apiId);

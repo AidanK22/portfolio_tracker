@@ -38,7 +38,7 @@
 				    </div>
 				    
 				    <div class=" navbar-text ">
-				    	<a  href="/newPosition" class="btn text-white m-1 m-right-5">Add Position</a>
+				    	<a href="/risk_calculator" class="btn text-white m-1 m-right-5">Risk Calculator</a>
 				    </div>
 				    
 			    </div>
@@ -79,8 +79,8 @@
 								<td><p>$${currency.quote.usd.price}</p></td>
 								<td><p>${currency.quote.usd.percentChange24h}%</p></td>
 								<td><p>${currency.quote.usd.percentChange7d}%</p></td>
-								<td><p>${currency.quote.usd.marketCap}%</p></td>
-								<td><p>${currency.quote.usd.volume24h}%</p></td>
+								<td><p>$${currency.quote.usd.marketCap}</p></td>
+								<td><p>$${currency.quote.usd.volume24h}</p></td>
 							</tr>
 					</c:forEach>
 		    </table>

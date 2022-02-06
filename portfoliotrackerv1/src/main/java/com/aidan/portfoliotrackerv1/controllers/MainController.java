@@ -72,27 +72,51 @@ public class MainController {
     	if(userId == null) {
     		return "redirect:/";
     	}else {
-			
+    		System.out.println("printing apiId");
+    		System.out.println(apiId);
+    		System.out.println("************************************************************");
 			Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "id=" + apiId + "&" + apiKey, HashMap.class );
 			Map data = (Map) QuotesBase.get("data");
 			Map t = (Map) data.get(Integer.toString(apiId));
+
 			
 			User u = userService.findUserById(userId);
+			System.out.println("after user u serv");
+			System.out.println(u);
+//			Integer k = (int) (long) userId;
+//			System.out.println("inside if ");
 			
-			List<Watchlist> watchlist = watchlistService.findAllInWatchlist();
-			if( watchlistService.findWatchlistByApiId(apiId) == null) {			//check if api id is in said watchlist
-				var isInWatchlist = "no";				//if not return a value as false
+			List<Watchlist> watchlist = watchlistService.findUsersInWatchlistByWatcherId(userId);
+			System.out.println("after watchlist list query ");
+			System.out.println(watchlist);
+			
+			System.out.println(watchlist);
+			//watchlist.get(apiId)
+			//get watchlists by user id, then get watchlists by apiId if == null then add
+			//check every watching item, 
+			if(watchlist.isEmpty() ) {
+				var isInWatchlist = "no";
 				model.addAttribute("isInWatchlist", isInWatchlist);
-
 			}else {
-				Watchlist WatchlistItems = watchlistService.findWatchlistByApiId(apiId);
-				model.addAttribute("isInWatchlist", WatchlistItems);
-			}
+				for( var i=0; i< watchlist.size(); i++) {
+					
+					int wApiId = watchlist.get(i).getApiId();
+					if(wApiId == apiId) {		//check if api id is in said watchlist
+						//is in watchlist
+						Long WatchlistItemId = watchlist.get(i).getId();//watchlistService.findWatchlistById(watchlist.get(Long id));	//if apiId matches currently viewing coins apiId
+						model.addAttribute("WatchlistItemId", WatchlistItemId);
+						
+						
+					}
+//					
+				}
+			}	
 			
 			model.addAttribute("currency", t);
 			model.addAttribute("watchlist", watchlist);
 			model.addAttribute("user", u);
 			model.addAttribute("watching", watching.getApiId());
+			System.out.println(watching.getApiId());
 
 			
 			return "ShowCurrency.jsp";
@@ -119,15 +143,17 @@ public class MainController {
 		System.out.println(watchlist);
 		return "redirect:/info/{apiId}";
 	}
+	
     //REMOVE from watchlist **WORKING**
-	@RequestMapping(value="/info/{apiId}/remove_from_watchlist", method=RequestMethod.DELETE)
-	public String Delete(@PathVariable("apiId")int apiId) {
-		
-		Watchlist watchlist = watchlistService.findWatchlistByApiId(apiId);
-		Long id = watchlist.getId();
+	@RequestMapping(value="/{id}/remove_from_watchlist", method=RequestMethod.DELETE)
+	public String Delete(@PathVariable("id")Long id ) {
+		System.out.println("******DELETING FROM WATCHLIST*******");
+		Watchlist watchlist = watchlistService.findWatchlistById(id);
+//		Long id = watchlist.getId();
+		int apiId = watchlist.getApiId();
 		watchlistService.deleteWatchlist(id);
 		
-		return "redirect:/info/{apiId}";
+		return "redirect:/info/" + apiId;
 	}
 	
 	//ADD POSITION THROUGH INFO PAGE
@@ -211,6 +237,42 @@ public class MainController {
         }
     }
     
-
-	
+    //Risk Calculator page
+    @GetMapping("/risk_calculator")
+    public String RiskCalculator(HttpSession session) {
+    	Long userId = userSessionId(session);
+        if(userId == null) {
+        	return "redirect:/";
+        }else {
+        	return "RiskCalculator.jsp";
+        }
+    	
+    }
+    
+    //calculation
+    @PostMapping("/calculate")
+    public String calculate(HttpSession sessionModel, @RequestParam("amountRisked") float amountRisked, @RequestParam("potentialProfit") float potentialProfit, @RequestParam("probability") float probability) {
+    	float rrr = amountRisked / potentialProfit;
+    	float eo = ((potentialProfit * probability)-(amountRisked*(100-probability)))/10;
+    	System.out.println(eo);
+    	System.out.println(rrr);
+    	sessionModel.setAttribute("eo", eo);
+    	sessionModel.setAttribute("rrr", rrr);
+    	sessionModel.setAttribute("aRisked", amountRisked);
+    	sessionModel.setAttribute("pProfit", potentialProfit);
+    	sessionModel.setAttribute("prob", probability);
+    	return "redirect:/risk_calculator";
+    }
+    
+//  //get currency by symbol **WORKING**
+//  	@GetMapping("/search")
+//  	public String search(@RequestParam("symbol") String symbol) {
+//  			Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "symbol=" + symbol + "&" + apiKey, HashMap.class );
+//  			Map data = (Map) QuotesBase.get("data");
+//  			Map t = (Map) data.get(symbol.toUpperCase());
+//  			int apiId = (int) t.get("id");
+//  			
+//  			return "redirect:/info/" + apiId;
+//  		
+//  	}
 }
