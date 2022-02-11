@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="container-fluid bg-light p-0">
-		<div class="navbar fixed-top row align-items-start p-1 bg-secondary border border-dark">
+		<div class="navbar fixed-top row align-items-start p-1 bg-dark border border-dark">
 		
 			<Div class="container-fluid">
 			
@@ -59,7 +59,7 @@
 					<div class="container p-5 border-outline-dark">
 						<div  class="title">
 							<h3>Edit your position in ${currency.name }, ${currency.symbol }</h3>
-							<h5 class="m-3">Currently trading at: $${currency.quote.USD.price }</h5>
+							<h5 class="m-3">Currently trading at: $<fmt:formatNumber type="number" maxFractionDigits="7" value="${currency.quote.USD.price}"/></h5>
 						</div>
 						<strong>
 							<p class="text-sm-left" style="font-size: larger;">${updateError}</p>

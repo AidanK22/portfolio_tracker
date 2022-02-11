@@ -17,9 +17,9 @@
 <meta charset="ISO-8859-1">
 <title>Currency Info</title>
 </head>
-<body>
-	<div class="container-auto-xlg">
-		<div class="navbar fixed-top row align-items-start p-1 bg-secondary border border-dark">
+<body class="bg-dark text-light" >
+	<div class="container-fluid">
+		<div class="navbar fixed-top row align-items-start p-1 bg-dark border-bottom">
 		
 			<Div class="container-fluid">
 			
@@ -112,37 +112,58 @@
 			 		</div>
 			 		
 			 		
-					<div class="price col m-4 ml-5 pl-5">
-						<div class="row ml-5">
-							<h3 class="">Current Price:</h3>
-							<!-- PRICE  -->
-							<c:set var = "checkPrice" value="${currency.quote.USD.percent_change_24h }"/>
-							<c:choose>
-								
-								<c:when test="${fn:contains(checkPrice, '-')}">
-									<h4 class="text-danger fas fa-sort-down"> $${currency.quote.USD.price } </h4>
-								</c:when>
-								<c:otherwise>
-									<h4 class="text-success fas fa-caret-up"> $${currency.quote.USD.price } </h4>
-								</c:otherwise>
-							</c:choose>
-							
-							
-							<!-- PERCENT CHANGE -->
-							<c:set var = "checkPercent" value="${currency.quote.USD.percent_change_24h }"/>
-							<c:choose>
-								
-								<c:when test="${fn:contains(checkPercent, '-')}">
-									<h4 class="text-danger"> ${currency.quote.USD.percent_change_24h }% </h4>
-								</c:when>
-								<c:otherwise>
-									<h4 class="text-success"> ${currency.quote.USD.percent_change_24h }% </h4>
-								</c:otherwise>
-							</c:choose>
-							
-						</div>
-					</div>
-					
+					<div class="d-flex justify-content-start bd-highlight">
+                    <div class="d-flex justify-content-start bd-highlight">
+                        <div class="d-flex justify-content-start bd-highlight mt-5">
+                            <div class="d-flex justify-content-start ms-5">
+                                <h3 class="bd-highlight ps-5">Current Price:</h3>
+                            </div>
+                        <div class ="d-flex justify-content-center mt-1">
+                            <div class ="">
+                            <c:set var = "checkPrice" value="${currency.quote.USD.percent_change_24h }"/>
+                            <c:choose>
+                                <c:when test="${fn:contains(checkPrice, '-')}">
+                                    <div class="d-flex flex-row">
+                                        <div class="col ps-1">
+                                            <h4 class="text-danger fas fa-sort-down"></h4>
+                                        </div>
+                                        <div class="col">
+                                            <h4 class="text-danger pe-2"> $${currency.quote.USD.price } </h4>
+                                        </div>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="d-flex flex-row">
+                                        <div class="col ps-1">
+                                            <h4 class="text-success fas fa-caret-up"></h4>
+                                        </div>
+                                        <div class="col">
+                                            <h4 class="text-success pe-2">  $${currency.quote.USD.price } </h4>
+                                        </div>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+                         </div>
+                            <!-- PERCENT CHANGE -->
+						<c:set var = "checkPercent" value="${currency.quote.USD.percent_change_24h }"/>
+                            <c:choose>
+                                <c:when test="${fn:contains(checkPercent, '-')}">
+                                <div>
+                                    <span class="badge bg-danger"> ${currency.quote.USD.percent_change_24h }% </span>
+                                </div>
+
+                                </c:when>
+                                <c:otherwise>
+                                  <div>
+                                    <span class="badge bg-success"> ${currency.quote.USD.percent_change_24h }% </span>
+                                </div>
+                                </c:otherwise>
+                            </c:choose>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                
 					<div class="addPosition col-lg offset-md-2 border-bottom border-left pr-5">
 						<div class="container border-dark mr-5 pr-5">
 							<div class="head">
@@ -180,6 +201,14 @@
 					<div class="supply col">
 						<h3 class="m-3">Circulating Supply</h3>
 						<p class="m-4"> ${currency.circulating_supply } ${currency.symbol }</p>
+						
+						<c:if test="${currency.max_supply != null}">
+                        <p>${currency.circulating_supply/currency.max_supply * 100}%</p>
+                            <div class="progress w-50" style="height: 4px;">
+                                  <div class="progress-bar bg-success" role="progressbar" style="width: ${currency.circulating_supply/currency.max_supply * 100}%"></div>
+                            </div>
+                        </c:if>
+						
 						<h3 class="m-3">Max Supply</h3>
 						<p class="m-4">${currency.max_supply } ${currency.symbol }</p>
 						<h3 class="m-3">Total Supply</h3>

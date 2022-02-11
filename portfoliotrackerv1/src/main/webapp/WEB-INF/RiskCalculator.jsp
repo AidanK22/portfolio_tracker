@@ -15,8 +15,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="wrap">
-		<div class="navbar fixed-top row align-items-start p-1 bg-secondary border border-dark">
+<div class="container-fluid bg-dark">
+		<div class="navbar fixed-top row align-items-start p-1 bg-dark border border-dark">
 		
 			<Div class="container-fluid">
 			
@@ -49,42 +49,58 @@
 			    
 			</div>
 	    </div>
-	    <div class="d-flex" style="height: 30px;">
+	    <div class="d-flex" style="height: 100px;">
   			<div class="vr"></div>
 		</div>
-        <h1>EXPECTED OUTCOME CALCULATOR</h1>
-        <div class="cform">
-            <form action="/calculate" method="POST">
-                
-                <ul>
-                    <li><label for="amountRisked">Amount Risked</label></li>
-                    <li><span class="currency"><input name="amountRisked" type="number" step="0.01"></span></li>
+		<div class="container bg-light">
 
-                    <li><label for="potentialProfit">Potential Profit</label></li>
-                    <li><span class="currency"><input name="potentialProfit" type="number" step="0.01"></span></li>
-
-                    <li><label for="probability">% Probability</label></li>
-                    <li><span class="probability"><input name="probability" type="number"></span><li>
-
-                    <li><button type="submit">Calculate</button></li>
-                </ul>
-            </form>
-        </div>
-        <div class="position_details">
-            <h2>Position Details:</h2>
-            <p>amount risked: <c:out value="${aRisked}"/></p>
-            <p>potential profit: <c:out value="${pProfit}"/></p>
-            <p>probability: <c:out value="${prob}"/></p>
-        </div>
-        <div class="rrr">
-            <h2>Risk to Reward Ratio:</h2>
-            <h4><c:out value="${rrr}"/></h4>
-        </div>
-        <div class="eo">
-            <h2> Expected Outcome:</h2>
-            <p>10 Occurences</p>
-            <h4><c:out value="${eo}"/></h4>
-        </div>
+				<div class=" position-absolute top-50 start-50 translate-middle">
+					<div class="container p-5 border-dark">
+				        <h1>EXPECTED OUTCOME CALCULATOR</h1>
+				        <div class="cform ">
+				            <form action="/calculate" method="POST">
+				                
+				                <div class="form-group m-2">
+					                <label for="amountRisked">Amount Risked</label>
+					                <div class="col">
+					                	<span class="currency"><input name="amountRisked" type="number" step="0.01"></span>
+									</div>
+								</div>
+								<div class="form-group m-2">
+					                <label for="potentialProfit">Potential Profit</label>
+					                <div class="col">
+					                	<span class="currency"><input name="potentialProfit" type="number" step="0.01"></span>
+									</div>
+								</div>
+								<div class="form-group m-2">
+					                <label for="probability">% Probability</label>
+					                <div class="col">
+					                	<span class="probability"><input name="probability" type="number"></span>
+									</div>
+								</div>
+								<div class="form-group m-2">
+				                	<button class="btn btn-outline-primary m-2" type="submit">Calculate</button>
+				                </div>
+				            </form>
+				        </div>
+				        <div class="position_details">
+				            <h2>Position Details:</h2>
+				            <p>amount risked: <c:out value="${aRisked}"/></p>
+				            <p>potential profit: <c:out value="${pProfit}"/></p>
+				            <p>probability: <c:out value="${prob}"/></p>
+				        </div>
+				        <div class="rrr">
+				            <h2>Risk to Reward Ratio:</h2>
+				            <h4><c:out value="${rrr}"/></h4>
+				        </div>
+				        <div class="eo">
+				            <h2> Expected Outcome:</h2>
+				            <p>10 Occurences</p>
+				            <h4><c:out value="${eo}"/></h4>
+				        </div>
+					</div>
+				</div>
+			</div>
     </div>
 </body>
 </html>

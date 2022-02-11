@@ -145,8 +145,10 @@ public class UserController {
 //	    	int price = d.get("price");
 	    	//check if anything is in position
 			//positions
+	    		var amountOfPositions = 0;
+	    		model.addAttribute("amountOfPositions", amountOfPositions);
 		    	if(u.getWatchlist().size() > 0) {
-
+		    	
 		    	List apiIdsToGet = new ArrayList(); 
 
 		    	String newApiIdList = "";	//create empty list to add api ids to
@@ -177,30 +179,33 @@ public class UserController {
 				Map data = (Map) QuotesBase.get("data");	//get data table in json data returned
 				String[] finalIds = newApiIdList.split(",");
 				List finalPosArrayList = new ArrayList();
-				
+				//account value
+		    	var accountValue = 0;
+		    	amountOfPositions = 0;
+		    	System.out.println("accountValue:");
+				System.out.println(accountValue);
+		    	for(var i=0; i<positions.size(); i++) {
+		    		amountOfPositions += 1;
+		    		int apiId = positions.get(i).getApiId();
+		    		Map coinId = (Map) data.get(Integer.toString(apiId));
+		    		Map	coinQuote = (Map) coinId.get("quote");
+		    		Map coinUsd = (Map) coinQuote.get("USD");
+		    		Double coinPrice = (Double) coinUsd.get("price");
+
+		    		accountValue += positions.get(i).getPositionSize() * coinPrice;	
+		    	}
 				for( var i =0 ; i< finalIds.length ; i++) {
 					finalPosArrayList.add((Map) data.get(finalIds[i]));
 				}
 				
 				model.addAttribute("pcurrencies", finalPosArrayList);
-		    	//account value
-			    	var accountValue = 0;
-			    	System.out.println("accountValue:");
-					System.out.println(accountValue);
-			    	for(var i=0; i<positions.size(); i++) {
-			    		int apiId = positions.get(i).getApiId();
-			    		Map coinId = (Map) data.get(Integer.toString(apiId));
-			    		Map	coinQuote = (Map) coinId.get("quote");
-			    		Map coinUsd = (Map) coinQuote.get("USD");
-			    		Double coinPrice = (Double) coinUsd.get("price");
-
-			    		accountValue += positions.get(i).getPositionSize() * coinPrice;	
-			    	}
+		    	
 			    	System.out.println("accountValue:");
 					System.out.println(accountValue);
 					model.addAttribute("accountValue", accountValue);
+					model.addAttribute("amountOfPositions", amountOfPositions);
 		    	}
-		
+		    		
 	    	model.addAttribute("user", u);
 	    	model.addAttribute("positions", positions);
 	    	model.addAttribute("watchlist", watchlist);

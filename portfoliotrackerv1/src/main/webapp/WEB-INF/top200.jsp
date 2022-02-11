@@ -15,8 +15,8 @@
 <title>Top 200</title>
 </head>
 <body>
-<div class="container">
-		<div class="navbar fixed-top row align-items-start p-1 bg-secondary border border-dark">
+<div class="container-fluid bg-dark">
+		<div class="navbar fixed-top row align-items-start p-1 bg-dark border border-dark">
 		
 			<Div class="container-fluid">
 			
@@ -53,38 +53,41 @@
 	    <div class="d-flex" style="height: 100px;">
   			<div class="vr"></div>
 		</div>
-		<div class="title">
-			<h3>Top 200</h3>
-			<p>Crypto assets sorted by market cap.</p>
-		</div>
-	    <div class="data-table">
-			<table class="table">
-			    <tr class="table-dark">
-			    	
-			    	<th>#</th>
-			    	<th>Name</th>
-			    	<th>Price</th>
-			    	<th>24h % Change</th>
-			    	<th>7d % Change</th>
-			    	<th>Market Cap</th>
-			    	<th>Volume</th>
-			    		
-			    </tr>		
-
-			    	<c:forEach items="${currencies}" var="currency">
-
-				    		<tr>
-				    			<td><p>${currency.cmcRank }</p></td>
-								<td><a href="info/${currency.id }">${currency.name} ${currency.symbol}</a></td>
-								<td><p>$${currency.quote.usd.price}</p></td>
-								<td><p>${currency.quote.usd.percentChange24h}%</p></td>
-								<td><p>${currency.quote.usd.percentChange7d}%</p></td>
-								<td><p>$${currency.quote.usd.marketCap}</p></td>
-								<td><p>$${currency.quote.usd.volume24h}</p></td>
-							</tr>
-					</c:forEach>
-		    </table>
-		 </div>  
+		<div class="container bg-light p-3 rounded">
+			<div class="title">
+				<h3>Top 200</h3>
+				<p>Crypto assets sorted by market cap.</p>
+			</div>
+			
+		    <div class="data-table bg-light">
+				<table class="table">
+				    <tr class="table-dark">
+				    	
+				    	<th>#</th>
+				    	<th>Name</th>
+				    	<th>Price</th>
+				    	<th>24h % Change</th>
+				    	<th>7d % Change</th>
+				    	<th>Market Cap</th>
+				    	<th>Volume</th>
+				    		
+				    </tr>		
+	
+				    	<c:forEach items="${currencies}" var="currency">
+	
+					    		<tr style="vertical-align: baseline;">
+					    			<td><p>${currency.cmcRank }</p></td>
+									<td ><a href="info/${currency.id }" class="btn text-dark btn-outline-light">${currency.name} ${currency.symbol}</a></td>
+									<td><p>$${currency.quote.usd.price}</p></td>
+									<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${currency.quote.usd.percentChange24h}"/>%</td>
+									<td><p>${currency.quote.usd.percentChange7d}%</p></td>
+									<td><p>$${currency.quote.usd.marketCap}</p></td>
+									<td><p>$${currency.quote.usd.volume24h}</p></td>
+								</tr>
+						</c:forEach>
+			    </table>
+			 </div>  
+		 </div>
 </div>
 </body>
 </html>

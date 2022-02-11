@@ -17,8 +17,8 @@
 <title>Dashboard</title>
 </head>
 <body>
-	<div class="container-fluid bg-light p-0">
-		<div class="navbar fixed-top row align-items-start p-1 bg-secondary border border-dark">
+	<div class="container-fluid bg-light p-0 bg-dark">
+		<div class="navbar fixed-top row align-items-start p-1 bg-dark border-bottom">
 		
 			<Div class="container-fluid">
 			
@@ -58,7 +58,7 @@
 	    
 	    		
 	    
-		    	<div class="watchlist col align-self-start border border-dark">
+		    	<div class="watchlist col align-self-start border border-dark mt-1 m-3">
 			    	<div class="col">
 				    	<div class="card h-460">
 					    	<div class="card-body">
@@ -85,10 +85,33 @@
 										    	<c:forEach items="${user.watchlist}" var="watchlistItem" varStatus="loop">
 										    		<c:forEach items="${pcurrencies}" var="pcurrency">
 										    			<c:if test="${watchlistItem.apiId == pcurrency.id}">
-												    		<tr>
+												    		<tr style="vertical-align: baseline;">
 																<td><a href="info/${pcurrency.id }" class="btn text-dark btn-outline-light">${pcurrency.symbol}</a></td>
-																<td><p>$${pcurrency.quote.USD.price}</p></td>
-																<td><p>${pcurrency.quote.USD.percent_change_24h}%</p></td>
+																<td>
+																<!-- PRICE  -->
+																<c:set var = "checkPrice" value="${pcurrency.quote.USD.percent_change_24h}"/>
+																<c:choose>
+																	
+																	<c:when test="${fn:contains(checkPrice, '-')}">
+																		<h4 class="text-danger fas fa-sort-down">$<fmt:formatNumber type="number" maxFractionDigits="7" value="${pcurrency.quote.USD.price}"/></h4>
+																	</c:when>
+																	<c:otherwise>
+																		<h4 class="text-success fas fa-caret-up">$<fmt:formatNumber type="number" maxFractionDigits="7" value="${pcurrency.quote.USD.price}"/></h4>
+																	</c:otherwise>
+																</c:choose>
+																</td>
+																<td>
+																<!-- PERCENT CHANGE -->
+																	<c:set var = "checkPercent" value="${pcurrency.quote.USD.percent_change_24h}%"/>
+																	<c:choose>
+																		<c:when test="${fn:contains(checkPercent, '-')}">
+																			<h4 class="text-danger fas fa-sort-down"><fmt:formatNumber type="number" maxFractionDigits="3" value="${pcurrency.quote.USD.percent_change_24h}"/>%</h4>
+																		</c:when>
+																		<c:otherwise>
+																			<h4 class="text-success fas fa-caret-up"> <fmt:formatNumber type="number" maxFractionDigits="3" value="${pcurrency.quote.USD.percent_change_24h}"/>%</h4>
+																		</c:otherwise>
+																	</c:choose>
+																</td>
 															</tr>
 														</c:if>
 													</c:forEach>
@@ -107,7 +130,7 @@
 					    </div>
 					</div>
 			    </div>
-			    <div class="accountvalue col align-self-start border border-dark">
+			    <div class="accountvalue col align-self-start border border-dark mt-1">
 				    <div class="col">
 					    <div class="card h-460">
 					    
@@ -125,7 +148,7 @@
 						
 					</div>
 				</div>
-				<div class="container col align-self-start border border-dark ">
+				<div class="container col align-self-start border border-dark m-1">
 					
 					<div class="col col-lg-auto  ">
 						<div class="card h-4600">
@@ -147,7 +170,7 @@
 			
 										    		<c:forEach items="${currencies}" var="currency">
 			
-												    		<tr>
+												    		<tr style="vertical-align: center;">
 												    			<td>${currency.name}</td>
 																<td><a href="info/${currency.id }" class="btn text-dark btn-outline-light">${currency.symbol}</a></td>
 																<td>
@@ -156,10 +179,10 @@
 																<c:choose>
 																	
 																	<c:when test="${fn:contains(checkPrice, '-')}">
-																		<h4 class="text-danger fas fa-sort-down"> $${currency.quote.usd.price } </h4>
+																		<h4 class="text-danger fas fa-sort-down">$<fmt:formatNumber type="number" maxFractionDigits="7" value="${currency.quote.usd.price }"/></h4>
 																	</c:when>
 																	<c:otherwise>
-																		<h4 class="text-success fas fa-caret-up"> $${currency.quote.usd.price } </h4>
+																		<h4 class="text-success fas fa-caret-up">$<fmt:formatNumber type="number" maxFractionDigits="7" value="${currency.quote.usd.price }"/></h4>
 																	</c:otherwise>
 																</c:choose>
 																</td>
@@ -168,10 +191,10 @@
 																	<c:set var = "checkPercent" value="${currency.quote.usd.percentChange24h }"/>
 																	<c:choose>
 																		<c:when test="${fn:contains(checkPercent, '-')}">
-																			<h4 class="text-danger fas fa-sort-down"> ${currency.quote.usd.percentChange24h }% </h4>
+																			<h4 class="text-danger fas fa-sort-down"><fmt:formatNumber type="number" maxFractionDigits="3" value="${currency.quote.usd.percentChange24h}"/>%</h4>
 																		</c:when>
 																		<c:otherwise>
-																			<h4 class="text-success fas fa-caret-up"> ${currency.quote.usd.percentChange24h }% </h4>
+																			<h4 class="text-success fas fa-caret-up"> <fmt:formatNumber type="number" maxFractionDigits="3" value="${currency.quote.usd.percentChange24h}"/>%</h4>
 																		</c:otherwise>
 																	</c:choose>
 																</td>
@@ -204,15 +227,16 @@
 			</div>
 			
 		    <div class="col col-lg-auto " >
-		    	<div class=" " >
-					    <h5 class="card-title">Your Positions</h5>
-						<table  class="table  table-sm card-text border" >
+		    	<div class="container bg-light rounded p-2" >
+					    <h5 class="card-title">Your Positions (${amountOfPositions})</h5>
+						<table  class="table  table-sm card-text border bg-light" >
 							<tr class="table-light">
 									    	
 					    		<th class="">Symbol</th>
-					    		<th class="">Current Price</th>
 					    		<th class="">Position Size</th>
+					    		<th class="">Current Price</th>
 					    		<th class="">Position Value</th>
+					    		<th class="">Percent of Portfolio</th>
 					    		<th class="">Actions</th>
 									    		
 					    	</tr>
@@ -226,12 +250,14 @@
 							    	<c:forEach items="${user.positions}" var="position" varStatus="loop">
 							    		<c:forEach items="${pcurrencies}" var="pcurrency">
 											<c:if test="${position.apiId == pcurrency.id }">
-												<tr>
+												<tr style="vertical-align: baseline;">
 													<td><a href="info/${pcurrency.id }" class="btn text-dark btn-outline-light">${pcurrency.symbol}</a></td>
-													<td><p>$${pcurrency.quote.USD.price}</p></td>
 													<td><p>${position.positionSize}</p></td>
-													<td><p>$${position.positionSize * pcurrency.quote.USD.price}</p></td>
-													<td class="text-start"><a href="/position/${position.id}/edit" class="btn btn-sm text-dark btn-outline-light">Edit</a>|
+													<td>$<fmt:formatNumber type="number" maxFractionDigits="7" value="${pcurrency.quote.USD.price}"/></td>
+													
+													<td>$<fmt:formatNumber type="number" maxFractionDigits="5" value="${position.positionSize * pcurrency.quote.USD.price}"/></td>
+													<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${position.positionSize * pcurrency.quote.USD.price / accountValue * 100}"/>%</td>
+													<td style="display:flex; align-items: center;" class="text-start"><a href="/position/${position.id}/edit" class="btn btn-sm text-dark btn-outline-light">Edit</a>|
 													<form class="delete-form" action="/position/${position.id}/delete" method="POST">
 													<input type="hidden" name="_method" value="delete">
 													<input type="submit" value="Close" class="btn btn-sm text-danger m-2"></form></p></td>
