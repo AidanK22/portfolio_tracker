@@ -112,7 +112,7 @@
 			 		</div>
 			 		
 			 		
-					<div class="d-flex justify-content-start bd-highlight">
+
                     <div class="d-flex justify-content-start bd-highlight">
                         <div class="d-flex justify-content-start bd-highlight mt-5">
                             <div class="d-flex justify-content-start ms-5">
@@ -128,7 +128,7 @@
                                             <h4 class="text-danger fas fa-sort-down"></h4>
                                         </div>
                                         <div class="col">
-                                            <h4 class="text-danger pe-2"> $${currency.quote.USD.price } </h4>
+                                            <h4 class="text-danger pe-2">$<fmt:formatNumber type="number" maxFractionDigits="7" value="${currency.quote.USD.price}"/></h4>
                                         </div>
                                     </div>
                                 </c:when>
@@ -138,7 +138,7 @@
                                             <h4 class="text-success fas fa-caret-up"></h4>
                                         </div>
                                         <div class="col">
-                                            <h4 class="text-success pe-2">  $${currency.quote.USD.price } </h4>
+                                            <h4 class="text-success pe-2">$<fmt:formatNumber type="number" maxFractionDigits="7" value="${currency.quote.USD.price}"/></h4>
                                         </div>
                                     </div>
                                 </c:otherwise>
@@ -162,7 +162,7 @@
                                 </div>
                         </div>
                     </div>
-                </div>
+
                 
 					<div class="addPosition col-lg offset-md-2 border-bottom border-left pr-5">
 						<div class="container border-dark mr-5 pr-5">
