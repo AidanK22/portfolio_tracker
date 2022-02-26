@@ -23,7 +23,7 @@
 </head>
 <body class="bg-dark text-light" >
 	<div class="container-fluid">
-		<div class="navbar fixed-top row align-items-start p-1 bg-dark border-bottom">
+		<nav class="navbar fixed-top row align-items-start p-1 bg-dark border-bottom">
 		
 			<Div class="container-fluid">
 			
@@ -49,16 +49,17 @@
 				    <div class=" navbar-text ">
 				    	<a href="/risk_calculator" class="btn text-white m-1 m-right-5">Risk Calculator</a>
 				    </div>
-				    <div class="dropdown ">
-				    	<button class="btn btn-secondary dropdown-toggle" type="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				    	Settings
-				    	</button>
-				    	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						    <a class="dropdown-item" href="/logout">Logout</a>
-
-						</div>
-				    			<a href="/logout" class="btn text-danger m-1"></a>
-				    		
+				    <div class=" navbar-text ">
+					    <div class="dropdown ">
+						          <a class="nav-link dropdown-toggle text-white mt-1" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						            Settings
+						          </a>
+						          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+						          	<li><a class="dropdown-item disabled" href="/account details">Account Details</a></li>
+						            <li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
+						            
+						          </ul>
+					    </div>
 				    </div>
 			    </div>
 			    
@@ -68,7 +69,7 @@
 			    </form>
 			    
 			</div>
-	    </div>
+	    </nav>
 	    <div class="d-flex" style="height: 100px;">
   			<div class="vr"></div>
 		</div>

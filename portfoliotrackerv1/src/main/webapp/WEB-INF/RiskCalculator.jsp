@@ -28,10 +28,6 @@
 				  
 				    	</div>
 				    </div>
-				    
-				    <div class=" navbar-text">
-				    	<a href="/logout" class="btn text-danger m-1">Logout</a>
-				    </div>
 				    <div class=" navbar-text ">
 				    	<a href="/dashboard" class="btn text-white m-1 m-right-5">Dashboard</a>
 				    </div>
@@ -39,7 +35,18 @@
 				    	<a href="/top200" class="btn text-white m-1 m-right-5">Top 200 coins</a>
 				    </div>
 				    
-				    
+				    <div class=" navbar-text ">
+					    <div class="dropdown ">
+						          <a class="nav-link dropdown-toggle text-white mt-1" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						            Settings
+						          </a>
+						          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+						          	<li><a class="dropdown-item disabled" href="/account details">Account Details</a></li>
+						            <li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
+						            
+						          </ul>
+					    </div>
+				    </div>
 			    </div>
 			    
 			    <form action="/search" method="get"class="d-flex">

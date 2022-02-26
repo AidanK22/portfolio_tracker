@@ -239,11 +239,13 @@ public class MainController {
     
     //Risk Calculator page
     @GetMapping("/risk_calculator")
-    public String RiskCalculator(HttpSession session) {
+    public String RiskCalculator(HttpSession session, Model model) {
     	Long userId = userSessionId(session);
         if(userId == null) {
         	return "redirect:/";
         }else {
+        	User u = userService.findUserById(userId);
+        	model.addAttribute("user", u);
         	return "RiskCalculator.jsp";
         }
     	

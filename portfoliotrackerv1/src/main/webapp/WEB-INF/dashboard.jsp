@@ -31,17 +31,24 @@
 				    	</div>
 				    </div>
 				    
-				    <div class=" navbar-text">
-				    	<a href="/logout" class="btn text-danger m-1">Logout</a>
-				    </div>
-				    
 				    <div class=" navbar-text ">
 				    	<a href="/top200" class="btn text-white m-1 m-right-5">Top 200 coins</a>
 				    </div>
 				    <div class=" navbar-text ">
 				    	<a href="/risk_calculator" class="btn text-white m-1 m-right-5">Risk Calculator</a>
 				    </div>
-				    
+				    <div class=" navbar-text ">
+					    <div class="dropdown ">
+						          <a class="nav-link dropdown-toggle text-white mt-1" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						            Settings
+						          </a>
+						          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+						          	<li><a class="dropdown-item disabled" href="/account details">Account Details</a></li>
+						            <li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
+						            
+						          </ul>
+					    </div>
+				    </div>
 			    </div>
 			    
 			    <form action="/search" method="get"class="d-flex">
@@ -93,10 +100,10 @@
 																<c:choose>
 																	
 																	<c:when test="${fn:contains(checkPrice, '-')}">
-									                                            <h4 class="text-danger ">$<fmt:formatNumber type="number" maxFractionDigits="7" value="${pcurrency.quote.USD.price}"/></h4>
+									                                            <h4 class="text-danger fs-5">$<fmt:formatNumber type="number" maxFractionDigits="7" value="${pcurrency.quote.USD.price}"/></h4>
 																	</c:when>
 																	<c:otherwise>
-								                                            <h4 class="text-success pe-2">$<fmt:formatNumber type="number" maxFractionDigits="7" value="${pcurrency.quote.USD.price}"/></h4>
+								                                            <h4 class="text-success pe-2 fs-5">$<fmt:formatNumber type="number" maxFractionDigits="7" value="${pcurrency.quote.USD.price}"/></h4>
 																</c:otherwise>
 																</c:choose>
 																</td>
@@ -107,21 +114,21 @@
 																		<c:when test="${fn:contains(checkPercent, '-')}">
 																			<div class="d-flex ">
 										                                        <div class="col ">
-										                                            <h4 class="text-danger fas fa-sort-down pe-1"></h4>
+										                                            <h4 class="text-danger fas fa-sort-down ps-1 me-1 fs-5"></h4>
 										                                        </div>
 										                                        <div class="col">
-										                                            <h4 class="text-danger "><fmt:formatNumber type="number" maxFractionDigits="3" value="${pcurrency.quote.USD.percent_change_24h}"/>%</h4>
+										                                            <h4 class="text-danger fs-5"><fmt:formatNumber type="number" maxFractionDigits="3" value="${pcurrency.quote.USD.percent_change_24h}"/>%</h4>
 										                                        </div>
 									                                    	</div>
 																		</c:when>
 																		<c:otherwise>
 																		<div class="d-flex flex-row">
 																			<div class="col ps-1">
-									                                            <h4 class="text-success fas fa-caret-up pe-1"></h4>
+									                                            <h4 class="text-success fas fa-caret-up pe-1 me-1 fs-5"></h4>
 									                                        </div>
 									                                    
 									                                        <div class="col">
-									                                            <h4 class="text-success pe-2"><fmt:formatNumber type="number" maxFractionDigits="3" value="${pcurrency.quote.USD.percent_change_24h}"/>%</h4>
+									                                            <h4 class="text-success pe-2 fs-5"><fmt:formatNumber type="number" maxFractionDigits="3" value="${pcurrency.quote.USD.percent_change_24h}"/>%</h4>
 									                                        </div>
 									                                    </div>
 																				
@@ -195,10 +202,10 @@
 																<c:choose>
 																	
 																	<c:when test="${fn:contains(checkPrice, '-')}">
-																		<h4 class="text-danger ">$<fmt:formatNumber type="number" maxFractionDigits="7" value="${currency.quote.usd.price }"/></h4>
+																		<h4 class="text-danger fs-5">$<fmt:formatNumber type="number" maxFractionDigits="7" value="${currency.quote.usd.price }"/></h4>
 																	</c:when>
 																	<c:otherwise>
-																		<h4 class="text-success ">$<fmt:formatNumber type="number" maxFractionDigits="7" value="${currency.quote.usd.price }"/></h4>
+																		<h4 class="text-success fs-5">$<fmt:formatNumber type="number" maxFractionDigits="7" value="${currency.quote.usd.price }"/></h4>
 																	</c:otherwise>
 																</c:choose>
 																</td>
@@ -209,21 +216,21 @@
 																		<c:when test="${fn:contains(checkPercent, '-')}">
 																			<div class="d-flex ">
 										                                        <div class="col ">
-										                                            <h4 class="text-danger fas fa-sort-down pe-1"></h4>
+										                                            <h4 class="text-danger fas fa-sort-down ps-1 fs-5"></h4>
 										                                        </div>
 										                                        <div class="col">
-										                                            <h4 class="text-danger "><fmt:formatNumber type="number" maxFractionDigits="3" value="${currency.quote.usd.percentChange24h}"/>%</h4>
+										                                            <h4 class="text-danger pe-3 fs-5"><fmt:formatNumber type="number" maxFractionDigits="3" value="${currency.quote.usd.percentChange24h}"/>%</h4>
 										                                        </div>
 									                                    	</div>
 																		</c:when>
 																		<c:otherwise>
 																			<div class="d-flex flex-row">
 																			<div class="col ps-1">
-									                                            <h4 class="text-success fas fa-caret-up pe-1"></h4>
+									                                            <h4 class="text-success fas fa-caret-up pe-1 fs-5"></h4>
 									                                        </div>
 									                                    
 									                                        <div class="col">
-									                                            <h4 class="text-success pe-2"><fmt:formatNumber type="number" maxFractionDigits="3" value="${currency.quote.usd.percentChange24h}"/>%</h4>
+									                                            <h4 class="text-success pe-3 fs-5"><fmt:formatNumber type="number" maxFractionDigits="3" value="${currency.quote.usd.percentChange24h}"/>%</h4>
 									                                        </div>
 									                                    	</div>
 																		</c:otherwise>
