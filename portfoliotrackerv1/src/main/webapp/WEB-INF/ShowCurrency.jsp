@@ -12,8 +12,12 @@
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<!-- For any Bootstrap that uses JS or jQuery-->
 	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.bundle.js"></script>
 	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
 <meta charset="ISO-8859-1">
 <title>Currency Info</title>
 </head>
@@ -33,7 +37,7 @@
 				    </div>
 				    
 				    <div class=" navbar-text">
-				    	<a href="/logout" class="btn text-danger m-1">Logout</a>
+				    	
 				    </div>
 				    
 				    <div class=" navbar-text ">
@@ -45,7 +49,17 @@
 				    <div class=" navbar-text ">
 				    	<a href="/risk_calculator" class="btn text-white m-1 m-right-5">Risk Calculator</a>
 				    </div>
-				    
+				    <div class="dropdown ">
+				    	<button class="btn btn-secondary dropdown-toggle" type="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    	Settings
+				    	</button>
+				    	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						    <a class="dropdown-item" href="/logout">Logout</a>
+
+						</div>
+				    			<a href="/logout" class="btn text-danger m-1"></a>
+				    		
+				    </div>
 			    </div>
 			    
 			    <form action="/search" method="get"class="d-flex">
