@@ -30,7 +30,9 @@
 				  
 				    	</div>
 				    </div>
-				    
+				    <div class=" navbar-text ">
+				    	<a href="/dashboard" class="btn text-white m-1 disabled">Dashboard</a>
+				    </div>
 				    <div class=" navbar-text ">
 				    	<a href="/top200" class="btn text-white m-1 m-right-5">Top 200 coins</a>
 				    </div>
@@ -43,7 +45,7 @@
 						            Settings
 						          </a>
 						          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-						          	<li><a class="dropdown-item disabled" href="/account details">Account Details</a></li>
+						          	<li><a class="dropdown-item" href="/account_details">Account Details</a></li>
 						            <li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
 						            
 						          </ul>

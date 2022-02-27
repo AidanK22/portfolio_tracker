@@ -266,15 +266,16 @@ public class MainController {
     	return "redirect:/risk_calculator";
     }
     
-//  //get currency by symbol **WORKING**
-//  	@GetMapping("/search")
-//  	public String search(@RequestParam("symbol") String symbol) {
-//  			Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "symbol=" + symbol + "&" + apiKey, HashMap.class );
-//  			Map data = (Map) QuotesBase.get("data");
-//  			Map t = (Map) data.get(symbol.toUpperCase());
-//  			int apiId = (int) t.get("id");
-//  			
-//  			return "redirect:/info/" + apiId;
-//  		
-//  	}
+    //------account details------\\
+    @GetMapping("/account_details")
+    public String accountDetails(HttpSession session, Model model) {
+    	Long userId = userSessionId(session);
+        if(userId == null) {
+        	return "redirect:/";
+        }else {
+        	User u = userService.findUserById(userId);
+        	model.addAttribute("user", u);
+        	return "AccountDetails.jsp";
+        }
+    }
 }

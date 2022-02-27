@@ -55,7 +55,7 @@
 						            Settings
 						          </a>
 						          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-						          	<li><a class="dropdown-item disabled" href="/account details">Account Details</a></li>
+						          	<li><a class="dropdown-item " href="/account_details">Account Details</a></li>
 						            <li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
 						            
 						          </ul>
