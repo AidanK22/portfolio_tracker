@@ -15,8 +15,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="container-fluid bg-dark">
-		<div class="navbar fixed-top row align-items-start p-1 bg-dark border border-dark">
+<div class="container-fluid ">
+		<div class="navbar fixed-top row align-items-start p-1 bg-dark border-bottom">
 		
 			<Div class="container-fluid">
 			
@@ -29,7 +29,7 @@
 				    	</div>
 				    </div>
 				    <div class=" navbar-text ">
-				    	<a href="/dashboard" class="btn text-white m-1 m-right-5">Dashboard</a>
+				    	<a href="/dashboard" class="btn text-white m-1 ">Dashboard</a>
 				    </div>
 				    <div class=" navbar-text ">
 				    	<a href="/top200" class="btn text-white m-1 m-right-5">Top 200 coins</a>
@@ -43,7 +43,7 @@
 						            Settings
 						          </a>
 						          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-						          	<li><a class="dropdown-item disabled" href="/account details">Account Details</a></li>
+						          	<li><a class="dropdown-item" href="/account_details">Account Details</a></li>
 						            <li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
 						            
 						          </ul>

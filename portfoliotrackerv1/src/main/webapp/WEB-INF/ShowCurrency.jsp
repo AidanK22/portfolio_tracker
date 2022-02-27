@@ -23,7 +23,7 @@
 </head>
 <body class="bg-dark text-light" >
 	<div class="container-fluid">
-		<nav class="navbar fixed-top row align-items-start p-1 bg-dark border-bottom">
+		<div class="navbar fixed-top row align-items-start p-1 bg-dark border-bottom">
 		
 			<Div class="container-fluid">
 			
@@ -35,11 +35,6 @@
 				  
 				    	</div>
 				    </div>
-				    
-				    <div class=" navbar-text">
-				    	
-				    </div>
-				    
 				    <div class=" navbar-text ">
 				    	<a href="/dashboard" class="btn text-white m-1">Dashboard</a>
 				    </div>
@@ -55,7 +50,7 @@
 						            Settings
 						          </a>
 						          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-						          	<li><a class="dropdown-item " href="/account_details">Account Details</a></li>
+						          	<li><a class="dropdown-item" href="/account_details">Account Details</a></li>
 						            <li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
 						            
 						          </ul>
@@ -69,7 +64,7 @@
 			    </form>
 			    
 			</div>
-	    </nav>
+	    </div>
 	    <div class="d-flex" style="height: 100px;">
   			<div class="vr"></div>
 		</div>
@@ -217,12 +212,14 @@
 						<h3 class="m-3">Circulating Supply</h3>
 						<p class="m-4"> ${currency.circulating_supply } ${currency.symbol }</p>
 						
+						<div class="ms-4">
 						<c:if test="${currency.max_supply != null}">
                         <p>${currency.circulating_supply/currency.max_supply * 100}%</p>
                             <div class="progress w-50" style="height: 4px;">
                                   <div class="progress-bar bg-success" role="progressbar" style="width: ${currency.circulating_supply/currency.max_supply * 100}%"></div>
                             </div>
                         </c:if>
+						</div>
 						
 						<h3 class="m-3">Max Supply</h3>
 						<p class="m-4">${currency.max_supply } ${currency.symbol }</p>

@@ -17,7 +17,7 @@
 <title>Dashboard</title>
 </head>
 <body>
-	<div class="container-fluid bg-light p-0 bg-dark">
+	<div class="container-fluid p-0 bg-dark">
 		<div class="navbar fixed-top row align-items-start p-1 bg-dark border-bottom">
 		
 			<Div class="container-fluid">

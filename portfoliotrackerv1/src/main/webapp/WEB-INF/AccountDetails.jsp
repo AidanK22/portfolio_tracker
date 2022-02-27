@@ -58,6 +58,16 @@
 			    
 			</div>
 	    </div>
+	    
+	    <div class="d-flex" style="height: 100px;">
+  			<div class="vr"></div>
+		</div>
+		
+		<div class="col bg-dark m-5 text-white">
+			<h1>First Name: <c:out value="${user.firstName }"/></h1>
+			<h1>Last Name: <c:out value="${user.lastName }"/></h1>
+			<h1>Email: <c:out value="${user.email}"/></h1>
+		</div>
 	</div>
 </body>
 </html>
