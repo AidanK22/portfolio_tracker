@@ -34,7 +34,9 @@
 				    <div class=" navbar-text ">
 				    	<a href="/top200" class="btn text-white m-1 m-right-5">Top 200 coins</a>
 				    </div>
-				    
+				    <div class=" navbar-text ">
+				    	<a href="/risk_calculator" class="btn text-white m-1 m-right-5 disabled">Risk Calculator</a>
+				    </div>
 				    <div class=" navbar-text ">
 					    <div class="dropdown ">
 						          <a class="nav-link dropdown-toggle text-white mt-1" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

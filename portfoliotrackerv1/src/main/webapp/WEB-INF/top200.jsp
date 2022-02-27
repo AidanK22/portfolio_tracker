@@ -31,7 +31,9 @@
 				    <div class=" navbar-text ">
 				    	<a href="/dashboard" class="btn text-white m-1">Dashboard</a>
 				    </div>
-				    
+				    <div class=" navbar-text ">
+				    	<a href="/top200" class="btn text-white m-1 m-right-5 disabled">Top 200 coins</a>
+				    </div>
 				    <div class=" navbar-text ">
 				    	<a href="/risk_calculator" class="btn text-white m-1 m-right-5">Risk Calculator</a>
 				    </div>
