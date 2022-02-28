@@ -15,13 +15,15 @@
 <title>Login or Register</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row ">
+<div class="container-fluid  bg-dark p-2">
+	<div class="col-6 offset-md-3 align-self-center">
+		<div class="row m-2 p-2 w-75 text-white">
 			<h1>Welcome to AK's Portfolio Tracker</h1>
 			<h4>Please register or login</h4>
-		<div class="row">
+		</div>
+		<div class="row m-2">
 		
-			<div class="col bg-light m-2 border">
+			<div class="col p-3 bg-light rounded m-2 border">
 	            <h2>Register</h2>
 				<div class=" container">
 					<div class="container p-3 mb-2">
@@ -59,9 +61,9 @@
 				</form:form>
 	
 			</div>
-	
-	
-			<div class="col bg-light m-2 border">
+		</div>
+		<div class="row  m-2 mb-3">
+			<div class="col p-3 bg-light rounded m-2 mb-5 border">
 				<h2>Login</h2>
 
 				<div class=" container">
@@ -87,5 +89,6 @@
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>
