@@ -15,7 +15,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container-fluid bg-dark p-0">
+	<div class="container-fluid bg-dark p-1">
 		<div class="navbar fixed-top row align-items-start p-1 bg-dark border-bottom">
 		
 			<Div class="container-fluid">
@@ -62,11 +62,20 @@
 	    <div class="d-flex" style="height: 100px;">
   			<div class="vr"></div>
 		</div>
-		
-		<div class="col bg-dark m-5 text-white">
-			<h1>First Name: <c:out value="${user.firstName }"/></h1>
-			<h1>Last Name: <c:out value="${user.lastName }"/></h1>
-			<h1>Email: <c:out value="${user.email}"/></h1>
+		<div class="row justify-content-center">
+			<div class="col-auto bg-dark m-3 offset-md-3 text-white border">
+				<h3>Account Details</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-3 bg-dark m-4 ms-5 text-white border">
+				<h5>lorem ipsum van losum</h5>
+			</div>
+			<div class="col bg-dark m-4 p-3 text-white border">
+				<h5>First Name: <c:out value="${user.firstName }"/></h5>
+				<h5>Last Name: <c:out value="${user.lastName }"/></h5>
+				<h5>Email: <c:out value="${user.email}"/></h5>
+			</div>
 		</div>
 	</div>
 </body>
