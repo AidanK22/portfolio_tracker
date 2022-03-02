@@ -1,5 +1,6 @@
 package com.aidan.portfoliotrackerv1.controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -266,7 +267,10 @@ public class MainController {
     	return "redirect:/risk_calculator";
     }
     
-    //------account details------\\
+    
+    //------------------account details------------------\\
+    
+    
     @GetMapping("/account_details")
     public String accountDetails(HttpSession session, Model model) {
     	Long userId = userSessionId(session);
@@ -274,7 +278,83 @@ public class MainController {
         	return "redirect:/";
         }else {
         	User u = userService.findUserById(userId);
-        	model.addAttribute("user", u);
+
+	    	
+	    	List<Position> positions =	positionService.findPositionsByOwner(u);//  findAllPositions()
+
+	    	List<Watchlist> watchlist = watchlistService.findWatchlistByWatcher(u); 	//findAllInWatchlist()
+	    	Base base = restTemplate.getForObject(this.baseURL + "listings/latest?start=1&limit=200&" + apiKey, Base.class);
+//	    	var d = base.getData().get("price");
+//	    	int price = d.get("price");
+	    	//check if anything is in position
+			//positions
+	    		var amountOfPositions = 0;
+	    		model.addAttribute("amountOfPositions", amountOfPositions);
+		    	if(u.getWatchlist().size() > 0) {
+		    	
+		    	List apiIdsToGet = new ArrayList(); 
+
+		    	String newApiIdList = "";	//create empty list to add api ids to
+		    	
+		    	//add positions apiIds to list
+		    	for(var i=0; i<positions.size(); i++) { 	//loop through positions
+		    		int apiId = positions.get(i).getApiId(); 	//grab api Id from the position
+		    			if(!apiIdsToGet.contains(apiId) ) {
+		    				apiIdsToGet.add(apiId);		//add api id to list
+		    			}
+		    	}
+		    	//add watchlist apiIds to list
+		    	
+		    	for(var i=0; i<watchlist.size(); i++) { 	//loop through watchlist
+		    		
+		    		int apiId = watchlist.get(i).getApiId(); 	//grab api Id from the watchlist
+		    			if(!apiIdsToGet.contains(apiId) ) {
+		    				apiIdsToGet.add(apiId);		//add api id to list
+		    			}
+		    	}
+		    	
+		    	//creates comma separated list
+		    	newApiIdList = apiIdsToGet.toString();	
+		    	newApiIdList = newApiIdList.replace("[", "").replace("]", "").replace(" ", "");
+		    	
+		    	//api call
+				Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "id=" + newApiIdList + "&" + apiKey, HashMap.class );	//api call
+				Map data = (Map) QuotesBase.get("data");	//get data table in json data returned
+				String[] finalIds = newApiIdList.split(",");
+				List finalPosArrayList = new ArrayList();
+				//account value
+		    	var accountValue = 0;
+		    	amountOfPositions = 0;
+		    	System.out.println("accountValue:");
+				System.out.println(accountValue);
+		    	for(var i=0; i<positions.size(); i++) {
+		    		amountOfPositions += 1;
+		    		int apiId = positions.get(i).getApiId();
+		    		Map coinId = (Map) data.get(Integer.toString(apiId));
+		    		Map	coinQuote = (Map) coinId.get("quote");
+		    		Map coinUsd = (Map) coinQuote.get("USD");
+		    		Double coinPrice = (Double) coinUsd.get("price");
+
+		    		accountValue += positions.get(i).getPositionSize() * coinPrice;	
+		    	}
+				for( var i =0 ; i< finalIds.length ; i++) {
+					finalPosArrayList.add((Map) data.get(finalIds[i]));
+				}
+				
+				model.addAttribute("pcurrencies", finalPosArrayList);
+		    	
+			    	System.out.println("accountValue:");
+					System.out.println(accountValue);
+					model.addAttribute("accountValue", accountValue);
+					model.addAttribute("amountOfPositions", amountOfPositions);
+		    	}
+		    		
+	    	model.addAttribute("user", u);
+	    	model.addAttribute("positions", positions);
+	    	model.addAttribute("watchlist", watchlist);
+	    	model.addAttribute("currencies", base.getData());
+	    	
+        	
         	return "AccountDetails.jsp";
         }
     }

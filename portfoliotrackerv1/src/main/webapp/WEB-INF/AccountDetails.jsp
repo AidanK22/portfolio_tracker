@@ -67,14 +67,89 @@
 				<h3>Account Details</h3>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-3 bg-dark m-4 ms-5 text-white border">
-				<h5>lorem ipsum van losum</h5>
-			</div>
-			<div class="col bg-dark m-4 p-3 text-white border">
+		<div class="row justify-content-center">
+			<div class="col-auto bg-dark m-3 offset-md-3 p-3 text-white border">
 				<h5>First Name: <c:out value="${user.firstName }"/></h5>
 				<h5>Last Name: <c:out value="${user.lastName }"/></h5>
 				<h5>Email: <c:out value="${user.email}"/></h5>
+				
+			</div>
+		</div>
+		<div class="row">
+			
+			<div class="col bg-dark m-4 p-3  border">
+				
+				<div class="row">
+					<div class="accountvalue col align-self-start border border-dark mt-1">
+					    <div class="col">
+						    <div class="card h-460">
+						    
+							    <div class="card-body">
+							    
+							    	<h5 class="card-title">Account Value</h5>
+							    	<h6>$<c:out value="${accountValue }"/></h6>
+							    	
+							    </div>
+							    <div class="card-footer">
+							    	<small class="text-muted">${currency.lastUpdated }</small>
+							    </div>
+							    
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="row">
+				 	<div class="col col-lg-auto" >
+						<div class="container bg-light rounded p-2" >
+							    <h5 class="card-title">Your Positions (${amountOfPositions})</h5>
+								<table  class="table  table-sm card-text border-rounded border bg-light" >
+									<tr class="table-light">
+											    	
+							    		<th class="">Symbol</th>
+							    		<th class="">Position Size</th>
+							    		<th class="">Current Price</th>
+							    		<th class="">Position Value</th>
+							    		<th class="">Percent of Portfolio</th>
+							    		<th class="">Actions</th>
+											    		
+							    	</tr>
+							    	<c:choose>
+							    		<c:when test="${user.positions == null }">
+							    			<tr>
+												<td><p>Your Positions are empty</td>
+											</tr>
+							    		</c:when>
+							    		<c:otherwise>		
+									    	<c:forEach items="${user.positions}" var="position" varStatus="loop">
+									    		<c:forEach items="${pcurrencies}" var="pcurrency">
+													<c:if test="${position.apiId == pcurrency.id }">
+														<tr style="vertical-align: baseline;">
+															<td><a href="info/${pcurrency.id }" class="btn text-dark btn-outline-light">${pcurrency.symbol}</a></td>
+															<td><p>${position.positionSize}</p></td>
+															<td>$<fmt:formatNumber type="number" maxFractionDigits="7" value="${pcurrency.quote.USD.price}"/></td>
+															
+															<td>$<fmt:formatNumber type="number" maxFractionDigits="5" value="${position.positionSize * pcurrency.quote.USD.price}"/></td>
+															<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${position.positionSize * pcurrency.quote.USD.price / accountValue * 100}"/>%</td>
+															<td style="display:flex; align-items: center;" class="text-start"><a href="/position/${position.id}/edit" class="btn btn-sm text-dark btn-outline-light">Edit</a>|
+															<form class="delete-form" action="/position/${position.id}/delete" method="POST">
+															<input type="hidden" name="_method" value="delete">
+															<input type="submit" value="Close" class="btn btn-sm text-danger m-2"></form></p></td>
+															 
+														</tr>
+													</c:if>
+													
+												</c:forEach>
+					  				    	</c:forEach>
+				  				    	</c:otherwise>
+		  				    		</c:choose>
+						    </table>
+					    </div>
+					</div>
+			    </div>
+			</div>
+			<div class="col-3 bg-dark m-4 ms-5 text-white border">
+				
 			</div>
 		</div>
 	</div>
