@@ -52,6 +52,7 @@ public class UserController {
 	//base URL
 	private String baseURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/";
 	
+	private String v2BaseURL = "https://pro-api.coinmarketcap.com/v2/cryptocurrency/";
 	@Autowired
 	RestTemplate restTemplate;
 	
@@ -175,7 +176,7 @@ public class UserController {
 		    	newApiIdList = newApiIdList.replace("[", "").replace("]", "").replace(" ", "");
 		    	
 		    	//api call
-				Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "id=" + newApiIdList + "&" + apiKey, HashMap.class );	//api call
+				Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "id=" + newApiIdList + "&" + apiKey, HashMap.class );	//api call
 				Map data = (Map) QuotesBase.get("data");	//get data table in json data returned
 				String[] finalIds = newApiIdList.split(",");
 				List finalPosArrayList = new ArrayList();

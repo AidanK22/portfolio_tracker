@@ -17,7 +17,7 @@
 <title>Dashboard</title>
 </head>
 <body>
-	<div class="container-fluid p-0 bg-dark">
+	<div class="container-fluid pe-3 bg-dark">
 		<div class="navbar fixed-top row align-items-start p-1 bg-dark border-bottom">
 		
 			<Div class="container-fluid">
@@ -60,10 +60,87 @@
 			    
 			</div>
 	    </div>
-	    <div class="d-flex" style="height: 30px;">
+	    <div class="d-flex" style="height: 85px;">
   			<div class="vr"></div>
 		</div>
-	    <div class="card-group mt-5">
+		<div class="row p-2">
+			<div class="col border-bottom">
+				<!-- TradingView Widget BEGIN -->
+				<div class="tradingview-widget-container">
+				  <div class="tradingview-widget-container__widget"></div>
+				  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/" rel="noopener" target="_blank"><span class="blue-text offset-lg-11 ">Markets</span></a> by TradingView</div>
+				  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+				  {
+				  "symbols": [
+				    {
+				      "proName": "FOREXCOM:SPXUSD",
+				      "title": "S&P 500"
+				    },
+				    {
+				      "proName": "BITSTAMP:BTCUSD",
+				      "title": "Bitcoin"
+				    },
+				    {
+				      "proName": "BITSTAMP:ETHUSD",
+				      "title": "Ethereum"
+				    },
+				    {
+				      "description": "XRP",
+				      "proName": "BITSTAMP:XRPUSD"
+				    },
+				    {
+				      "description": "Terra",
+				      "proName": "BITFINEX:LUNAUSD"
+				    },
+				    {
+				      "description": "Avalanche",
+				      "proName": "BITFINEX:AVAXUSD"
+				    },
+				    {
+				      "description": "Polkadot",
+				      "proName": "BITFINEX:DOTUSD"
+				    },
+				    {
+				      "description": "Polygon",
+				      "proName": "BINANCEUS:MATICUSD"
+				    },
+				    {
+				      "description": "Cosmos",
+				      "proName": "COINBASE:ATOMUSD"
+				    },
+				    {
+				      "description": "Litecoin",
+				      "proName": "COINBASE:LTCUSD"
+				    },
+				    {
+				      "description": "Chainlink",
+				      "proName": "BITFINEX:LINKUSD"
+				    },
+				    {
+				      "description": "Algorand",
+				      "proName": "COINBASE:ALGOUSD"
+				    },
+				    {
+				      "description": "Elrond",
+				      "proName": "BITFINEX:EGLDUSD"
+				    },
+				    {
+				      "description": "Monero",
+				      "proName": "BITFINEX:XMRUSD"
+				    }
+				  ],
+				  "showSymbolLogo": true,
+				  "colorTheme": "dark",
+				  "isTransparent": true,
+				  "displayMode": "adaptive",
+				  "locale": "en"
+				}
+				  </script>
+				</div>
+				<!-- TradingView Widget END -->
+			</div>
+		</div>
+	    <div class="card-group mt-1 p-1">
 	    
 	    		
 	    
@@ -261,16 +338,18 @@
 			    
 		    
 	    </div>
-	    <div class="container">
+	    <div class="row">
 	    	<div class="col  m-2">
 					
 			</div>
 			
-		    <div class="col col-lg-auto" >
+		    <div class="col-7 " >
 		    	<div class="container bg-light rounded p-2" >
-					    <h5 class="card-title">Your Positions (${amountOfPositions})</h5>
-						<table  class="table  table-sm card-text border bg-light" >
-							<tr class="table-light">
+					<h5 class="card-title">Your Positions (${amountOfPositions})</h5>
+					<div class="datatable-inner table-responsive ps ps--active-y" style="overflow: auto; position: relative; max-height: 620px;">
+					
+						<table id="dtDynamicVerticalScrollExample" class="table  table-sm card-text border bg-light" >
+							<tr class="table-dark">
 									    	
 					    		<th class="">Symbol</th>
 					    		<th class="">Position Size</th>
@@ -309,12 +388,35 @@
 			  				    	</c:forEach>
 		  				    	</c:otherwise>
   				    		</c:choose>
-				    </table>
+				    	</table>
+				    </div>
 			    </div>
+			</div>
+			<div class="col col-sm me-3">
+				<!-- TradingView Widget BEGIN -->
+				<div class="tradingview-widget-container">
+				  <div class="tradingview-widget-container__widget"></div>
+				  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/cryptocurrencies/key-events/" rel="noopener" target="_blank"><span class="blue-text">Daily cryptocurrency news</span></a> by TradingView</div>
+				  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+				  {
+				  "feedMode": "market",
+				  "market": "crypto",
+				  "colorTheme": "dark",
+				  "isTransparent": true,
+				  "displayMode": "regular",
+				  "width": "100%",
+				  "height": "100%",
+				  "locale": "en"
+				}
+				  </script>
+				</div>
+				<!-- TradingView Widget END -->	
 			</div>
 			
 		</div>
+		<div class="row m-2">
 		
+		</div>
 	</div>
 </body>
 </html>

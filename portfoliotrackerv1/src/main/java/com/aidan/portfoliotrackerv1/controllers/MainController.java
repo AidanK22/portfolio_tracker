@@ -43,6 +43,9 @@ public class MainController {
 	
 	//base api URL
 	private String baseURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/";
+	
+	private String v2BaseURL = "https://pro-api.coinmarketcap.com/v2/cryptocurrency/";
+
 	//api key
 	private String apiKey = PropertiesReader.getProperty("API_KEY");
 	
@@ -73,23 +76,19 @@ public class MainController {
     	if(userId == null) {
     		return "redirect:/";
     	}else {
-    		System.out.println("printing apiId");
-    		System.out.println(apiId);
-    		System.out.println("************************************************************");
-			Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "id=" + apiId + "&" + apiKey, HashMap.class );
+
+			Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "id=" + apiId + "&" + apiKey, HashMap.class );
 			Map data = (Map) QuotesBase.get("data");
 			Map t = (Map) data.get(Integer.toString(apiId));
 
+			Map MetaDataBase = restTemplate.getForObject(this.v2BaseURL + "info?" + "id=" + apiId + "&" + apiKey, HashMap.class );
+			Map metadata = (Map) MetaDataBase.get("data");
+			Map mdt = (Map) metadata.get(Integer.toString(apiId));
+			
 			
 			User u = userService.findUserById(userId);
-			System.out.println("after user u serv");
-			System.out.println(u);
-//			Integer k = (int) (long) userId;
-//			System.out.println("inside if ");
-			
+
 			List<Watchlist> watchlist = watchlistService.findUsersInWatchlistByWatcherId(userId);
-			System.out.println("after watchlist list query ");
-			System.out.println(watchlist);
 			
 			System.out.println(watchlist);
 			//watchlist.get(apiId)
@@ -112,7 +111,7 @@ public class MainController {
 //					
 				}
 			}	
-			
+			model.addAttribute("currencyMD", mdt);
 			model.addAttribute("currency", t);
 			model.addAttribute("watchlist", watchlist);
 			model.addAttribute("user", u);
@@ -127,7 +126,7 @@ public class MainController {
 	//get currency by symbol **WORKING**
 	@GetMapping("/search")
 	public String search(@RequestParam("symbol") String symbol) {
-			Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "symbol=" + symbol + "&" + apiKey, HashMap.class );
+			Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "symbol=" + symbol + "&" + apiKey, HashMap.class );
 			Map data = (Map) QuotesBase.get("data");
 			Map t = (Map) data.get(symbol.toUpperCase());
 			int apiId = (int) t.get("id");
@@ -318,7 +317,7 @@ public class MainController {
 		    	newApiIdList = newApiIdList.replace("[", "").replace("]", "").replace(" ", "");
 		    	
 		    	//api call
-				Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "id=" + newApiIdList + "&" + apiKey, HashMap.class );	//api call
+				Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "id=" + newApiIdList + "&" + apiKey, HashMap.class );	//api call
 				Map data = (Map) QuotesBase.get("data");	//get data table in json data returned
 				String[] finalIds = newApiIdList.split(",");
 				List finalPosArrayList = new ArrayList();

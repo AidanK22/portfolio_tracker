@@ -204,7 +204,11 @@
 			</div>
 			
 		</div>	
-
+		<div class="row align-items-center m-3">
+			<div class="col-3 border rounded m-2">
+				<p>${currencyMD.description}</p>
+			</div>
+		</div>
 		<div class="container-fluid ">
 			<div class="row align-items-center m-3">
 				
@@ -241,60 +245,40 @@
 					</div>
 				
 			</div>
-			<%-- <div class="row align-items-center m-3">
-				<!-- TradingView Widget BEGIN -->
-				<div class="tradingview-widget-container">
-				  <div id="tradingview_8eb1f"></div>
-				  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/KUCOIN-${currency.symbol}/" rel="noopener" target="_blank"><span class="blue-text">${currency.symbol } Chart</span></a> by TradingView</div>
-				  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-				  <script type="text/javascript">
-				  new TradingView.widget(
-				  {
-				  "width": 980,
-				  "height": 610,
-				  "symbol": "KUCOIN:${currency.symbol }USDT",
-				  "interval": "D",
-				  "timezone": "Etc/UTC",
-				  "theme": "dark",
-				  "style": "1",
-				  "locale": "en",
-				  "toolbar_bg": "#f1f3f6",
-				  "enable_publishing": false,
-				  "allow_symbol_change": true,
-				  "container_id": "tradingview_8eb1f"
-				}
-				  );
-				  </script>
+			 <div class="row align-items-center m-3">
+			 	<div class="col-3 border rounded m-2">
+					<p>${currencyMD.description}</p>
+					<a href="${currencyMD.urls.website[0]}">${currencyMD.urls.website[0]}</a>
 				</div>
-				<!-- TradingView Widget END -->
-				 --%>
-				
-				
-				<!-- TradingView Widget BEGIN -->
-				<div class="tradingview-widget-container">
-				  <div id="tradingview_774ed"></div>
-				  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/${currency.symbol}USDT/?exchange=KUCOIN" rel="noopener" target="_blank"><span class="blue-text">${currency.symbol}USDT Chart</span></a> by TradingView</div>
-				  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-				  <script type="text/javascript">
-				  new TradingView.widget(
-				  {
-				  "width": 980,
-				  "height": 610,
-				  "symbol": "KUCOIN:${currency.symbol}USDT",
-				  "interval": "D",
-				  "timezone": "Etc/UTC",
-				  "theme": "dark",
-				  "style": "1",
-				  "locale": "en",
-				  "toolbar_bg": "#f1f3f6",
-				  "enable_publishing": false,
-				  "allow_symbol_change": true,
-				  "container_id": "tradingview_774ed"
-				}
-				  );
-				  </script>
+				<div class="col col-auto p-3 border rounded ">
+					<h5>${currency.name } Price Chart</h5>
+					<!-- TradingView Widget BEGIN -->
+					<div class="tradingview-widget-container">
+					  <div id="tradingview_774ed"></div>
+					  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/${currency.symbol}USDT/?exchange=KUCOIN" rel="noopener" target="_blank"><span class="blue-text">${currency.symbol}USDT Chart</span></a> by TradingView</div>
+					  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+					  <script type="text/javascript">
+					  new TradingView.widget(
+					  {
+					  "width": 980,
+					  "height": 610,
+					  "symbol": "KUCOIN:${currency.symbol}USDT",
+					  "interval": "D",
+					  "timezone": "Etc/UTC",
+					  "theme": "dark",
+					  "style": "1",
+					  "locale": "en",
+					  "toolbar_bg": "#f1f3f6",
+					  "enable_publishing": false,
+					  "hide_side_toolbar": false,
+					  "allow_symbol_change": false,
+					  "container_id": "tradingview_774ed"
+					}
+					  );
+					  </script>
+					</div>
+					<!-- TradingView Widget END -->
 				</div>
-				<!-- TradingView Widget END -->
 			</div>
 			
 		</div>
