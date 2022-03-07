@@ -18,13 +18,13 @@
 </head>
 <body>
 	<div class="container-fluid pe-3 bg-dark">
-		<div class="navbar fixed-top row align-items-start p-1 bg-dark border-bottom">
+		<div class="navbar fixed-top row align-items-start ps-3 pe-3 bg-dark border-bottom">
 		
 			<Div class="container-fluid">
 			
 				<div class=" row row-cols-auto">
 				
-			    	<div class="  navbar-text">
+			    	<div class="  navbar-text p-2">
 			    		<div class="navbrand font-size-md text-white">
 				    		<h1 class="color-light">Welcome <c:out value="${user.firstName }"/> |</h1>
 				  
@@ -64,11 +64,11 @@
   			<div class="vr"></div>
 		</div>
 		<div class="row p-2">
-			<div class="col border-bottom">
+			<div class="col ">
 				<!-- TradingView Widget BEGIN -->
-				<div class="tradingview-widget-container">
+				<div class="tradingview-widget-container" style="width: 100%; height: 50px;">
 				  <div class="tradingview-widget-container__widget"></div>
-				  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/" rel="noopener" target="_blank"><span class="blue-text offset-lg-11 ">Markets</span></a> by TradingView</div>
+				  <div class="tradingview-widget-copyright border-top"><a href="https://www.tradingview.com/markets/" rel="noopener" target="_blank"><span class="blue-text offset-lg-11 ">Markets</span></a> by TradingView</div>
 				  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
 				  {
 				  "symbols": [

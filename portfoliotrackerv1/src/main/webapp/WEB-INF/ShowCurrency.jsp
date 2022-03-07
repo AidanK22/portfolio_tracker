@@ -23,7 +23,7 @@
 </head>
 <body class="bg-dark text-light" >
 	<div class="container-fluid">
-		<div class="navbar fixed-top row align-items-start p-1 bg-dark border-bottom">
+		<div class="navbar fixed-top row align-items-start  ps-3 pe-3 bg-dark border-bottom">
 		
 			<Div class="container-fluid">
 			
@@ -77,10 +77,16 @@
 						<div class="nsr col border-bottom m-x-left-1">
 							<div class="container-fluid  border-right">
 								<div class="row align-items-start">
-									<div class=" row row-cols-auto">	
-									<h1 class="col"><c:out value="${currency.name }"/></h1>
-									<p class="col row align-items-center  "><c:out value="${currency.symbol }"/></p>
-									<p>Rank: ${currency.cmc_rank }</p>
+									<div class="col-auto p-1">
+										<img src="${currencyMD.logo }" alt="${currency.name }" width="70" height="70">
+									</div>
+									
+									<div class="col-8">
+										<div class=" row row-cols-auto">	
+										<h1 class="col"><c:out value="${currency.name }"/></h1>
+										<p class="col row align-items-center  "><c:out value="${currency.symbol }"/></p>
+										<p>Rank: ${currency.cmc_rank }</p>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -204,11 +210,7 @@
 			</div>
 			
 		</div>	
-		<div class="row align-items-center m-3">
-			<div class="col-3 border rounded m-2">
-				<p>${currencyMD.description}</p>
-			</div>
-		</div>
+		
 		<div class="container-fluid ">
 			<div class="row align-items-center m-3">
 				

@@ -11,12 +11,26 @@
 	<!-- For any Bootstrap that uses JS or jQuery-->
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="require.js"></script>
+        <script>
+            require.config({
+                packages: [{
+                    name: 'highcharts',
+                    main: 'highcharts'
+                }],
+                paths: {
+                    // Change this to your server if you do not wish to use our CDN.
+                    'highcharts': 'https://code.highcharts.com'
+                }
+            });
+        </script>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Account Details</title>
 </head>
 <body>
 	<div class="container-fluid bg-dark p-1">
-		<div class="navbar fixed-top row align-items-start p-1 bg-dark border-bottom">
+		<div class="navbar fixed-top row align-items-start  ps-3 pe-3 bg-dark border-bottom">
 		
 			<Div class="container-fluid">
 			
@@ -68,12 +82,7 @@
 			</div>
 		</div>
 		<div class="row justify-content-center">
-			<div class="col-auto bg-dark m-3 offset-md-3 p-3 text-white border">
-				<h5>First Name: <c:out value="${user.firstName }"/></h5>
-				<h5>Last Name: <c:out value="${user.lastName }"/></h5>
-				<h5>Email: <c:out value="${user.email}"/></h5>
-				
-			</div>
+			
 		</div>
 		<div class="row">
 			
@@ -102,9 +111,11 @@
 				<div class="row">
 				 	<div class="col col-lg-auto" >
 						<div class="container bg-light rounded p-2" >
-							    <h5 class="card-title">Your Positions (${amountOfPositions})</h5>
-								<table  class="table  table-sm card-text border-rounded border bg-light" >
-									<tr class="table-light">
+							<h5 class="card-title">Your Positions (${amountOfPositions})</h5>
+							<div class="datatable-inner table-responsive ps ps--active-y" style="overflow: auto; position: relative; max-height: 620px;">
+							
+								<table id="dtDynamicVerticalScrollExample" class="table  table-sm card-text border bg-light" >
+									<tr class="table-dark">
 											    	
 							    		<th class="">Symbol</th>
 							    		<th class="">Position Size</th>
@@ -143,13 +154,39 @@
 					  				    	</c:forEach>
 				  				    	</c:otherwise>
 		  				    		</c:choose>
-						    </table>
+						    	</table>
+						    </div>
 					    </div>
 					</div>
 			    </div>
 			</div>
 			<div class="col-3 bg-dark m-4 ms-5 text-white border">
-				
+				<div class="col-auto bg-dark m-3 offset-md-3 p-3 text-white border">
+				<h5>First Name: <c:out value="${user.firstName }"/></h5>
+				<h5>Last Name: <c:out value="${user.lastName }"/></h5>
+				<h5>Email: <c:out value="${user.email}"/></h5>
+				<h5 class="mt-3">Account Value: $${accountValue}</h5>
+				<h5>Amount of Positions: ${amountOfPositions}</h5>
+			</div>
+			</div>
+			<div class="col bg-dark m-4 p-3  border">
+				<div id="chart"></div>
+				<script>
+		            require([
+		                'highcharts',
+		                'highcharts/modules/exporting',
+		                'highcharts/modules/accessibility'
+		            ], function (Highcharts) {
+		                // This function runs when the above files have been loaded.
+		
+		                // Create a test chart.
+		                Highcharts.chart('chart', {
+		                    series: [{
+		                        data: [1,2,3,4,5]
+		                    }]
+		                });
+		            });
+		        </script>
 			</div>
 		</div>
 	</div>

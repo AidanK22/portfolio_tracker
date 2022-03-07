@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="container-fluid ">
-		<div class="navbar fixed-top row align-items-start p-1 bg-dark border-bottom">
+		<div class="navbar fixed-top row align-items-start  ps-3 pe-3 bg-dark border-bottom">
 		
 			<Div class="container-fluid">
 			
