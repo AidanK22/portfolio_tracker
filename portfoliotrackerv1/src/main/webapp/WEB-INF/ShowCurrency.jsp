@@ -250,7 +250,30 @@
 			 <div class="row align-items-center m-3">
 			 	<div class="col-3 border rounded m-2">
 					<p>${currencyMD.description}</p>
-					<a href="${currencyMD.urls.website[0]}">${currencyMD.urls.website[0]}</a>
+					
+					<div class="dropdown ">
+				          <a class="nav-link dropdown-toggle text-white mt-1" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				            Websites
+				          </a>
+				          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+				          <c:forEach items="${currencyMD.urls.website}" var="site">
+				          	<li><a class="dropdown-item" href="${site}">${site}</a></li>
+				          </c:forEach>
+				          	
+				            
+				          </ul>
+					</div>
+					<div class="dropdown ">
+				          <a class=" dropdown-toggle text-white mt-1" href="#" id="darkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				            Websites
+				          </a>
+				          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+				          
+				          	<li><a class="dropdown-item" href="${currencyMD.urls.website[0]}">${currencyMD.urls.website[0]}</a></li>
+							<li><a class="dropdown-item" href="${currencyMD.urls.website[1]}">${currencyMD.urls.website[1]}</a></li>
+							<li><a class="dropdown-item" href="${currencyMD.urls.website[2]}">${currencyMD.urls.website[2]}</a></li>
+				          </ul>
+					</div>
 				</div>
 				<div class="col col-auto p-3 border rounded ">
 					<h5>${currency.name } Price Chart</h5>

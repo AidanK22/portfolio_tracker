@@ -11,20 +11,9 @@
 	<!-- For any Bootstrap that uses JS or jQuery-->
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-	<script src="require.js"></script>
-        <script>
-            require.config({
-                packages: [{
-                    name: 'highcharts',
-                    main: 'highcharts'
-                }],
-                paths: {
-                    // Change this to your server if you do not wish to use our CDN.
-                    'highcharts': 'https://code.highcharts.com'
-                }
-            });
-        </script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
 <meta charset="ISO-8859-1">
 <title>Account Details</title>
 </head>
@@ -170,23 +159,63 @@
 			</div>
 			</div>
 			<div class="col bg-dark m-4 p-3  border">
-				<div id="chart"></div>
+				<div>
+  					<canvas id="myChart"></canvas>
+				</div>
+				
 				<script>
-		            require([
-		                'highcharts',
-		                'highcharts/modules/exporting',
-		                'highcharts/modules/accessibility'
-		            ], function (Highcharts) {
-		                // This function runs when the above files have been loaded.
-		
-		                // Create a test chart.
-		                Highcharts.chart('chart', {
-		                    series: [{
-		                        data: [1,2,3,4,5]
-		                    }]
-		                });
-		            });
-		        </script>
+					export const CHART_COLORS = {
+						  red: 'rgb(255, 99, 132)',
+						  orange: 'rgb(255, 159, 64)',
+						  yellow: 'rgb(255, 205, 86)',
+						  green: 'rgb(75, 192, 192)',
+						  blue: 'rgb(54, 162, 235)',
+						  purple: 'rgb(153, 102, 255)',
+						  grey: 'rgb(201, 203, 207)'
+						};
+				
+					  const labels = [
+					    'January',
+					    'February',
+					    'March',
+					    'April',
+					    'May',
+					    'June',
+					  ];
+						
+					  const data = {
+					    labels: labels,
+					    datasets: [{
+					      label: 'My First dataset',
+					      backgroundColor: Object.values(Utils.CHART_COLORS),
+					      borderColor: 'rgb(255, 99, 132)',
+					      data: [0, 10, 5, 2, 20, 30, 45],
+					    }]
+					  };
+					
+					  const config = {
+					    type: 'pie',
+					    data: data,
+					    options: {
+					    	responsive: true,
+					        plugins: {
+					            legend: {
+					              position: 'top',
+					            },
+					            title: {
+					              display: true,
+					              text: 'Chart.js Pie Chart'
+					            }
+					          }}
+					  };
+				</script>
+				
+				<script>
+					  const myChart = new Chart(
+					    document.getElementById('myChart'),
+					    config
+					  );
+				</script>
 			</div>
 		</div>
 	</div>
