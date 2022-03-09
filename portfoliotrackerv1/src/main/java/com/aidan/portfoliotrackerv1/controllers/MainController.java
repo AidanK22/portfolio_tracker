@@ -85,7 +85,12 @@ public class MainController {
 			Map metadata = (Map) MetaDataBase.get("data");
 			Map mdt = (Map) metadata.get(Integer.toString(apiId));
 			
-			
+			Map MetaDataUrls = (Map) mdt.get("urls");
+			System.out.println(MetaDataUrls);
+			List MetaDataWebsite = (List) MetaDataUrls.get("website");
+			System.out.println(MetaDataWebsite);
+
+			//get user data
 			User u = userService.findUserById(userId);
 
 			List<Watchlist> watchlist = watchlistService.findUsersInWatchlistByWatcherId(userId);
@@ -112,6 +117,7 @@ public class MainController {
 				}
 			}	
 			model.addAttribute("currencyMD", mdt);
+			model.addAttribute("CMDWebsite", MetaDataWebsite);
 			model.addAttribute("currency", t);
 			model.addAttribute("watchlist", watchlist);
 			model.addAttribute("user", u);

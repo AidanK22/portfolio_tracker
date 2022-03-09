@@ -13,6 +13,9 @@
 	<!-- For any Bootstrap that uses JS or jQuery-->
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+	<script src="/webjars/bootstrap/js/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.bundle.js"></script>
@@ -249,30 +252,47 @@
 			</div>
 			 <div class="row align-items-center m-3">
 			 	<div class="col-3 border rounded m-2">
+			 			<c:forEach items="${CMDWebsite}" var="site">
+			 				<p><a  href="${site}">${site}</a></p>
+			 			</c:forEach>
+			 			<a href="${currencyMD.urls.website[0]}">${currencyMD.urls.website[0]}</a>
+						<a href="${currencyMD.urls.website[1]}">${currencyMD.urls.website[1]}</a>
+						<a href="${currencyMD.urls.website[2]}">${currencyMD.urls.website[2]}</a>
 					<p>${currencyMD.description}</p>
 					
 					<div class="dropdown ">
-				          <a class="nav-link dropdown-toggle text-white mt-1" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
 				            Websites
-				          </a>
-				          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-				          <c:forEach items="${currencyMD.urls.website}" var="site">
+				          </button>
+				          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+				          <c:forEach items="${CMDWebsite}" var="site">
 				          	<li><a class="dropdown-item" href="${site}">${site}</a></li>
 				          </c:forEach>
-				          	
-				            
+
 				          </ul>
 					</div>
 					<div class="dropdown ">
-				          <a class=" dropdown-toggle text-white mt-1" href="#" id="darkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
 				            Websites
-				          </a>
-				          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+				          </button>
+				          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
 				          
 				          	<li><a class="dropdown-item" href="${currencyMD.urls.website[0]}">${currencyMD.urls.website[0]}</a></li>
 							<li><a class="dropdown-item" href="${currencyMD.urls.website[1]}">${currencyMD.urls.website[1]}</a></li>
 							<li><a class="dropdown-item" href="${currencyMD.urls.website[2]}">${currencyMD.urls.website[2]}</a></li>
 				          </ul>
+					</div>
+					<div class="dropdown">
+					  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+					    Dropdown button
+					  </button>
+					  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+					    <li><a class="dropdown-item active" href="#">Action</a></li>
+					    <li><a class="dropdown-item" href="#">Another action</a></li>
+					    <li><a class="dropdown-item" href="#">Something else here</a></li>
+					    <li><hr class="dropdown-divider"></li>
+					    <li><a class="dropdown-item" href="#">Separated link</a></li>
+					  </ul>
 					</div>
 				</div>
 				<div class="col col-auto p-3 border rounded ">
