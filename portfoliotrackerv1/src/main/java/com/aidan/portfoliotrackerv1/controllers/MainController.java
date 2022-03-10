@@ -80,16 +80,30 @@ public class MainController {
 			Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "id=" + apiId + "&" + apiKey, HashMap.class );
 			Map data = (Map) QuotesBase.get("data");
 			Map t = (Map) data.get(Integer.toString(apiId));
-
+			
+			//gets meta data urls
 			Map MetaDataBase = restTemplate.getForObject(this.v2BaseURL + "info?" + "id=" + apiId + "&" + apiKey, HashMap.class );
 			Map metadata = (Map) MetaDataBase.get("data");
 			Map mdt = (Map) metadata.get(Integer.toString(apiId));
-			
 			Map MetaDataUrls = (Map) mdt.get("urls");
-			System.out.println(MetaDataUrls);
+			
+			//get websites
 			List MetaDataWebsite = (List) MetaDataUrls.get("website");
 			System.out.println(MetaDataWebsite);
-
+			
+			//gets explorers
+			List MetaDataExplorer = (List) MetaDataUrls.get("explorer");
+			System.out.println(MetaDataExplorer);
+			
+			//get message boards
+			List MetaDataMessageBoard = (List) MetaDataUrls.get("message_board");
+			System.out.println(MetaDataMessageBoard);
+			
+			//get chats
+			List MetaDataChat = (List) MetaDataUrls.get("chat");
+			System.out.println(MetaDataChat);
+			
+			
 			//get user data
 			User u = userService.findUserById(userId);
 
@@ -117,7 +131,11 @@ public class MainController {
 				}
 			}	
 			model.addAttribute("currencyMD", mdt);
+			model.addAttribute("CMDExplorer", MetaDataExplorer);
 			model.addAttribute("CMDWebsite", MetaDataWebsite);
+			model.addAttribute("CMDMessageBoard", MetaDataMessageBoard);
+			model.addAttribute("CMDChat", MetaDataChat);
+		
 			model.addAttribute("currency", t);
 			model.addAttribute("watchlist", watchlist);
 			model.addAttribute("user", u);
