@@ -12,19 +12,19 @@
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<!-- For any Bootstrap that uses JS or jQuery-->
 	<script src="/webjars/jquery/jquery.min.js"></script>
-	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
-	<script src="/webjars/bootstrap/js/popper.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="/webjars/bootstrap/js/bootstrap.bundle.js"></script>
+	
 	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
 <meta charset="ISO-8859-1">
 <title>Currency Info</title>
 </head>
 <body class="bg-dark text-light" >
+	<script>
+	    $(document).ready(function () {
+	        $('.dropdown-toggle').dropdown();
+	    });
+	</script>
 	<div class="container-fluid">
 		<div class="navbar fixed-top row align-items-start  ps-3 pe-3 bg-dark border-bottom">
 		
@@ -282,18 +282,7 @@
 							<li><a class="dropdown-item" href="${currencyMD.urls.website[2]}">${currencyMD.urls.website[2]}</a></li>
 				          </ul>
 					</div>
-					<div class="dropdown">
-					  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-					    Dropdown button
-					  </button>
-					  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-					    <li><a class="dropdown-item active" href="#">Action</a></li>
-					    <li><a class="dropdown-item" href="#">Another action</a></li>
-					    <li><a class="dropdown-item" href="#">Something else here</a></li>
-					    <li><hr class="dropdown-divider"></li>
-					    <li><a class="dropdown-item" href="#">Separated link</a></li>
-					  </ul>
-					</div>
+					
 				</div>
 				<div class="col col-auto p-3 border rounded ">
 					<h5>${currency.name } Price Chart</h5>
