@@ -216,46 +216,7 @@
 		
 		<div class="container-fluid ">
 			<div class="row align-items-center m-3">
-				
-					<div class="supply col">
-						<h3 class="m-3">Circulating Supply</h3>
-						<p class="m-4"> ${currency.circulating_supply } ${currency.symbol }</p>
-						
-						<div class="ms-4">
-						<c:if test="${currency.max_supply != null}">
-                        <p>${currency.circulating_supply/currency.max_supply * 100}%</p>
-                            <div class="progress w-50" style="height: 4px;">
-                                  <div class="progress-bar bg-success" role="progressbar" style="width: ${currency.circulating_supply/currency.max_supply * 100}%"></div>
-                            </div>
-                        </c:if>
-						</div>
-						
-						<h3 class="m-3">Max Supply</h3>
-						<p class="m-4">${currency.max_supply } ${currency.symbol }</p>
-						<h3 class="m-3">Total Supply</h3>
-						<p class="m-4"> ${currency.total_supply } ${currency.symbol }</p>
-					</div>
-					<div class="marketCap col ">
-						<div class="container border-bottom-0">
-							<h3 class="m-3">Market Cap</h3>
-							<p class="m-4">$${currency.quote.USD.market_cap }</p>
-							<h3 class="m-3">Fully diluted Market Cap</h3>
-							<p class="m-4">$${currency.quote.USD.fully_diluted_market_cap }</p>
-						</div>
-					</div>
-					<div class="volume col">
-						<h3  class="m-3">Volume 24hr</h3>
-						<p class="m-4">$${currency.quote.USD.volume_24h }</p>
-						<p class="m-4">${currency.quote.USD.volume_change_24h }%</p>
-					</div>
-				
-			</div>
-			 <div class="row align-items-center m-3">
-			 	<div class="col-3 border rounded m-2">
-					<p>${currencyMD.description}</p>
-					
-					
-					<nav class="navbar navbar-expand navbar-light bg-dark">
+				<nav class="navbar navbar-expand row align-items-start navbar-light bg-dark">
 			            <div class="container-fluid">
 				            <div class=" navbar-text ">
 							    <div class="dropdown ">
@@ -301,20 +262,67 @@
 							<div class=" navbar-text ">
 							    <div class="dropdown ">
 							          <button class="btn btn-sm btn-dark border rounded dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-							            Community
+							            Chat
 							          </button>
 							          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-							          	<li><a class="dropdown-item text-white" href="${currencyMD.urls.twitter[0]}">${currencyMD.urls.twitter[0]}</a></li>
-							          	<li><a class="dropdown-item text-white" href="${currencyMD.urls.reddit[0]}">${currencyMD.urls.reddit[0]}</a></li>
-							          <c:forEach items="${CMDMessageBoard}" var="MB">
-							          	<li><a class="dropdown-item text-white" href="${MB}">${MB}</a></li>
+							          	
+							          <c:forEach items="${CMDChat}" var="chat">
+							          	<li><a class="dropdown-item text-white " href="${chat}">${chat}</a></li>
 							          </c:forEach>
 										
 							          </ul>
 								</div>
 						    </div>
+						    <div class=" navbar-text ">
+						    	<button class="btn btn-sm btn-dark border rounded " type="button"><a class="text-white text-decoration-none" href="${currencyMD.urls.technical_doc }">White Papers</a></button>
+						    </div>
+						    <div class=" navbar-text ">
+						    	<button class="btn btn-sm btn-dark border rounded " type="button"><a class="text-white text-decoration-none" href="${currencyMD.urls.source_code }">Source Code</a></button>
+						    </div>
 			            </div>
 			        </nav>
+			</div>
+			<div class="row align-items-center m-3">
+				
+					<div class="supply col">
+						<h3 class="m-3">Circulating Supply</h3>
+						<p class="m-4"> ${currency.circulating_supply } ${currency.symbol }</p>
+						
+						<div class="ms-4">
+						<c:if test="${currency.max_supply != null}">
+                        <p>${currency.circulating_supply/currency.max_supply * 100}%</p>
+                            <div class="progress w-50" style="height: 4px;">
+                                  <div class="progress-bar bg-success" role="progressbar" style="width: ${currency.circulating_supply/currency.max_supply * 100}%"></div>
+                            </div>
+                        </c:if>
+						</div>
+						
+						<h3 class="m-3">Max Supply</h3>
+						<p class="m-4">${currency.max_supply } ${currency.symbol }</p>
+						<h3 class="m-3">Total Supply</h3>
+						<p class="m-4"> ${currency.total_supply } ${currency.symbol }</p>
+					</div>
+					<div class="marketCap col ">
+						<div class="container border-bottom-0">
+							<h3 class="m-3">Market Cap</h3>
+							<p class="m-4">$${currency.quote.USD.market_cap }</p>
+							<h3 class="m-3">Fully diluted Market Cap</h3>
+							<p class="m-4">$${currency.quote.USD.fully_diluted_market_cap }</p>
+						</div>
+					</div>
+					<div class="volume col">
+						<h3  class="m-3">Volume 24hr</h3>
+						<p class="m-4">$${currency.quote.USD.volume_24h }</p>
+						<p class="m-4">${currency.quote.USD.volume_change_24h }%</p>
+					</div>
+				
+			</div>
+			 <div class="row align-items-center m-3">
+			 	<div class="col-3 border rounded m-2">
+					<p>${currencyMD.description}</p>
+					
+					
+					
 				</div>
 				<div class="col col-auto p-3 border rounded ">
 					<h5>${currency.name } Price Chart</h5>
