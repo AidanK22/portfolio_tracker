@@ -77,7 +77,7 @@
 				<div class="container-fluid">
 					<div class=" row row-cols-auto">
 					
-						<div class="nsr col border-bottom m-x-left-1">
+						<div class="nsr col border-bottom ">
 							<div class="container-fluid  border-right">
 								<div class="row align-items-start">
 									<div class="col-auto p-1">
@@ -85,12 +85,95 @@
 									</div>
 									
 									<div class="col-8">
-										<div class=" row row-cols-auto">	
-										<h1 class="col"><c:out value="${currency.name }"/></h1>
-										<p class="col row align-items-center  "><c:out value="${currency.symbol }"/></p>
-										<p>Rank: ${currency.cmc_rank }</p>
+										<div class="row">
+											<div class=" row row-cols-auto">	
+											<h1 class="col"><c:out value="${currency.name }"/></h1>
+											<p class="col row align-items-center  "><c:out value="${currency.symbol }"/></p>
+										</div>
+										<div class="row">
+											<p >Rank: ${currency.cmc_rank }</p>
+										</div>
 										</div>
 									</div>
+								</div>
+								<div class="row align-items-start mt-3">
+									<nav class="navbar navbar-expand row align-items-start navbar-light bg-dark">
+								            <div class="container-fluid">
+								            
+									            <div class=" navbar-text m-1">
+												    <div class="dropdown ">
+												          <button class="btn btn-sm btn-dark border rounded dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+												            Websites
+												          </button>
+												          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+												          <c:forEach items="${CMDWebsite}" var="site">
+												          	<li><a class="dropdown-item text-white" href="${site}">${site}</a></li>
+												          </c:forEach>
+								
+												          </ul>
+													</div>
+											    </div>
+											    <div class=" navbar-text m-1">
+												    <div class="dropdown ">
+												          <button class="btn btn-sm btn-dark border rounded dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+												            Explorers
+												          </button>
+												          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+												          <c:forEach items="${CMDExplorer}" var="explorer">
+												          	<li><a class="dropdown-item text-white" href="${explorer}">${explorer}</a></li>
+												          </c:forEach>
+								
+												          </ul>
+													</div>
+											    </div>
+											    <div class=" navbar-text m-1">
+												    <div class="dropdown ">
+												          <button class="btn btn-sm btn-dark border rounded dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+												            Community
+												          </button>
+												          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+												          	<li><a class="dropdown-item text-white" href="${currencyMD.urls.twitter[0]}">${currencyMD.urls.twitter[0]}</a></li>
+												          	<li><a class="dropdown-item text-white" href="${currencyMD.urls.reddit[0]}">${currencyMD.urls.reddit[0]}</a></li>
+												          <c:forEach items="${CMDMessageBoard}" var="MB">
+												          	<li><a class="dropdown-item text-white" href="${MB}">${MB}</a></li>
+												          </c:forEach>
+															
+												          </ul>
+													</div>
+											    </div>
+												<div class=" navbar-text m-1">
+												    <div class="dropdown ">
+												          <button class="btn btn-sm btn-dark border rounded dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+												            Chat
+												          </button>
+												          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+												          	
+												          <c:forEach items="${CMDChat}" var="chat">
+												          	<li><a class="dropdown-item text-white " href="${chat}">${chat}</a></li>
+												          </c:forEach>
+															
+												          </ul>
+													</div>
+											    </div>
+											    
+											   
+								            </div>
+								        </nav>
+								</div>
+								<div class="row align-items-start mb-3">
+									<nav class="navbar navbar-expand row align-items-start navbar-light bg-dark">
+								            <div class="container-fluid">
+												<div class=" row row-cols-auto">
+										            
+												    <div class=" navbar-text ">
+												    	<button class="btn btn-sm btn-dark border rounded " type="button"><a class="text-white text-decoration-none" href="${currencyMD.urls.technical_doc }">White Papers</a></button>
+												    </div>
+												    <div class=" navbar-text ">
+												    	<button class="btn btn-sm btn-dark border rounded " type="button"><a class="text-white text-decoration-none" href="${currencyMD.urls.source_code }">Source Code</a></button>
+												    </div>
+												</div>
+								            </div>
+								        </nav>
 								</div>
 							</div>
 						</div>
