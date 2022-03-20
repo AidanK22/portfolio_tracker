@@ -160,20 +160,23 @@
 								            </div>
 								        </nav>
 								</div>
-								<div class="row align-items-start mb-3">
-									<nav class="navbar navbar-expand row align-items-start navbar-light bg-dark">
-								            <div class="container-fluid">
-												<div class=" row row-cols-auto">
-										            
-												    <div class=" navbar-text ">
-												    	<button class="btn btn-sm btn-dark border rounded " type="button"><a class="text-white text-decoration-none" href="${currencyMD.urls.technical_doc }">White Papers</a></button>
+								<div class="row justify-content-center mb-3">
+									
+
+												
+										            <div class="col-fluid ">
+													    
+													    	<button class="btn btn-sm btn-dark border rounded " type="button"><a class="text-white text-decoration-none" href="${currencyMD.urls.technical_doc }">White Papers</a></button>
+													    
 												    </div>
-												    <div class=" navbar-text ">
-												    	<button class="btn btn-sm btn-dark border rounded " type="button"><a class="text-white text-decoration-none" href="${currencyMD.urls.source_code }">Source Code</a></button>
-												    </div>
-												</div>
-								            </div>
-								        </nav>
+ 										            <div class="col-fluid ">
+												    
+													    
+													    	<button class="btn btn-sm btn-dark border rounded " type="button"><a class="text-white text-decoration-none" href="${currencyMD.urls.source_code }">Source Code</a></button>
+													
+													</div>
+
+								
 								</div>
 							</div>
 						</div>
