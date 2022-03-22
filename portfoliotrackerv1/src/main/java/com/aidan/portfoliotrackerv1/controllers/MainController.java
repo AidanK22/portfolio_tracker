@@ -73,9 +73,7 @@ public class MainController {
 	public String coinInfo(@ModelAttribute("thisWatchlist")Watchlist watching, @ModelAttribute("position")Position position, HttpSession session, Model model, @PathVariable("apiId") int apiId) {
 		// get user from session, save them in the model and return the home page
     	Long userId = userSessionId(session);
-    	if(userId == null) {
-    		return "redirect:/";
-    	}else {
+    	
 
 			Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "id=" + apiId + "&" + apiKey, HashMap.class );
 			Map data = (Map) QuotesBase.get("data");
@@ -103,7 +101,9 @@ public class MainController {
 			List MetaDataChat = (List) MetaDataUrls.get("chat");
 			System.out.println(MetaDataChat);
 			
-			
+			if( userId != null) {
+				
+				
 			//get user data
 			User u = userService.findUserById(userId);
 
@@ -129,7 +129,11 @@ public class MainController {
 					}
 //					
 				}
-			}	
+			}
+			model.addAttribute("user", u);
+			model.addAttribute("watchlist", watchlist);
+
+			}
 			model.addAttribute("currencyMD", mdt);
 			model.addAttribute("CMDExplorer", MetaDataExplorer);
 			model.addAttribute("CMDWebsite", MetaDataWebsite);
@@ -137,14 +141,13 @@ public class MainController {
 			model.addAttribute("CMDChat", MetaDataChat);
 		
 			model.addAttribute("currency", t);
-			model.addAttribute("watchlist", watchlist);
-			model.addAttribute("user", u);
+			
 			model.addAttribute("watching", watching.getApiId());
 			System.out.println(watching.getApiId());
 
 			
 			return "ShowCurrency.jsp";
-    	}
+    	
 	}
 	
 	//get currency by symbol **WORKING**
@@ -161,11 +164,16 @@ public class MainController {
 	
     //ADD TO WATCHLIST **WORKING** \\
 	@PostMapping("/info/{apiId}/add_to_watchlist")
-	public String addToWatchlist(@ModelAttribute("thisWatchlist")Watchlist watchlist ) {
+	public String addToWatchlist(@ModelAttribute("thisWatchlist")Watchlist watchlist, HttpSession session) {
+		Long userId = userSessionId(session);
+		if(userId == null) {
+    		return "redirect:/";
+    	}else {
 		System.out.println(watchlist);
 		watchlistService.createWatchlist(watchlist);
 		System.out.println(watchlist);
 		return "redirect:/info/{apiId}";
+    	}
 	}
 	
     //REMOVE from watchlist **WORKING**
@@ -183,13 +191,18 @@ public class MainController {
 	//ADD POSITION THROUGH INFO PAGE
     //add position
     @PostMapping("/info/{apiId}/create_position")
-    public String createPosition(@Valid @ModelAttribute("position")Position position, BindingResult result, RedirectAttributes flashAttrib) {
-    	if(result.hasErrors()) {
-    		flashAttrib.addFlashAttribute("createError", "Position size can not be a null value.");
-    		return "redirect:/info/{apiId}";
+    public String createPosition(@Valid @ModelAttribute("position")Position position, BindingResult result, HttpSession session, RedirectAttributes flashAttrib) {
+    	Long userId = userSessionId(session);
+		if(userId == null) {
+    		return "redirect:/";
     	}else {
-    		positionService.createPosition(position);
-    		return "redirect:/dashboard";
+	    	if(result.hasErrors()) {
+	    		flashAttrib.addFlashAttribute("createError", "Position size can not be a null value.");
+	    		return "redirect:/info/{apiId}";
+	    	}else {
+	    		positionService.createPosition(position);
+	    		return "redirect:/dashboard";
+	    	}
     	}
     }
     //edit position page **WORKING**

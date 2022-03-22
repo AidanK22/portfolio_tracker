@@ -178,32 +178,52 @@
 						<div class="row align-items-center mt-4" >
 							<div class="col">
 								<c:choose>
-									<c:when test="${WatchlistItemId == null }">
+									<c:when test="${user == null}">
 										<div class="row">
-											<form:form action="/info/${currency.id}/add_to_watchlist" method="post" modelAttribute="thisWatchlist" class="form">
-															
-												<div class="form-group col align-self-center">
-													<form:label path="apiId" for="apiId"></form:label>
-													<form:input path="apiId" type="hidden"  name="apiId" id="apiId" class="form-control"/>
-																
-												</div>
-												
-												<form:hidden path="watcher" value="${user.id }"/>
-												<input type="submit" value="Add To Watchlist" class="btn btn-outline-primary">
+													<form:form action="/info/${currency.id}/add_to_watchlist" method="post" modelAttribute="thisWatchlist" class="form">
+																	
+														<div class="form-group col align-self-center">
+															<form:label path="apiId" for="apiId"></form:label>
+															<form:input path="apiId" type="hidden"  name="apiId" id="apiId" class="form-control"/>
+																		
+														</div>
 														
-											</form:form>
-										</div>
+														<form:hidden path="watcher" value="${user.id }"/>
+														<input type="submit" value="Add To Watchlist" class="btn btn-outline-primary">
+																
+													</form:form>
+												</div>
 									</c:when>
 									<c:otherwise>
-										<div class="row mt-4">
-											<form class="delete-form" action="/${WatchlistItemId}/remove_from_watchlist" method="POST">
-												<div class="form-group ">
-													
-													<input type="hidden" name="_method" value="delete">
-													<input type="submit" value="Remove From Watchlist" class="btn btn-outline-danger m-y-top-2">
+										<c:choose>
+											<c:when test="${WatchlistItemId == null }">
+												<div class="row">
+													<form:form action="/info/${currency.id}/add_to_watchlist" method="post" modelAttribute="thisWatchlist" class="form">
+																	
+														<div class="form-group col align-self-center">
+															<form:label path="apiId" for="apiId"></form:label>
+															<form:input path="apiId" type="hidden"  name="apiId" id="apiId" class="form-control"/>
+																		
+														</div>
+														
+														<form:hidden path="watcher" value="${user.id }"/>
+														<input type="submit" value="Add To Watchlist" class="btn btn-outline-primary">
+																
+													</form:form>
 												</div>
-											</form>
-										</div>
+											</c:when>
+											<c:otherwise>
+												<div class="row mt-4">
+													<form class="delete-form" action="/${WatchlistItemId}/remove_from_watchlist" method="POST">
+														<div class="form-group ">
+															
+															<input type="hidden" name="_method" value="delete">
+															<input type="submit" value="Remove From Watchlist" class="btn btn-outline-danger m-y-top-2">
+														</div>
+													</form>
+												</div>
+											</c:otherwise>
+										</c:choose>
 									</c:otherwise>
 								</c:choose>
 							</div>
