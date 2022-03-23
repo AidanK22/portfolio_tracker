@@ -365,11 +365,11 @@ public class MainController {
 				System.out.println(accountValue);
 		    	for(var i=0; i<positions.size(); i++) {
 		    		amountOfPositions += 1;
-		    		int apiId = positions.get(i).getApiId();
-		    		Map coinId = (Map) data.get(Integer.toString(apiId));
-		    		Map	coinQuote = (Map) coinId.get("quote");
-		    		Map coinUsd = (Map) coinQuote.get("USD");
-		    		Double coinPrice = (Double) coinUsd.get("price");
+		    		int apiId = positions.get(i).getApiId(); //get api id saved in the position
+		    		Map coinId = (Map) data.get(Integer.toString(apiId)); //use api id to access currency's info
+		    		Map	coinQuote = (Map) coinId.get("quote"); //get the quote section being returned in the json from the api call
+		    		Map coinUsd = (Map) coinQuote.get("USD"); //access USD section
+		    		Double coinPrice = (Double) coinUsd.get("price");	//save currency's current price
 
 		    		accountValue += positions.get(i).getPositionSize() * coinPrice;	
 		    	}
