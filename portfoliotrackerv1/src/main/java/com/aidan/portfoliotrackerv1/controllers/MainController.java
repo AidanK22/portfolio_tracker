@@ -275,16 +275,17 @@ public class MainController {
     public String top200(HttpSession session, Model model) {
     	// get user from session, save them in the model and return the home page
         Long userId = userSessionId(session);
-        if(userId == null) {
-        	return "redirect:/";
-        }else {
+        if(userId != null) {
         	User u = userService.findUserById(userId);
-        	Base base = restTemplate.getForObject(this.baseURL + "listings/latest?start=1&limit=200&" + apiKey, Base.class);
         	model.addAttribute("user", u);
+        	
+        }
+        	
+        	Base base = restTemplate.getForObject(this.baseURL + "listings/latest?start=1&limit=200&" + apiKey, Base.class);
+        	
         	model.addAttribute("currencies", base.getData());
         	return "top200.jsp";
         }
-    }
     
     //Risk Calculator page
     @GetMapping("/risk_calculator")
