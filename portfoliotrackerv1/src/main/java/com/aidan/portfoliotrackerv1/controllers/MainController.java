@@ -154,9 +154,21 @@ public class MainController {
 	@GetMapping("/search")
 	public String search(@RequestParam("symbol") String symbol) {
 			Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "symbol=" + symbol + "&" + apiKey, HashMap.class );
+			System.out.println("Printing QuotesBase==");
+			System.out.println(QuotesBase);
+			
 			Map data = (Map) QuotesBase.get("data");
-			Map t = (Map) data.get(symbol.toUpperCase());
+			System.out.println("Printing DATA==");
+			System.out.println(data);
+			//stops printing
+			//error says arrList cannot be cast to Map
+			Map t = (Map) data.get(symbol.toUpperCase());//error:"class java.util.ArrayList cannot be cast to class java.util.Map (java.util.ArrayList and java.util.Map are in module java.base of loader 'bootstrap')java.lang.ClassCastException: class java.util.ArrayList cannot be cast to class java.util.Map (java.util.ArrayList and java.util.Map are in module java.base of loader 'bootstrap')"
+			System.out.println("Printing T==");
+			System.out.println(t);
+			
 			int apiId = (int) t.get("id");
+			System.out.println("Printing apiId==");
+			System.out.println(apiId);
 			
 			return "redirect:/info/" + apiId;
 		
