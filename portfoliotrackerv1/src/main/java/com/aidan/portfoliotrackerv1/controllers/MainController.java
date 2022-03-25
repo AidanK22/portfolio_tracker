@@ -201,7 +201,6 @@ public class MainController {
 	}
 	
 	//ADD POSITION THROUGH INFO PAGE
-    //add position
     @PostMapping("/info/{apiId}/create_position")
     public String createPosition(@Valid @ModelAttribute("position")Position position, BindingResult result, HttpSession session, RedirectAttributes flashAttrib) {
     	Long userId = userSessionId(session);
@@ -217,6 +216,7 @@ public class MainController {
 	    	}
     	}
     }
+    
     //edit position page **WORKING**
 	@GetMapping("/position/{id}/edit")
 	public String editPosition(@PathVariable("id")Long id, Model model, HttpSession session) {
@@ -239,8 +239,7 @@ public class MainController {
     	return "EditPosition.jsp";
 	}
 	
-	//update position **FIX** when updating position size, it isnt allowing decimals 
-
+	//update position **WORKING** 
 	@RequestMapping(value="position/{id}/update", method=RequestMethod.PUT)
 	public String update(@Valid @ModelAttribute("position")Position position, BindingResult result, @PathVariable("id")Long id, Model model, RedirectAttributes flashAttrib) {
 		var apiId = positionService.findPositionById(id).getApiId();
@@ -262,6 +261,7 @@ public class MainController {
 			return "redirect:/position/{id}/edit";
 		}
 	}
+	
     //remove position
 	@RequestMapping(value="/position/{id}/delete", method=RequestMethod.DELETE)
 	public String DeletePosition(@PathVariable("id")Long id) {
@@ -270,6 +270,7 @@ public class MainController {
 		
 		return "redirect:/dashboard";
 	}
+	
     //top 200 page **WORKING**
     @GetMapping("/top200")
     public String top200(HttpSession session, Model model) {
@@ -316,8 +317,6 @@ public class MainController {
     
     
     //------------------account details------------------\\
-    
-    
     @GetMapping("/account_details")
     public String accountDetails(HttpSession session, Model model) {
     	Long userId = userSessionId(session);

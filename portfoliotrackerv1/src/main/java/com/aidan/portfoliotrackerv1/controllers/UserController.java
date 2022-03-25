@@ -134,7 +134,14 @@ public class UserController {
         // get user from session, save them in the model and return the home page
     	Long userId = userSessionId(session);
     	if(userId == null) {
-    		return "redirect:/";
+    		var accountValue = 0;
+    		var amountOfPositions = 0;
+	    	Base base = restTemplate.getForObject(this.baseURL + "listings/latest?start=1&limit=200&" + apiKey, Base.class);
+	    	model.addAttribute("currencies", base.getData());
+	    	model.addAttribute("accountValue", accountValue);
+			model.addAttribute("amountOfPositions", amountOfPositions);
+
+	    	return "dashboard.jsp";
     	}else {
 	    	User u = userService.findUserById(userId);
 	    	
