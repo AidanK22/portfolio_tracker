@@ -23,10 +23,19 @@
 				<div class=" row row-cols-auto">
 				
 			    	<div class="  navbar-text">
-			    		<div class="navbrand font-size-md text-white">
-				    		<h1 class="color-light">Welcome <c:out value="${user.firstName }"/> |</h1>
-				  
-				    	</div>
+			    		<c:choose>
+			    			<c:when test="${ user != null }">
+					    		<div class="navbrand font-size-md text-white">
+						    		<h1 class="color-light">Welcome <c:out value="${user.firstName }"/> |</h1>
+						  
+						    	</div>
+					    	</c:when>
+					    	<c:otherwise>
+					    		<div class="navbrand font-size-md text-white">
+						    		<h1 class="color-light">Welcome <c:out value="${noUser }"/> |</h1>
+						    	</div>
+					    	</c:otherwise>
+				    	</c:choose>
 				    </div>
 				    <div class=" navbar-text ">
 				    	<a href="/dashboard" class="btn text-white m-1 ">Dashboard</a>
