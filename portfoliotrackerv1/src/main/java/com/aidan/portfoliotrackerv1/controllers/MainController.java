@@ -291,11 +291,11 @@ public class MainController {
     //Risk Calculator page
     @GetMapping("/risk_calculator")
     public String RiskCalculator(HttpSession session, Model model) {
-    	Long userId = userSessionId(session);
-    	if(userId != null) {
-        	User u = userService.findUserById(userId);
-        	model.addAttribute("user", u);
-        	return "RiskCalculator.jsp";
+    	Long userId = userSessionId(session); //if user is logged into the session it grabs users id
+    	if(userId != null) { //check if user is not in session, if it is
+        	User u = userService.findUserById(userId); //grabs user from session
+        	model.addAttribute("user", u);	//pass user to  template
+        	return "RiskCalculator.jsp";	//send to risk calculator page
     	}
     	String i = "Guest";
     	model.addAttribute("noUser", i);
