@@ -305,7 +305,7 @@ public class MainController {
     //calculation
     @PostMapping("/calculate")
     public String calculate(HttpSession sessionModel, @RequestParam("amountRisked") float amountRisked, @RequestParam("potentialProfit") float potentialProfit, @RequestParam("probability") float probability) {
-    	float rrr = amountRisked / potentialProfit;
+    	float rrr = amountRisked / potentialProfit; //risk to reward ratio = the amount of money you are risking divided by the amount of money you stand to make
     	float eo = ((potentialProfit * probability)-(amountRisked*(100-probability)))/10;
     	System.out.println(eo);
     	System.out.println(rrr);
@@ -321,11 +321,11 @@ public class MainController {
     //------------------account details------------------\\
     @GetMapping("/account_details")
     public String accountDetails(HttpSession session, Model model) {
-    	Long userId = userSessionId(session);
-        if(userId == null) {
-        	return "redirect:/";
-        }else {
-        	User u = userService.findUserById(userId);
+    	Long userId = userSessionId(session);	//grab user from session
+        if(userId == null) {	//check if user is in session
+        	return "redirect:/";	//if user not in session, redirect to login page
+        }else {		//if user IS in session
+        	User u = userService.findUserById(userId);	
 
 	    	
 	    	List<Position> positions =	positionService.findPositionsByOwner(u);//  findAllPositions()
@@ -338,9 +338,9 @@ public class MainController {
 			//positions
 	    		var amountOfPositions = 0;
 	    		model.addAttribute("amountOfPositions", amountOfPositions);
-		    	if(u.getWatchlist().size() > 0) {
+		    	if(u.getWatchlist().size() > 0) {	//if watchlist is greater than 0
 		    	
-		    	List apiIdsToGet = new ArrayList(); 
+		    	List apiIdsToGet = new ArrayList(); 	//create list variable to store apiIds
 
 		    	String newApiIdList = "";	//create empty list to add api ids to
 		    	
