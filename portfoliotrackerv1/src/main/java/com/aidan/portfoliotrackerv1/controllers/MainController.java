@@ -279,12 +279,13 @@ public class MainController {
         if(userId != null) {
         	User u = userService.findUserById(userId);
         	model.addAttribute("user", u);
-        	
+        	return "top200.jsp";
         }
         	
         	Base base = restTemplate.getForObject(this.baseURL + "listings/latest?start=1&limit=200&" + apiKey, Base.class);
-        	
         	model.addAttribute("currencies", base.getData());
+        	String i = "Guest";
+        	model.addAttribute("noUser", i);
         	return "top200.jsp";
         }
     
