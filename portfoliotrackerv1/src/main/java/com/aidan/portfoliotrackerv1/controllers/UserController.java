@@ -140,7 +140,8 @@ public class UserController {
 	    	model.addAttribute("currencies", base.getData());
 	    	model.addAttribute("accountValue", accountValue);
 			model.addAttribute("amountOfPositions", amountOfPositions);
-
+        	String i = "Guest";
+        	model.addAttribute("noUser", i);
 	    	return "dashboard.jsp";
     	}else {
 	    	User u = userService.findUserById(userId);
