@@ -134,6 +134,8 @@ public class MainController {
 			model.addAttribute("watchlist", watchlist);
 
 			}
+        	String i = "Guest";
+        	model.addAttribute("noUser", i);
 			model.addAttribute("currencyMD", mdt);
 			model.addAttribute("CMDExplorer", MetaDataExplorer);
 			model.addAttribute("CMDWebsite", MetaDataWebsite);

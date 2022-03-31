@@ -34,8 +34,19 @@
 				
 			    	<div class="  navbar-text">
 			    		<div class="navbrand font-size-md text-white">
-				    		<h1 class="color-light">Welcome <c:out value="${user.firstName }"/> |</h1>
-				  
+					    	<c:choose>
+				    			<c:when test="${ user != null }">
+						    		<div class="navbrand font-size-md text-white">
+							    		<h1 class="color-light">Welcome <c:out value="${user.firstName }"/> |</h1>
+							  
+							    	</div>
+						    	</c:when>
+						    	<c:otherwise>
+						    		<div class="navbrand font-size-md text-white">
+							    		<h1 class="color-light">Welcome <c:out value="${noUser }"/> |</h1>
+							    	</div>
+						    	</c:otherwise>
+					    	</c:choose>
 				    	</div>
 				    </div>
 				    <div class=" navbar-text ">
@@ -54,8 +65,16 @@
 						          </a>
 						          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
 						          	<li><a class="dropdown-item" href="/account_details">Account Details</a></li>
-						            <li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
-						            
+						            <c:choose>
+						    			<c:when test="${ user != null }">
+								    		
+									    		<li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
+									  
+								    	</c:when>
+								    	<c:otherwise>
+								    		<li><a class="dropdown-item text-primary" href="/logout">Sign In</a></li>
+								    	</c:otherwise>
+							    	</c:choose>
 						          </ul>
 					    </div>
 				    </div>
