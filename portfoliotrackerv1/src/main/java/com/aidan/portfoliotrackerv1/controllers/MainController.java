@@ -134,7 +134,7 @@ public class MainController {
 			model.addAttribute("watchlist", watchlist);
 
 			}
-        	String i = "Guest";
+        	String i = "Guest";	//when no user is signed this will be used instead of user.firstname
         	model.addAttribute("noUser", i);
 			model.addAttribute("currencyMD", mdt);
 			model.addAttribute("CMDExplorer", MetaDataExplorer);
