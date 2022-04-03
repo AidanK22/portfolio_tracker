@@ -152,7 +152,7 @@ public class MainController {
     	
 	}
 	
-	//get currency by symbol **WORKING**
+	//get currency by symbol **BROKE**
 	@GetMapping("/search")
 	public String search(@RequestParam("symbol") String symbol) {
 			Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "symbol=" + symbol + "&" + apiKey, HashMap.class );
@@ -194,12 +194,12 @@ public class MainController {
 	@RequestMapping(value="/{id}/remove_from_watchlist", method=RequestMethod.DELETE)
 	public String Delete(@PathVariable("id")Long id ) {
 		System.out.println("******DELETING FROM WATCHLIST*******");
-		Watchlist watchlist = watchlistService.findWatchlistById(id);
+		Watchlist watchlist = watchlistService.findWatchlistById(id); //grab the watlist by its id
 //		Long id = watchlist.getId();
-		int apiId = watchlist.getApiId();
-		watchlistService.deleteWatchlist(id);
+		int apiId = watchlist.getApiId(); //get the apiId from the watchlist
+		watchlistService.deleteWatchlist(id);	//delete currency from watchlist by id
 		
-		return "redirect:/info/" + apiId;
+		return "redirect:/info/" + apiId; //return to currency's info page by apiId
 	}
 	
 	//ADD POSITION THROUGH INFO PAGE
