@@ -226,9 +226,9 @@ public class MainController {
     if(userId == null) {
     	return "redirect:/";
     }else {
-    	Position position = positionService.findPositionById(id);
-    	User user = positionService.findPositionById(id).getOwner();
-    	var apiId = positionService.findPositionById(id).getApiId();
+    	Position position = positionService.findPositionById(id);		//grab position by position's id
+    	User user = positionService.findPositionById(id).getOwner();	//grab position by id then get the owner
+    	var apiId = positionService.findPositionById(id).getApiId();	//grab the position by id then get it's stored apiId
     			
     	Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "id=" + apiId + "&" + apiKey, HashMap.class );
 		Map data = (Map) QuotesBase.get("data");
