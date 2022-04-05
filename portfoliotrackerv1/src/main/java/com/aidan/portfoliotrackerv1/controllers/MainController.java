@@ -230,9 +230,9 @@ public class MainController {
     	User user = positionService.findPositionById(id).getOwner();	//grab position by id then get the owner
     	var apiId = positionService.findPositionById(id).getApiId();	//grab the position by id then get it's stored apiId
     			
-    	Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "id=" + apiId + "&" + apiKey, HashMap.class );
-		Map data = (Map) QuotesBase.get("data");
-		Map t = (Map) data.get(Integer.toString(apiId));	
+    	Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "id=" + apiId + "&" + apiKey, HashMap.class );	//api call
+		Map data = (Map) QuotesBase.get("data");	//from returned json data  grab data table
+		Map t = (Map) data.get(Integer.toString(apiId));	//using apidId grab the id from returned json data allowing access to all needed information
     			
     	model.addAttribute("position", position);
     	model.addAttribute("user", user);
