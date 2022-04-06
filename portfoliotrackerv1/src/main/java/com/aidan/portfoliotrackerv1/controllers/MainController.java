@@ -244,9 +244,9 @@ public class MainController {
 	//update position **WORKING** 
 	@RequestMapping(value="position/{id}/update", method=RequestMethod.PUT)
 	public String update(@Valid @ModelAttribute("position")Position position, BindingResult result, @PathVariable("id")Long id, Model model, RedirectAttributes flashAttrib) {
-		var apiId = positionService.findPositionById(id).getApiId();
-		if(result.hasErrors()) {
-			flashAttrib.addFlashAttribute("updateError", "Error: Updated positon size can not be null value.");
+		var apiId = positionService.findPositionById(id).getApiId();	//find position by id then grab that position's apiId
+		if(result.hasErrors()) {	//if returned form has errors
+			flashAttrib.addFlashAttribute("updateError", "Error: Updated positon size can not be null value.");	//using flash attribute assign the error to 'updateError'
 			User user = positionService.findPositionById(id).getOwner();
 			
 			Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "id=" + apiId + "&" + apiKey, HashMap.class );
