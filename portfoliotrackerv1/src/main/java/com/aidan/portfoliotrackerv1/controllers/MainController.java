@@ -230,7 +230,7 @@ public class MainController {
     	User user = positionService.findPositionById(id).getOwner();	//grab position by id then get the owner
     	var apiId = positionService.findPositionById(id).getApiId();	//grab the position by id then get it's stored apiId
     			
-    	Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "id=" + apiId + "&" + apiKey, HashMap.class );	//api call
+    	Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "id=" + apiId + "&" + apiKey, HashMap.class );	//api call using the apiId to call data for correct currency
 		Map data = (Map) QuotesBase.get("data");	//from returned json data  grab data table
 		Map t = (Map) data.get(Integer.toString(apiId));	//using apidId grab the id from returned json data allowing access to all needed information
     			
@@ -249,9 +249,9 @@ public class MainController {
 			flashAttrib.addFlashAttribute("updateError", "Error: Updated positon size can not be null value.");	//using flash attribute assign the error to 'updateError'
 			User user = positionService.findPositionById(id).getOwner();
 			
-			Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "id=" + apiId + "&" + apiKey, HashMap.class );
-			Map data = (Map) QuotesBase.get("data");
-			Map t = (Map) data.get(Integer.toString(apiId));
+			Map QuotesBase = restTemplate.getForObject(this.baseURL + "quotes/latest?" + "id=" + apiId + "&" + apiKey, HashMap.class );	//api call using the apiId to call data for correct currency
+			Map data = (Map) QuotesBase.get("data");	//from returned json data  grab data table
+			Map t = (Map) data.get(Integer.toString(apiId));	//using apidId grab the id from returned json data allowing access to all needed information
 
 	    	model.addAttribute("position", position);
 	    	model.addAttribute("user", user);
@@ -386,7 +386,7 @@ public class MainController {
 		    		Map coinUsd = (Map) coinQuote.get("USD"); //access USD section
 		    		Double coinPrice = (Double) coinUsd.get("price");	//save currency's current price
 
-		    		accountValue += positions.get(i).getPositionSize() * coinPrice;	
+		    		accountValue += positions.get(i).getPositionSize() * coinPrice;	//add to account value
 		    	}
 				for( var i =0 ; i< finalIds.length ; i++) {
 					finalPosArrayList.add((Map) data.get(finalIds[i]));
