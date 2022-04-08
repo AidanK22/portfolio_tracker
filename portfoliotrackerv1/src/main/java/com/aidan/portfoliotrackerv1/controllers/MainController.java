@@ -183,9 +183,7 @@ public class MainController {
 		if(userId == null) {
     		return "redirect:/";
     	}else {
-		System.out.println(watchlist);
-		watchlistService.createWatchlist(watchlist);
-		System.out.println(watchlist);
+		watchlistService.createWatchlist(watchlist);	//add currency to watchlist
 		return "redirect:/info/{apiId}";
     	}
 	}
@@ -210,10 +208,10 @@ public class MainController {
     		return "redirect:/";
     	}else {
 	    	if(result.hasErrors()) {
-	    		flashAttrib.addFlashAttribute("createError", "Position size can not be a null value.");
+	    		flashAttrib.addFlashAttribute("createError", "Position size can not be a null value.");	//if there was an error  
 	    		return "redirect:/info/{apiId}";
 	    	}else {
-	    		positionService.createPosition(position);
+	    		positionService.createPosition(position);	//creates position
 	    		return "redirect:/dashboard";
 	    	}
     	}
@@ -259,7 +257,7 @@ public class MainController {
 
 	    	return "redirect:/position/{id}/edit";
 		}else {
-			positionService.updatePosition(position, apiId);
+			positionService.updatePosition(position, apiId);	//update position by apiId
 			return "redirect:/position/{id}/edit";
 		}
 	}
