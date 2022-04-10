@@ -84,23 +84,19 @@ public class MainController {
 			Map MetaDataBase = restTemplate.getForObject(this.v2BaseURL + "info?" + "id=" + apiId + "&" + apiKey, HashMap.class );	//api call using the apiId to call data for correct currency
 			Map metadata = (Map) MetaDataBase.get("data");	//from returned json data  grab data table
 			Map mdt = (Map) metadata.get(Integer.toString(apiId));	//using apidId grab the id from returned json data allowing access to all needed information
-			Map MetaDataUrls = (Map) mdt.get("urls");
+			Map MetaDataUrls = (Map) mdt.get("urls");	//in returned json data grab table 'data'
 			
 			//get websites
-			List MetaDataWebsite = (List) MetaDataUrls.get("website");
-			System.out.println(MetaDataWebsite);
-			
+			List MetaDataWebsite = (List) MetaDataUrls.get("website");//in returned json data grab table 'websites'
+
 			//gets explorers
-			List MetaDataExplorer = (List) MetaDataUrls.get("explorer");
-			System.out.println(MetaDataExplorer);
+			List MetaDataExplorer = (List) MetaDataUrls.get("explorer");//in returned json data grab table 'explorer'
 			
 			//get message boards
-			List MetaDataMessageBoard = (List) MetaDataUrls.get("message_board");
-			System.out.println(MetaDataMessageBoard);
+			List MetaDataMessageBoard = (List) MetaDataUrls.get("message_board");//in returned json data grab table 'message_board'
 			
 			//get chats
-			List MetaDataChat = (List) MetaDataUrls.get("chat");
-			System.out.println(MetaDataChat);
+			List MetaDataChat = (List) MetaDataUrls.get("chat");//in returned json data grab table 'chat'
 			
 			if( userId != null) {
 				
