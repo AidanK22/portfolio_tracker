@@ -76,14 +76,14 @@ public class MainController {
     	
 
 			Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "id=" + apiId + "&" + apiKey, HashMap.class );//api call using the apiId to call data for correct currency
-			Map data = (Map) QuotesBase.get("data");//from returned json data  grab data table
-			Map t = (Map) data.get(Integer.toString(apiId));//using apidId grab the id from returned json data allowing access to all needed information
+			Map data = (Map) QuotesBase.get("data");	//from returned json data  grab data table
+			Map t = (Map) data.get(Integer.toString(apiId));	//using apidId grab the id from returned json data allowing access to all needed information
 			
 
 			//gets meta data urls
-			Map MetaDataBase = restTemplate.getForObject(this.v2BaseURL + "info?" + "id=" + apiId + "&" + apiKey, HashMap.class );
-			Map metadata = (Map) MetaDataBase.get("data");
-			Map mdt = (Map) metadata.get(Integer.toString(apiId));
+			Map MetaDataBase = restTemplate.getForObject(this.v2BaseURL + "info?" + "id=" + apiId + "&" + apiKey, HashMap.class );	//api call using the apiId to call data for correct currency
+			Map metadata = (Map) MetaDataBase.get("data");	//from returned json data  grab data table
+			Map mdt = (Map) metadata.get(Integer.toString(apiId));	//using apidId grab the id from returned json data allowing access to all needed information
 			Map MetaDataUrls = (Map) mdt.get("urls");
 			
 			//get websites
