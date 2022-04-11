@@ -60,10 +60,10 @@ public class MainController {
 	
 	// Method to check whether User is in Session or not
     public Long userSessionId(HttpSession session) {
-    	if(session.getAttribute("userId") == null) {
-    		return null;
+    	if(session.getAttribute("userId") == null) {	//check if there is an attribute attached to 'userId'
+    		return null;	//if none return null
     	} else {
-    		return (Long)session.getAttribute("userId");
+    		return (Long)session.getAttribute("userId");	//if there is return attribute 'userId'
     	}
     }
     
@@ -114,10 +114,10 @@ public class MainController {
 				var isInWatchlist = "no";
 				model.addAttribute("isInWatchlist", isInWatchlist);
 			}else {
-				for( var i=0; i< watchlist.size(); i++) {
+				for( var i=0; i< watchlist.size(); i++) {				//for each item in the user's watchlist...
 					
-					int wApiId = watchlist.get(i).getApiId();
-					if(wApiId == apiId) {		//check if api id is in said watchlist
+					int wApiId = watchlist.get(i).getApiId();			//get watchlist's apiId
+					if(wApiId == apiId) {								//check if api id is in said watchlist
 						//is in watchlist
 						Long WatchlistItemId = watchlist.get(i).getId();//watchlistService.findWatchlistById(watchlist.get(Long id));	//if apiId matches currently viewing coins apiId
 						model.addAttribute("WatchlistItemId", WatchlistItemId);
@@ -132,7 +132,7 @@ public class MainController {
 
 			}
         	String i = "Guest";	//when no user is signed this will be used instead of user.firstname
-        	model.addAttribute("noUser", i);
+        	model.addAttribute("noUser", i);	//assign i to 'noUser' to be referred to in the template
 			model.addAttribute("currencyMD", mdt);
 			model.addAttribute("CMDExplorer", MetaDataExplorer);
 			model.addAttribute("CMDWebsite", MetaDataWebsite);
