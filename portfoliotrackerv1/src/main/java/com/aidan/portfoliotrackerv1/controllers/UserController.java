@@ -134,12 +134,12 @@ public class UserController {
         // get user from session, save them in the model and return the home page
     	Long userId = userSessionId(session);
     	if(userId == null) {
-    		var accountValue = 0;
-    		var amountOfPositions = 0;
-	    	Base base = restTemplate.getForObject(this.baseURL + "listings/latest?start=1&limit=200&" + apiKey, Base.class);
-	    	model.addAttribute("currencies", base.getData());
-	    	model.addAttribute("accountValue", accountValue);
-			model.addAttribute("amountOfPositions", amountOfPositions);
+    		var accountValue = 0;	//default account value of 0
+    		var amountOfPositions = 0;	//default amount of positions is 0
+	    	Base base = restTemplate.getForObject(this.baseURL + "listings/latest?start=1&limit=200&" + apiKey, Base.class);	//api call to recieve json data
+	    	model.addAttribute("currencies", base.getData());	//from json get table 'data' send to template
+	    	model.addAttribute("accountValue", accountValue);	//send account value to template
+			model.addAttribute("amountOfPositions", amountOfPositions);	//send amount of positions to template
         	String i = "Guest";
         	model.addAttribute("noUser", i);
 	    	return "dashboard.jsp";
