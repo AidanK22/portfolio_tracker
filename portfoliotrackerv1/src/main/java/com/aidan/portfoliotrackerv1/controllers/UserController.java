@@ -158,7 +158,7 @@ public class UserController {
 	    		model.addAttribute("amountOfPositions", amountOfPositions);
 		    	if(u.getWatchlist().size() > 0) {
 		    	
-		    	List apiIdsToGet = new ArrayList(); 
+		    	List apiIdsToGet = new ArrayList(); //creates a lit that will hold the api Id we are grabbing
 
 		    	String newApiIdList = "";	//create empty list to add api ids to
 		    	
@@ -189,12 +189,11 @@ public class UserController {
 				String[] finalIds = newApiIdList.split(",");
 				List finalPosArrayList = new ArrayList();
 				//account value
-		    	var accountValue = 0;
-		    	amountOfPositions = 0;
-		    	System.out.println("accountValue:");
-				System.out.println(accountValue);
-		    	for(var i=0; i<positions.size(); i++) {
-		    		amountOfPositions += 1;
+		    	var accountValue = 0;	//default account value set to 0
+		    	amountOfPositions = 0;	//default amount of positions is 0
+
+		    	for(var i=0; i<positions.size(); i++) {	//for each position is positions
+		    		amountOfPositions += 1;	//add 1 to the amount of positions
 		    		int apiId = positions.get(i).getApiId();
 		    		Map coinId = (Map) data.get(Integer.toString(apiId));
 		    		Map	coinQuote = (Map) coinId.get("quote");
