@@ -194,11 +194,11 @@ public class UserController {
 
 		    	for(var i=0; i<positions.size(); i++) {	//for each position is positions
 		    		amountOfPositions += 1;	//add 1 to the amount of positions
-		    		int apiId = positions.get(i).getApiId();
-		    		Map coinId = (Map) data.get(Integer.toString(apiId));
-		    		Map	coinQuote = (Map) coinId.get("quote");
-		    		Map coinUsd = (Map) coinQuote.get("USD");
-		    		Double coinPrice = (Double) coinUsd.get("price");
+		    		int apiId = positions.get(i).getApiId();	//for that position grab it's apiId
+		    		Map coinId = (Map) data.get(Integer.toString(apiId));	//using the previously grabbed apId grab the matching id from the returned json table
+		    		Map	coinQuote = (Map) coinId.get("quote");	//grab table called 'data'
+		    		Map coinUsd = (Map) coinQuote.get("USD");	//grab table called 'USD'
+		    		Double coinPrice = (Double) coinUsd.get("price");	//create a double named coinPrice attaching it to the price returned from the json table
 
 		    		accountValue += positions.get(i).getPositionSize() * coinPrice;	
 		    	}
