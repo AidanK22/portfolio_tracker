@@ -202,8 +202,8 @@ public class UserController {
 
 		    		accountValue += positions.get(i).getPositionSize() * coinPrice;	//for each positions multiply the price times the amount owned by the user
 		    	}
-				for( var i =0 ; i< finalIds.length ; i++) {
-					finalPosArrayList.add((Map) data.get(finalIds[i]));
+				for( var i =0 ; i< finalIds.length ; i++) {	//for all the ids that are apart of the final list
+					finalPosArrayList.add((Map) data.get(finalIds[i])); //add from json data the apiId used to access the json table for that specific currency
 				}
 				
 				model.addAttribute("pcurrencies", finalPosArrayList);
