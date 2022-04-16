@@ -200,7 +200,7 @@ public class UserController {
 		    		Map coinUsd = (Map) coinQuote.get("USD");	//grab table called 'USD'
 		    		Double coinPrice = (Double) coinUsd.get("price");	//create a double named coinPrice attaching it to the price returned from the json table
 
-		    		accountValue += positions.get(i).getPositionSize() * coinPrice;	
+		    		accountValue += positions.get(i).getPositionSize() * coinPrice;	//for each positions multiply the price times the amount owned by the user
 		    	}
 				for( var i =0 ; i< finalIds.length ; i++) {
 					finalPosArrayList.add((Map) data.get(finalIds[i]));
