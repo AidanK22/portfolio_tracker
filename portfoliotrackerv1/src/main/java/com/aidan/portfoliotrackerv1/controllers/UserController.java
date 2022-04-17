@@ -48,11 +48,11 @@ public class UserController {
     private WatchlistRepo watchlistRepo;
     
     //api key
-    private String apiKey = PropertiesReader.getProperty("API_KEY");
+    private String apiKey = PropertiesReader.getProperty("API_KEY");	//api key
 	//base URL
-	private String baseURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/";
+	private String baseURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/";	//base url used for all pai calls
 	
-	private String v2BaseURL = "https://pro-api.coinmarketcap.com/v2/cryptocurrency/";
+	private String v2BaseURL = "https://pro-api.coinmarketcap.com/v2/cryptocurrency/";	//base url for all api calls using version 2 
 	@Autowired
 	RestTemplate restTemplate;
 	
@@ -67,10 +67,10 @@ public class UserController {
 
     // Method to check whether User is in Session or not
     public Long userSessionId(HttpSession session) {
-    	if(session.getAttribute("userId") == null) {
-    		return null;
-    	} else {
-    		return (Long)session.getAttribute("userId");
+    	if(session.getAttribute("userId") == null) {	//if user is in session is null
+    		return null;	//return null
+    	} else {	//else if the user in session is not null
+    		return (Long)session.getAttribute("userId");	//get that user's id
     	}
     }
     
