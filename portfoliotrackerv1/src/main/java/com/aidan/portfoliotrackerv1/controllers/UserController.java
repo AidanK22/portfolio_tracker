@@ -133,18 +133,18 @@ public class UserController {
     public String home(HttpSession session, Model model) {
         // get user from session, save them in the model and return the home page
     	Long userId = userSessionId(session);
-    	if(userId == null) {
+    	if(userId == null) {	//if user is not in session
     		var accountValue = 0;	//default account value of 0
     		var amountOfPositions = 0;	//default amount of positions is 0
 	    	Base base = restTemplate.getForObject(this.baseURL + "listings/latest?start=1&limit=200&" + apiKey, Base.class);	//api call to recieve json data
 	    	model.addAttribute("currencies", base.getData());	//from json get table 'data' send to template
 	    	model.addAttribute("accountValue", accountValue);	//send account value to template
 			model.addAttribute("amountOfPositions", amountOfPositions);	//send amount of positions to template
-        	String i = "Guest";
-        	model.addAttribute("noUser", i);
+        	String i = "Guest";	//assign string 'guest' to i
+        	model.addAttribute("noUser", i);	//assign i to 'noUser' and sent to template
 	    	return "dashboard.jsp";
-    	}else {
-	    	User u = userService.findUserById(userId);
+    	}else {	//if user is in session
+	    	User u = userService.findUserById(userId);	//find user by the id
 	    	
 	    	List<Position> positions =	positionService.findPositionsByOwner(u);//  findAllPositions()
 
