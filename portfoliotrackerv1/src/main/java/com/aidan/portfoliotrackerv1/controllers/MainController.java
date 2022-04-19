@@ -268,7 +268,7 @@ public class MainController {
 		return "redirect:/dashboard";
 	}
 	
-    //top 200 page **WORKING**
+    //top 200 page **NOT WORKING** info not being displayed, check table in base class for having a binned data table
     @GetMapping("/top200")
     public String top200(HttpSession session, Model model) {
     	// get user from session, save them in the model and return the home page
@@ -280,9 +280,14 @@ public class MainController {
         }
         	
         	Base base = restTemplate.getForObject(this.baseURL + "listings/latest?start=1&limit=200&" + apiKey, Base.class);
+        	
+        	Map data = (Map) base.getData();//trying to map each bin[0] and [1] to separate variables
+        	
+        	Map table1 = (Map) data);
         	model.addAttribute("currencies", base.getData());
         	String i = "Guest";
         	model.addAttribute("noUser", i);
+        	
         	return "top200.jsp";
         }
     

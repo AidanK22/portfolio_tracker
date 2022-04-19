@@ -99,7 +99,7 @@
 				    		
 				    </tr>		
 	
-				    	<c:forEach items="${currencies}" var="currency">
+				    	<c:forEach items="${currencies[0]}" var="currency">
 	
 					    		<tr style="vertical-align: baseline;">
 					    			<td><p>${currency.cmcRank }</p></td>
