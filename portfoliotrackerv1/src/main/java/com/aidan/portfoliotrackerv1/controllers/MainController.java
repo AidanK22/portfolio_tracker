@@ -273,9 +273,9 @@ public class MainController {
     public String top200(HttpSession session, Model model) {
     	// get user from session, save them in the model and return the home page
         Long userId = userSessionId(session);
-        if(userId != null) {
-        	User u = userService.findUserById(userId);
-        	model.addAttribute("user", u);
+        if(userId != null) {	//if user in session is not null
+        	User u = userService.findUserById(userId);	//user service
+        	model.addAttribute("user", u);	//=user passed to template
         	return "top200.jsp";
         }
         	
