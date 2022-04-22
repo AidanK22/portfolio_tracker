@@ -309,7 +309,7 @@ public class MainController {
     @PostMapping("/calculate")
     public String calculate(HttpSession sessionModel, @RequestParam("amountRisked") float amountRisked, @RequestParam("potentialProfit") float potentialProfit, @RequestParam("probability") float probability) {
     	float rrr = amountRisked / potentialProfit; //risk to reward ratio = the amount of money you are risking divided by the amount of money you stand to make
-    	float eo = ((potentialProfit * probability)-(amountRisked*(100-probability)))/10;
+    	float eo = ((potentialProfit * probability)-(amountRisked*(100-probability)))/10;	//calculation for expect outcome
     	System.out.println(eo);
     	System.out.println(rrr);
     	sessionModel.setAttribute("eo", eo);

@@ -214,9 +214,9 @@ public class UserController {
 					model.addAttribute("amountOfPositions", amountOfPositions);
 		    	}
 		    		
-	    	model.addAttribute("user", u);
-	    	model.addAttribute("positions", positions);
-	    	model.addAttribute("watchlist", watchlist);
+	    	model.addAttribute("user", u);	//user to template
+	    	model.addAttribute("positions", positions);	//user's positions to template
+	    	model.addAttribute("watchlist", watchlist);	//user's wishlist to template
 	    	model.addAttribute("currencies", base.getData());
 	    	
 	    	
