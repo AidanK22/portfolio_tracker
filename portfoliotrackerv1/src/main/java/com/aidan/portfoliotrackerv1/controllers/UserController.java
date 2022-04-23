@@ -210,14 +210,14 @@ public class UserController {
 		    	
 			    	System.out.println("accountValue:");
 					System.out.println(accountValue);
-					model.addAttribute("accountValue", accountValue);
-					model.addAttribute("amountOfPositions", amountOfPositions);
+					model.addAttribute("accountValue", accountValue);	//account value to template
+					model.addAttribute("amountOfPositions", amountOfPositions);	//amount of positions to template
 		    	}
 		    		
 	    	model.addAttribute("user", u);	//user to template
 	    	model.addAttribute("positions", positions);	//user's positions to template
 	    	model.addAttribute("watchlist", watchlist);	//user's wishlist to template
-	    	model.addAttribute("currencies", base.getData());
+	    	model.addAttribute("currencies", base.getData());	//currency data to template
 	    	
 	    	
 	    	return "dashboard.jsp";
