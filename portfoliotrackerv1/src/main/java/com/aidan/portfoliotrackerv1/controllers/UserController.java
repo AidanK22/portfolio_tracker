@@ -154,9 +154,9 @@ public class UserController {
 //	    	int price = d.get("price");
 	    	//check if anything is in position
 			//positions
-	    		var amountOfPositions = 0;
-	    		model.addAttribute("amountOfPositions", amountOfPositions);
-		    	if(u.getWatchlist().size() > 0) {
+	    		var amountOfPositions = 0;	//default amount of positions set to 0
+	    		model.addAttribute("amountOfPositions", amountOfPositions);	//adds amount of positions default of 0 to template
+		    	if(u.getWatchlist().size() > 0) {	//if the users watchlist size is greater than 0
 		    	
 		    	List apiIdsToGet = new ArrayList(); //creates a lit that will hold the api Id we are grabbing
 
@@ -180,7 +180,7 @@ public class UserController {
 		    	}
 		    	
 		    	//creates comma separated list
-		    	newApiIdList = apiIdsToGet.toString();	
+		    	newApiIdList = apiIdsToGet.toString();	//sets aoiIdsToGet to a new list newApiIdList
 		    	newApiIdList = newApiIdList.replace("[", "").replace("]", "").replace(" ", "");
 		    	
 		    	//api call
