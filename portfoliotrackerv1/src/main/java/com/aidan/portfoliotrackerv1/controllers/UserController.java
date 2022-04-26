@@ -186,8 +186,8 @@ public class UserController {
 		    	//api call
 				Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "id=" + newApiIdList + "&" + apiKey, HashMap.class );	//api call
 				Map data = (Map) QuotesBase.get("data");	//get data table in json data returned
-				String[] finalIds = newApiIdList.split(",");
-				List finalPosArrayList = new ArrayList();
+				String[] finalIds = newApiIdList.split(",");	//string finalIds stores the last string of ids needed to make the api call
+				List finalPosArrayList = new ArrayList();	//the final list of positions
 				//account value
 		    	var accountValue = 0;	//default account value set to 0
 		    	amountOfPositions = 0;	//default amount of positions is 0
