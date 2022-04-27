@@ -228,8 +228,8 @@ public class UserController {
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
         // invalidate session
-    	session.invalidate();
-    	return "redirect:/";
+    	session.invalidate();	//clears session
+    	return "redirect:/"; //returns to login page
         // redirect to login page
     }
     
