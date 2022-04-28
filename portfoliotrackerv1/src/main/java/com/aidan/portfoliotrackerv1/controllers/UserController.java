@@ -181,7 +181,7 @@ public class UserController {
 		    	
 		    	//creates comma separated list
 		    	newApiIdList = apiIdsToGet.toString();	//sets aoiIdsToGet to a new list newApiIdList
-		    	newApiIdList = newApiIdList.replace("[", "").replace("]", "").replace(" ", "");
+		    	newApiIdList = newApiIdList.replace("[", "").replace("]", "").replace(" ", "");	//removes the '[',']' and ' ' from the string to be used in the api call
 		    	
 		    	//api call
 				Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "id=" + newApiIdList + "&" + apiKey, HashMap.class );	//api call
@@ -208,8 +208,6 @@ public class UserController {
 				
 				model.addAttribute("pcurrencies", finalPosArrayList);
 		    	
-			    	System.out.println("accountValue:");
-					System.out.println(accountValue);
 					model.addAttribute("accountValue", accountValue);	//account value to template
 					model.addAttribute("amountOfPositions", amountOfPositions);	//amount of positions to template
 		    	}
