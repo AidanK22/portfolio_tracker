@@ -174,7 +174,7 @@ public class UserController {
 		    	for(var i=0; i<watchlist.size(); i++) { 	//loop through watchlist
 		    		
 		    		int apiId = watchlist.get(i).getApiId(); 	//grab api Id from the watchlist
-		    			if(!apiIdsToGet.contains(apiId) ) {
+		    			if(!apiIdsToGet.contains(apiId) ) {	//if apiIdsToGet does not contain apiId then..
 		    				apiIdsToGet.add(apiId);		//add api id to list
 		    			}
 		    	}
