@@ -206,7 +206,7 @@ public class UserController {
 					finalPosArrayList.add((Map) data.get(finalIds[i])); //add from json data the apiId used to access the json table for that specific currency
 				}
 				
-				model.addAttribute("pcurrencies", finalPosArrayList);
+				model.addAttribute("pcurrencies", finalPosArrayList);	//	sends finalPositions arraylist to template
 		    	
 					model.addAttribute("accountValue", accountValue);	//account value to template
 					model.addAttribute("amountOfPositions", amountOfPositions);	//amount of positions to template
