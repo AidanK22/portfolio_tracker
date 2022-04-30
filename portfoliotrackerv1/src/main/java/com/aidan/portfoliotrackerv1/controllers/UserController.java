@@ -165,7 +165,7 @@ public class UserController {
 		    	//add positions apiIds to list
 		    	for(var i=0; i<positions.size(); i++) { 	//loop through positions
 		    		int apiId = positions.get(i).getApiId(); 	//grab api Id from the position
-		    			if(!apiIdsToGet.contains(apiId) ) {
+		    			if(!apiIdsToGet.contains(apiId) ) {	//if apiIdToGet does not contain an apiId
 		    				apiIdsToGet.add(apiId);		//add api id to list
 		    			}
 		    	}
