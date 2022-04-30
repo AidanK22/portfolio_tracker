@@ -276,16 +276,29 @@ public class MainController {
         if(userId != null) {	//if user in session is not null
         	User u = userService.findUserById(userId);	//user service
         	model.addAttribute("user", u);	//=user passed to template
+        	Base base = restTemplate.getForObject(this.baseURL + "listings/latest?start=1&limit=200&" + apiKey, Base.class);	//api call to recieve json data
+	    	model.addAttribute("currencies", base.getData());	//from json get table 'data' send to template
+        	System.out.println(base.getData());
+
+	    	//        	Base base = restTemplate.getForObject(this.baseURL + "listings/latest?start=1&limit=200&" + apiKey, Base.class);
+//        	
+//        	Map data = (Map) base.getData();//trying to map each bin[0] and [1] to separate variables
+//        	
+////        	Map table1 = (Map) data.get();
+//        	model.addAttribute("currencies", base.getData());
         	return "top200.jsp";
         }
         	
-        	Base base = restTemplate.getForObject(this.baseURL + "listings/latest?start=1&limit=200&" + apiKey, Base.class);
-        	
-        	Map data = (Map) base.getData();//trying to map each bin[0] and [1] to separate variables
-        	
-        	Map table1 = (Map) data);
-        	model.addAttribute("currencies", base.getData());
-        	String i = "Guest";
+//        	Base base = restTemplate.getForObject(this.baseURL + "listings/latest?start=1&limit=200&" + apiKey, Base.class);
+//        	
+//        	Map data = (Map) base.getData();//trying to map each bin[0] and [1] to separate variables
+//        	
+////        	Map table1 = (Map) data.get();
+//        	model.addAttribute("currencies", base.getData());
+        	Base base = restTemplate.getForObject(this.baseURL + "listings/latest?start=1&limit=200&" + apiKey, Base.class);	//api call to recieve json data
+    		model.addAttribute("currencies", base.getData());	//from json get table 'data' send to template
+        	System.out.println(base.getData());
+    		String i = "Guest";
         	model.addAttribute("noUser", i);
         	
         	return "top200.jsp";
