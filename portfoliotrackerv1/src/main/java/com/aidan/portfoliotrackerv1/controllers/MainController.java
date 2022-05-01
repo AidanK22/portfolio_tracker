@@ -263,12 +263,13 @@ public class MainController {
 	@RequestMapping(value="/position/{id}/delete", method=RequestMethod.DELETE)
 	public String DeletePosition(@PathVariable("id")Long id) {
 		
-		positionService.deletePositionById(id);
+		positionService.deletePositionById(id);	//deletes the position by the position's id
+		
 		
 		return "redirect:/dashboard";
 	}
 	
-    //top 200 page **NOT WORKING** info not being displayed, check table in base class for having a binned data table
+    //top 200 page **WORKING**
     @GetMapping("/top200")
     public String top200(HttpSession session, Model model) {
     	// get user from session, save them in the model and return the home page
