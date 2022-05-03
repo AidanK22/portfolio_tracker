@@ -111,8 +111,8 @@ public class MainController {
 			//get watchlists by user id, then get watchlists by apiId if == null then add
 			//check every watching item, 
 			if(watchlist.isEmpty() ) {
-				var isInWatchlist = "no";
-				model.addAttribute("isInWatchlist", isInWatchlist);
+				var isInWatchlist = "no";	//sets a variable to no for an if check on the front side
+				model.addAttribute("isInWatchlist", isInWatchlist);	//sends to front end template
 			}else {
 				for( var i=0; i< watchlist.size(); i++) {				//for each item in the user's watchlist...
 					
