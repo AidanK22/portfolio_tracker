@@ -102,7 +102,7 @@ public class MainController {
 				
 				
 			//get user data
-			User u = userService.findUserById(userId);
+			User u = userService.findUserById(userId);	//from id saved from session grab the users 
 
 			List<Watchlist> watchlist = watchlistService.findUsersInWatchlistByWatcherId(userId);	//grabs the user's watchlist if it exists
 			
@@ -120,7 +120,7 @@ public class MainController {
 					if(wApiId == apiId) {								//check if api id is in said watchlist
 						//is in watchlist
 						Long WatchlistItemId = watchlist.get(i).getId();//watchlistService.findWatchlistById(watchlist.get(Long id));	//if apiId matches currently viewing coins apiId
-						model.addAttribute("WatchlistItemId", WatchlistItemId);
+						model.addAttribute("WatchlistItemId", WatchlistItemId);	//add watchlistItemId to template
 						
 						
 					}
@@ -133,11 +133,11 @@ public class MainController {
 			}
         	String i = "Guest";	//when no user is signed this will be used instead of user.firstname
         	model.addAttribute("noUser", i);	//assign i to 'noUser' to be referred to in the template
-			model.addAttribute("currencyMD", mdt);
-			model.addAttribute("CMDExplorer", MetaDataExplorer);
-			model.addAttribute("CMDWebsite", MetaDataWebsite);
-			model.addAttribute("CMDMessageBoard", MetaDataMessageBoard);
-			model.addAttribute("CMDChat", MetaDataChat);
+			model.addAttribute("currencyMD", mdt);	//adds meta data to template
+			model.addAttribute("CMDExplorer", MetaDataExplorer);	//add meta data Explorer info
+			model.addAttribute("CMDWebsite", MetaDataWebsite);		//add meta data website info
+			model.addAttribute("CMDMessageBoard", MetaDataMessageBoard);	//add meta data messageBoard info
+			model.addAttribute("CMDChat", MetaDataChat);		//add
 		
 			model.addAttribute("currency", t);
 			
