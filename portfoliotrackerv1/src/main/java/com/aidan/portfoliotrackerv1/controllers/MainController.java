@@ -104,13 +104,13 @@ public class MainController {
 			//get user data
 			User u = userService.findUserById(userId);
 
-			List<Watchlist> watchlist = watchlistService.findUsersInWatchlistByWatcherId(userId);
+			List<Watchlist> watchlist = watchlistService.findUsersInWatchlistByWatcherId(userId);	//grabs the user's watchlist if it exists
 			
 			System.out.println(watchlist);
 			//watchlist.get(apiId)
 			//get watchlists by user id, then get watchlists by apiId if == null then add
 			//check every watching item, 
-			if(watchlist.isEmpty() ) {
+			if(watchlist.isEmpty() ) {	//if the user's watchlist is empty
 				var isInWatchlist = "no";	//sets a variable to no for an if check on the front side
 				model.addAttribute("isInWatchlist", isInWatchlist);	//sends to front end template
 			}else {
