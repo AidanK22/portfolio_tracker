@@ -137,7 +137,7 @@ public class MainController {
 			model.addAttribute("CMDExplorer", MetaDataExplorer);	//add meta data Explorer info
 			model.addAttribute("CMDWebsite", MetaDataWebsite);		//add meta data website info
 			model.addAttribute("CMDMessageBoard", MetaDataMessageBoard);	//add meta data messageBoard info
-			model.addAttribute("CMDChat", MetaDataChat);		//add
+			model.addAttribute("CMDChat", MetaDataChat);		//add meta data chat to template
 		
 			model.addAttribute("currency", t);
 			
