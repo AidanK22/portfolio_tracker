@@ -139,9 +139,9 @@ public class MainController {
 			model.addAttribute("CMDMessageBoard", MetaDataMessageBoard);	//add meta data messageBoard info
 			model.addAttribute("CMDChat", MetaDataChat);		//add meta data chat to template
 		
-			model.addAttribute("currency", t);
+			model.addAttribute("currency", t);	//currency info from api call using apiId sent to template
 			
-			model.addAttribute("watching", watching.getApiId());
+			model.addAttribute("watching", watching.getApiId());	//if the currency is in the users watchlist itll be true and if not false, this is sent to template
 			System.out.println(watching.getApiId());
 
 			
