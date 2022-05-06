@@ -200,8 +200,8 @@ public class MainController {
 	//ADD POSITION THROUGH INFO PAGE
     @PostMapping("/info/{apiId}/create_position")
     public String createPosition(@Valid @ModelAttribute("position")Position position, BindingResult result, HttpSession session, RedirectAttributes flashAttrib) {
-    	Long userId = userSessionId(session);
-		if(userId == null) {
+    	Long userId = userSessionId(session);	//gets user in session if there is one
+		if(userId == null) {	//if there is not a user in session
     		return "redirect:/";
     	}else {
 	    	if(result.hasErrors()) {
