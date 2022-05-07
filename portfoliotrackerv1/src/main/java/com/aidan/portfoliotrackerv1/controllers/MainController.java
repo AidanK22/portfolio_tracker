@@ -204,7 +204,7 @@ public class MainController {
 		if(userId == null) {	//if there is not a user in session
     		return "redirect:/";
     	}else {
-	    	if(result.hasErrors()) {
+	    	if(result.hasErrors()) {	//if user's input has errors
 	    		flashAttrib.addFlashAttribute("createError", "Position size can not be a null value.");	//if there was an error  
 	    		return "redirect:/info/{apiId}";
 	    	}else {
@@ -217,9 +217,9 @@ public class MainController {
     //edit position page **WORKING**
 	@GetMapping("/position/{id}/edit")
 	public String editPosition(@PathVariable("id")Long id, Model model, HttpSession session) {
-	Long userId = userSessionId(session);
-    if(userId == null) {
-    	return "redirect:/";
+	Long userId = userSessionId(session);	//gets user in session if there is one
+    if(userId == null) {	//if user is not in session
+    	return "redirect:/";	//redirect to login page
     }else {
     	Position position = positionService.findPositionById(id);		//grab position by position's id
     	User user = positionService.findPositionById(id).getOwner();	//grab position by id then get the owner
