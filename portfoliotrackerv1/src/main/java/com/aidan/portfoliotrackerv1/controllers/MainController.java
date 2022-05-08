@@ -209,7 +209,7 @@ public class MainController {
 	    		return "redirect:/info/{apiId}";
 	    	}else {
 	    		positionService.createPosition(position);	//creates position
-	    		return "redirect:/dashboard";
+	    		return "redirect:/dashboard";	//redirects to dashboard page
 	    	}
     	}
     }
@@ -229,9 +229,9 @@ public class MainController {
 		Map data = (Map) QuotesBase.get("data");	//from returned json data  grab data table
 		Map t = (Map) data.get(Integer.toString(apiId));	//using apidId grab the id from returned json data allowing access to all needed information
     			
-    	model.addAttribute("position", position);
-    	model.addAttribute("user", user);
-    	model.addAttribute("currency", t);
+    	model.addAttribute("position", position);	//sends position's data to template
+    	model.addAttribute("user", user);	//sends users data to template
+    	model.addAttribute("currency", t);	//sends currency's data to template
     	}
     	return "EditPosition.jsp";
 	}
