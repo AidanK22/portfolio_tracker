@@ -326,9 +326,9 @@ public class MainController {
     	float eo = ((potentialProfit * probability)-(amountRisked*(100-probability)))/10;	//calculation for expect outcome
     	System.out.println(eo);
     	System.out.println(rrr);
-    	sessionModel.setAttribute("eo", eo);
-    	sessionModel.setAttribute("rrr", rrr);
-    	sessionModel.setAttribute("aRisked", amountRisked);
+    	sessionModel.setAttribute("eo", eo);	//the expected outcome sent to the template
+    	sessionModel.setAttribute("rrr", rrr);	//risk to reward sent to template
+    	sessionModel.setAttribute("aRisked", amountRisked);		//amount risked sent to template
     	sessionModel.setAttribute("pProfit", potentialProfit);
     	sessionModel.setAttribute("prob", probability);
     	return "redirect:/risk_calculator";
