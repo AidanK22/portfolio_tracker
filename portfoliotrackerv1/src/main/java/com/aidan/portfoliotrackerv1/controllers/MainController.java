@@ -314,8 +314,8 @@ public class MainController {
         	model.addAttribute("user", u);	//pass user to  template
         	return "RiskCalculator.jsp";	//send to risk calculator page
     	}
-    	String i = "Guest";
-    	model.addAttribute("noUser", i);
+    	String i = "Guest";		//sets i to 'Guest"'
+    	model.addAttribute("noUser", i);	//sets model template variable 'noUser' to i
     	return "RiskCalculator.jsp";
     }
     
@@ -329,7 +329,7 @@ public class MainController {
     	sessionModel.setAttribute("eo", eo);	//the expected outcome sent to the template
     	sessionModel.setAttribute("rrr", rrr);	//risk to reward sent to template
     	sessionModel.setAttribute("aRisked", amountRisked);		//amount risked sent to template
-    	sessionModel.setAttribute("pProfit", potentialProfit);
+    	sessionModel.setAttribute("pProfit", potentialProfit);		//potential profit  sent to template
     	sessionModel.setAttribute("prob", probability);
     	return "redirect:/risk_calculator";
     }
