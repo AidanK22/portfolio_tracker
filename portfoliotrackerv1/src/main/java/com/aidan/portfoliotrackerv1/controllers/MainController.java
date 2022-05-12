@@ -330,7 +330,7 @@ public class MainController {
     	sessionModel.setAttribute("rrr", rrr);	//risk to reward sent to template
     	sessionModel.setAttribute("aRisked", amountRisked);		//amount risked sent to template
     	sessionModel.setAttribute("pProfit", potentialProfit);		//potential profit  sent to template
-    	sessionModel.setAttribute("prob", probability);
+    	sessionModel.setAttribute("prob", probability);	//probability of outcome sent to template
     	return "redirect:/risk_calculator";
     }
     
@@ -354,7 +354,7 @@ public class MainController {
 	    	//check if anything is in position
 			//positions
 	    		var amountOfPositions = 0;
-	    		model.addAttribute("amountOfPositions", amountOfPositions);
+	    		model.addAttribute("amountOfPositions", amountOfPositions);	//sends amount of positions to template
 		    	if(u.getWatchlist().size() > 0) {	//if watchlist is greater than 0
 		    	
 		    	List apiIdsToGet = new ArrayList(); 	//create list variable to store apiIds
