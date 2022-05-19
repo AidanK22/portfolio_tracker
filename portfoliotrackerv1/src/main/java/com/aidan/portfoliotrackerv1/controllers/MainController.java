@@ -379,8 +379,8 @@ public class MainController {
 		    	}
 		    	
 		    	//creates comma separated list
-		    	newApiIdList = apiIdsToGet.toString();	
-		    	newApiIdList = newApiIdList.replace("[", "").replace("]", "").replace(" ", "");
+		    	newApiIdList = apiIdsToGet.toString();	//takes lists and adds it to a string
+		    	newApiIdList = newApiIdList.replace("[", "").replace("]", "").replace(" ", "");	//then takes that string and removes the '[' , ']' and ' ' (spaces) 
 		    	
 		    	//api call
 				Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "id=" + newApiIdList + "&" + apiKey, HashMap.class );	//api call
