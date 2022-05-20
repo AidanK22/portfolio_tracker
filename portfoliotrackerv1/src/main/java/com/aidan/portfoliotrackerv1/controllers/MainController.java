@@ -392,8 +392,8 @@ public class MainController {
 		    	amountOfPositions = 0;
 		    	System.out.println("accountValue:");
 				System.out.println(accountValue);
-		    	for(var i=0; i<positions.size(); i++) {
-		    		amountOfPositions += 1;
+		    	for(var i=0; i<positions.size(); i++) {		//for each i in length of positions starting at index of 0, incrementing by 1
+		    		amountOfPositions += 1;		//adds 1 to the amount of positions variable
 		    		int apiId = positions.get(i).getApiId(); //get api id saved in the position
 		    		Map coinId = (Map) data.get(Integer.toString(apiId)); //use api id to access currency's info
 		    		Map	coinQuote = (Map) coinId.get("quote"); //get the quote section being returned in the json from the api call
@@ -402,7 +402,7 @@ public class MainController {
 
 		    		accountValue += positions.get(i).getPositionSize() * coinPrice;	//add to account value
 		    	}
-				for( var i =0 ; i< finalIds.length ; i++) {
+				for( var i =0 ; i< finalIds.length ; i++) {		//for each i in the length of finalIds starting at index of 0, incrementing by 1 
 					finalPosArrayList.add((Map) data.get(finalIds[i]));
 				}
 				
