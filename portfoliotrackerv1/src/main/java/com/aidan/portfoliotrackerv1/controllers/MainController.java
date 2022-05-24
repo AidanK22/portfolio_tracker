@@ -410,8 +410,8 @@ public class MainController {
 		    	
 			    	System.out.println("accountValue:");
 					System.out.println(accountValue);
-					model.addAttribute("accountValue", accountValue);
-					model.addAttribute("amountOfPositions", amountOfPositions);
+					model.addAttribute("accountValue", accountValue);	//adds account value to model attribute sent to template
+					model.addAttribute("amountOfPositions", amountOfPositions);	//add amount of positions to model attribute sent to template
 		    	}
 		    		
 	    	model.addAttribute("user", u);
