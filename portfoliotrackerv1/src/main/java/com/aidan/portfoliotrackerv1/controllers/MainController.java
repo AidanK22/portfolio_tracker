@@ -388,7 +388,7 @@ public class MainController {
 				String[] finalIds = newApiIdList.split(",");
 				List finalPosArrayList = new ArrayList();
 				//account value
-		    	var accountValue = 0;
+		    	var accountValue = 0;	//sets account value to default of 0
 		    	amountOfPositions = 0;
 		    	System.out.println("accountValue:");
 				System.out.println(accountValue);
