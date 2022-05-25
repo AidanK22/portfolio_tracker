@@ -414,9 +414,9 @@ public class MainController {
 					model.addAttribute("amountOfPositions", amountOfPositions);	//add amount of positions to model attribute sent to template
 		    	}
 		    		
-	    	model.addAttribute("user", u);
-	    	model.addAttribute("positions", positions);
-	    	model.addAttribute("watchlist", watchlist);
+	    	model.addAttribute("user", u);	//add user to model attribute and is sent to template
+	    	model.addAttribute("positions", positions);	//add positions to model attribute and sends to template
+	    	model.addAttribute("watchlist", watchlist);		//add watchlist to model attribute and sends to template
 	    	model.addAttribute("currencies", base.getData());
 	    	
         	
