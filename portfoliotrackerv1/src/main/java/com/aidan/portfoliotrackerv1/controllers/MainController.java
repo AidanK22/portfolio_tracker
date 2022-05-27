@@ -403,10 +403,10 @@ public class MainController {
 		    		accountValue += positions.get(i).getPositionSize() * coinPrice;	//add to account value
 		    	}
 				for( var i =0 ; i< finalIds.length ; i++) {		//for each i in the length of finalIds starting at index of 0, incrementing by 1 
-					finalPosArrayList.add((Map) data.get(finalIds[i]));
+					finalPosArrayList.add((Map) data.get(finalIds[i]));	//takes index of i in finalIds and add it to a new list finalPosArrayList
 				}
 				
-				model.addAttribute("pcurrencies", finalPosArrayList);
+				model.addAttribute("pcurrencies", finalPosArrayList);	//adds the users positions to template model
 		    	
 			    	System.out.println("accountValue:");
 					System.out.println(accountValue);
