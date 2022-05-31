@@ -417,7 +417,7 @@ public class MainController {
 	    	model.addAttribute("user", u);	//add user to model attribute and is sent to template
 	    	model.addAttribute("positions", positions);	//add positions to model attribute and sends to template
 	    	model.addAttribute("watchlist", watchlist);		//add watchlist to model attribute and sends to template
-	    	model.addAttribute("currencies", base.getData());
+	    	model.addAttribute("currencies", base.getData());	//gets the base info level for all currencies returned from api call 
 	    	
         	
         	return "AccountDetails.jsp";
