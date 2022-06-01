@@ -342,7 +342,7 @@ public class MainController {
         if(userId == null) {	//check if user is in session
         	return "redirect:/";	//if user not in session, redirect to login page
         }else {		//if user IS in session
-        	User u = userService.findUserById(userId);	
+        	User u = userService.findUserById(userId);	//gets the user id from session and finds that user attaching it to u
 
 	    	
 	    	List<Position> positions =	positionService.findPositionsByOwner(u);//  findAllPositions()
