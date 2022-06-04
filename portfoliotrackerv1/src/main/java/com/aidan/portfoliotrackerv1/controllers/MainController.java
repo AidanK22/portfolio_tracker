@@ -176,9 +176,9 @@ public class MainController {
     //ADD TO WATCHLIST **WORKING** \\
 	@PostMapping("/info/{apiId}/add_to_watchlist")
 	public String addToWatchlist(@ModelAttribute("thisWatchlist")Watchlist watchlist, HttpSession session) {
-		Long userId = userSessionId(session);
-		if(userId == null) {
-    		return "redirect:/";
+		Long userId = userSessionId(session);	//grabs the user in session if there is one
+		if(userId == null) {	//if  there is no user in session
+    		return "redirect:/";	//redirect to root route or login page
     	}else {
 		watchlistService.createWatchlist(watchlist);	//add currency to watchlist
 		return "redirect:/info/{apiId}";
