@@ -165,7 +165,7 @@ public class MainController {
 			System.out.println("Printing T==");
 			System.out.println(t);
 			
-			int apiId = (int) t.get("id");
+			int apiId = (int) t.get("id");	//after getting the currencies data and assigning it to 't' get the id and assign it to apiId
 			System.out.println("Printing apiId==");
 			System.out.println(apiId);
 			
