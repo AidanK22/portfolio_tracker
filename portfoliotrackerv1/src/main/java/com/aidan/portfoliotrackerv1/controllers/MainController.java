@@ -152,11 +152,11 @@ public class MainController {
 	//get currency by symbol **BROKE**
 	@GetMapping("/search")
 	public String search(@RequestParam("symbol") String symbol) {
-			Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "symbol=" + symbol + "&" + apiKey, HashMap.class );
+			Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "symbol=" + symbol + "&" + apiKey, HashMap.class );//api call by symbol
 			System.out.println("Printing QuotesBase==");
 			System.out.println(QuotesBase);
 			
-			Map data = (Map) QuotesBase.get("data");
+			Map data = (Map) QuotesBase.get("data");	//gets data table from api call and assigns it to 'data'
 			System.out.println("Printing DATA==");
 			System.out.println(data);
 			//stops printing
