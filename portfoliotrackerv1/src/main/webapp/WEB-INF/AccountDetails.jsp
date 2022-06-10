@@ -77,7 +77,7 @@
 			
 			<div class="col bg-dark m-4 p-3  border">
 				
-				<div class="row">
+				<%-- <div class="row">
 					<div class="accountvalue col align-self-start border border-dark mt-1">
 					    <div class="col">
 						    <div class="card h-460">
@@ -88,18 +88,17 @@
 							    	<h6>$<c:out value="${accountValue }"/></h6>
 							    	
 							    </div>
-							    <div class="card-footer">
-							    	<small class="text-muted">${currency.lastUpdated }</small>
-							    </div>
 							    
 							</div>
 							
 						</div>
 					</div>
-				</div>
+				</div> --%>
 				<div class="row">
 				 	<div class="col col-lg-auto" >
 						<div class="container bg-light rounded p-2" >
+							<h5 class="card-title">Account Value</h5>
+							<h6>$<c:out value="${accountValue }"/></h6>
 							<h5 class="card-title">Your Positions (${amountOfPositions})</h5>
 							<div class="datatable-inner table-responsive ps ps--active-y" style="overflow: auto; position: relative; max-height: 620px;">
 							
@@ -149,11 +148,13 @@
 					</div>
 			    </div>
 			</div>
-			<div class="col-3 bg-dark m-4 ms-5 text-white border">
+			<div class="col-3 bg-dark m-4 text-white border">
 				<div class="col-auto bg-dark m-3 offset-md-3 p-3 text-white border">
+				<h5 class=" border-bottom">User Info</h5>
 				<h5>First Name: <c:out value="${user.firstName }"/></h5>
 				<h5>Last Name: <c:out value="${user.lastName }"/></h5>
 				<h5>Email: <c:out value="${user.email}"/></h5>
+				<h5 class="mt-3 border-bottom">Account Overview</h5>
 				<h5 class="mt-3">Account Value: $${accountValue}</h5>
 				<h5>Amount of Positions: ${amountOfPositions}</h5>
 			</div>
