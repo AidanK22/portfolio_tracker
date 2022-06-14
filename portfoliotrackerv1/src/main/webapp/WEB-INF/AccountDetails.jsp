@@ -151,9 +151,60 @@
 			<div class="col-3 bg-dark m-4 text-white border">
 				<div class="col-auto bg-dark m-3 offset-md-3 p-3 text-white border">
 				<h5 class=" border-bottom">User Info</h5>
-				<h5>First Name: <c:out value="${user.firstName }"/></h5>
-				<h5>Last Name: <c:out value="${user.lastName }"/></h5>
-				<h5>Email: <c:out value="${user.email}"/></h5>
+				<div class="row">
+					<div class="col">
+						<h5>First Name: <c:out value="${user.firstName }"/></h5>
+					</div>
+					<div class="col">
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editfirstname">
+						  Edit 
+						</button>
+					</div>
+					<!-- Modal -->
+					<div class="modal fade" id="editfirstname" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="staticBackdropLabel">Edit First Name</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					      	<strong>
+								<p class="text-sm-left" style="font-size: larger;">${updateError}</p>
+							</strong>
+					     	<div class="">
+								<form:form action="/" method="post" modelAttribute="user" class="form">
+									<input type="hidden" name="_method" value="put">
+									
+									<div class="form-group">
+										<form:errors path="editFirstName" class="errors"/>
+										<form:label path="editFirstName" for="firstName">Edit First Name</form:label>
+										<form:input path="editFirstName" type="string" name="editFirstName" id="editFirstName" value="${user.firstName}" class="form-control"/>
+										
+									</div>
+									
+								
+									<input type="submit" value="Confirm" class="btn btn-outline-primary m-2">
+								</form:form>
+							</div>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-primary">Confirm</button>
+					        <input type="submit" value="Confirm" class="btn btn-outline-primary m-2">
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col"><h5>Last Name: <c:out value="${user.lastName }"/></h5></div>
+					<div class="col"></div>
+				</div>
+				<div class="row">
+					<div class="col"><h5>Email: <c:out value="${user.email}"/></h5></div>
+					<div class="col"></div>
+				</div>
 				<h5 class="mt-3 border-bottom">Account Overview</h5>
 				<h5 class="mt-3">Account Value: $${accountValue}</h5>
 				<h5>Amount of Positions: ${amountOfPositions}</h5>

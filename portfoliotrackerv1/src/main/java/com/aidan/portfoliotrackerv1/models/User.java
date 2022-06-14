@@ -67,6 +67,13 @@ public class User {
     public User() {
     	
     }
+    
+	/*
+	 * public FirstName(String firstName) { this.firstName = firstName;
+	 * 
+	 * }
+	 */
+    
     // >>Getters & Setters<< \\
 
 	//-------------------------------------
