@@ -336,7 +336,7 @@ public class MainController {
     
     
     //------------------account details------------------\\
-    @GetMapping("/account_details")
+    @GetMapping("/account_details/{userId}")
     public String accountDetails(HttpSession session, Model model) {
     	Long userId = userSessionId(session);	//grab user from session
         if(userId == null) {	//check if user is in session

@@ -40,6 +40,11 @@ public class UserService {
     	    return null;
     	}
     }
+    //update first name
+    public User updateFirstName(User u, String firstName ) {
+    	u.setFirstName(firstName);
+    	return this.userRepo.save(u);
+    }
     //find all users positions
     
 

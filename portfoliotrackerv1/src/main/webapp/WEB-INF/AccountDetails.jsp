@@ -163,36 +163,34 @@
 					<!-- Modal -->
 					<div class="modal fade" id="editfirstname" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 					  <div class="modal-dialog modal-dialog-centered">
-					    <div class="modal-content">
+					    <div class="modal-content border bg-dark">
 					      <div class="modal-header">
-					        <h5 class="modal-title" id="staticBackdropLabel">Edit First Name</h5>
-					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					        <h5 class="modal-title color-black" id="staticBackdropLabel">Edit User Info</h5>
+					        <button type="button bg-white" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					      </div>
 					      <div class="modal-body">
 					      	<strong>
 								<p class="text-sm-left" style="font-size: larger;">${updateError}</p>
 							</strong>
 					     	<div class="">
-								<form:form action="/" method="post" modelAttribute="user" class="form">
+								<form:form action="/editFirstName/${user.id }/update" method="post" modelAttribute="user" class="form">
 									<input type="hidden" name="_method" value="put">
 									
 									<div class="form-group">
-										<form:errors path="editFirstName" class="errors"/>
-										<form:label path="editFirstName" for="firstName">Edit First Name</form:label>
-										<form:input path="editFirstName" type="string" name="editFirstName" id="editFirstName" value="${user.firstName}" class="form-control"/>
+										<form:errors path="firstName" class="errors"/>
+										<form:label path="firstName" for="firstName">Edit First Name</form:label>
+										<form:input path="firstName" type="string" name="editFirstName" id="editFirstName" value="${user.firstName}" class="form-control"/>
 										
 									</div>
 									
 								
-									<input type="submit" value="Confirm" class="btn btn-outline-primary m-2">
+									<div class="modal-footer mt-4">
+					        			<input type="submit" value="Confirm" class="btn btn-outline-primary m-2">
+					      			</div>
 								</form:form>
 							</div>
 					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					        <button type="button" class="btn btn-primary">Confirm</button>
-					        <input type="submit" value="Confirm" class="btn btn-outline-primary m-2">
-					      </div>
+					      
 					    </div>
 					  </div>
 					</div>

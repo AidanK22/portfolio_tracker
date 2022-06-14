@@ -64,7 +64,7 @@
 						            Settings
 						          </a>
 						          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-						          	<li><a class="dropdown-item" href="/account_details">Account Details</a></li>
+						          	<li><a class="dropdown-item" href="/account_details/${user.id }">Account Details</a></li>
 						            <c:choose>
 						    			<c:when test="${ user != null }">
 								    		

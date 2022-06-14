@@ -238,7 +238,9 @@ public class UserController {
     //edit user first name **NOT WORKING**
     @RequestMapping(value="/editFirstName/{userId}/update", method=RequestMethod.PUT)
     public String updateFirstName(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable("userId")Long userId, Model model, RedirectAttributes flashAttrib) {
-    	userService.updateFirstName(firstName, userId);
+    	String firstName = userService.findUserById(userId).getFirstName();
+    	userService.updateFirstName(user, firstName);
+    	return "redirect:/account_details/{userId}";
     }
     
 }
