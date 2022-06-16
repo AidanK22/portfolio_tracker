@@ -3,6 +3,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page isErrorPage="true" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -160,7 +161,7 @@
 						  Edit 
 						</button>
 					</div>
-					<!-- Modal -->
+					<!-- Modal to Edit First Name-->
 					<div class="modal fade" id="editfirstname" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 					  <div class="modal-dialog modal-dialog-centered">
 					    <div class="modal-content border bg-dark">
@@ -170,7 +171,7 @@
 					      </div>
 					      <div class="modal-body">
 					      	<strong>
-								<p class="text-sm-left" style="font-size: larger;">${updateError}</p>
+								<p class="text-sm-left" style="font-size: larger;">${editFirstError}</p>
 							</strong>
 					     	<div class="">
 								<form:form action="/editFirstName/${user.id }/update" method="post" modelAttribute="user" class="form">
@@ -196,8 +197,49 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col"><h5>Last Name: <c:out value="${user.lastName }"/></h5></div>
-					<div class="col"></div>
+					<div class="col">
+						<h5>Last Name: <c:out value="${user.lastName }"/></h5>
+					</div>
+					
+					<div class="col">
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editlastname">
+						  Edit 
+						</button>
+					</div>
+					<!-- Modal to Edit First Name-->
+					<div class="modal fade" id="editlastname" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered">
+					    <div class="modal-content border bg-dark">
+					      <div class="modal-header">
+					        <h5 class="modal-title color-black" id="staticBackdropLabel">Edit User Info</h5>
+					        <button type="button bg-white" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					      	<strong>
+								<p class="text-sm-left" style="font-size: larger;">${editLastError}</p>
+							</strong>
+					     	<div class="">
+								<form:form action="/editLastName/${user.id }/update" method="post" modelAttribute="user" class="form">
+									<input type="hidden" name="_method" value="put">
+									
+									<div class="form-group">
+										<form:errors path="lastName" class="errors"/>
+										<form:label path="lastName" for="lastName">Edit Last Name</form:label>
+										<form:input path="lastName" type="string" name="lastName" id="lastName" value="${user.lastName}" class="form-control"/>
+										
+									</div>
+									
+								
+									<div class="modal-footer mt-4">
+					        			<input type="submit" value="Confirm" class="btn btn-outline-primary m-2">
+					      			</div>
+								</form:form>
+							</div>
+					      </div>
+					      
+					    </div>
+					  </div>
+					</div>
 				</div>
 				<div class="row">
 					<div class="col"><h5>Email: <c:out value="${user.email}"/></h5></div>

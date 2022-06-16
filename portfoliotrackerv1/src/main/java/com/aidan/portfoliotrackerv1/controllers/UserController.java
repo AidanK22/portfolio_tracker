@@ -235,11 +235,24 @@ public class UserController {
     
     //edit user
     
-    //edit user first name **NOT WORKING** current;y creating a new user instead of updating current
+    //edit user first name **NOT WORKING** edits users name properly, but no validation atm
     @RequestMapping(value="/editFirstName/{userId}/update", method=RequestMethod.PUT)
     public String updateFirstName(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable("userId")Long userId, @RequestParam(value="firstName")String firstName, Model model, RedirectAttributes flashAttrib) {
+    	if(result.hasErrors()) {
+    		flashAttrib.addFlashAttribute("editFirstError", "Error: Updated user firstname must be greater than 1 character");
+    		return "/account_details/{userId}";
+    	}else {
     	User u = userService.findUserById(userId);
     	userService.updateFirstName(u, firstName);
+    	return "redirect:/account_details/{userId}";
+    	}
+    }
+    
+    //edit user last name
+    @RequestMapping(value="/editLastName/{userId}/update", method=RequestMethod.PUT)
+    public String updateLastName(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable("userId")Long userId, @RequestParam(value="lastName")String lastName, Model model, RedirectAttributes flashAttrib) {
+    	User u = userService.findUserById(userId);
+    	userService.updateLastName(u, lastName);
     	return "redirect:/account_details/{userId}";
     }
     

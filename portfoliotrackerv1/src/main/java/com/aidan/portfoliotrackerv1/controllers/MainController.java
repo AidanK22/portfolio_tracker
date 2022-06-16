@@ -369,7 +369,6 @@ public class MainController {
 		    			}
 		    	}
 		    	//add watchlist apiIds to list
-		    	
 		    	for(var i=0; i<watchlist.size(); i++) { 	//loop through watchlist
 		    		
 		    		int apiId = watchlist.get(i).getApiId(); 	//grab api Id from the watchlist
