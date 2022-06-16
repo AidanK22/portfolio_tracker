@@ -237,13 +237,13 @@ public class UserController {
     
     //edit user first name **NOT WORKING** current;y creating a new user instead of updating current
     @RequestMapping(value="/editFirstName/{userId}/update", method=RequestMethod.PUT)
-    public String updateFirstName(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable("userId")Long userId, Model model, RedirectAttributes flashAttrib) {
+    public String updateFirstName(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable("userId")Long userId, @RequestParam(value="firstName")String firstName, Model model, RedirectAttributes flashAttrib) {
     	System.out.println(user);
     	User u = userService.findUserById(userId);
     	System.out.println(u);
-
+    	
     	System.out.println(userId);
-    	String firstName = userService.findUserById(userId).getFirstName();
+		/* String firstName = userService.findUserById(userId).getFirstName(); */
     	System.out.println(firstName);
     	userService.updateFirstName(u, firstName);
     	return "redirect:/account_details/{userId}";
