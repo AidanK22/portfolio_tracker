@@ -179,7 +179,7 @@
 									<div class="form-group">
 										<form:errors path="firstName" class="errors"/>
 										<form:label path="firstName" for="firstName">Edit First Name</form:label>
-										<form:input path="firstName" type="string" name="editFirstName" id="editFirstName" value="${user.firstName}" class="form-control"/>
+										<form:input path="firstName" type="string" name="firstName" id="firstName" value="${user.firstName}" class="form-control"/>
 										
 									</div>
 									
