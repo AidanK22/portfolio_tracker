@@ -50,6 +50,12 @@ public class UserService {
     	u.setLastName(lastName);
     	return this.userRepo.save(u);
     }
+    //update users email
+    //update last name
+    public User updateEmail(User u, String email) {
+    	u.setEmail(email);
+    	return this.userRepo.save(u);
+    }
     //find all users positions
     
 

@@ -251,9 +251,18 @@ public class UserController {
     //edit user last name
     @RequestMapping(value="/editLastName/{userId}/update", method=RequestMethod.PUT)
     public String updateLastName(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable("userId")Long userId, @RequestParam(value="lastName")String lastName, Model model, RedirectAttributes flashAttrib) {
+    	
     	User u = userService.findUserById(userId);
     	userService.updateLastName(u, lastName);
     	return "redirect:/account_details/{userId}";
     }
     
+    //edit user email
+    @RequestMapping(value="/editEmail/{userId}/update", method=RequestMethod.PUT)
+    public String updateEmail(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable("userId")Long userId, @RequestParam(value="email")String email, Model model, RedirectAttributes flashAttrib) {
+    	
+    	User u = userService.findUserById(userId);
+    	userService.updateEmail(u, email);
+    	return "redirect:/account_details/{userId}";
+    }
 }

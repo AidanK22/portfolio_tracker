@@ -236,14 +236,52 @@
 								</form:form>
 							</div>
 					      </div>
-					      
+					      	
 					    </div>
 					  </div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col"><h5>Email: <c:out value="${user.email}"/></h5></div>
-					<div class="col"></div>
+					<div class="col">
+						<h5>Email: <c:out value="${user.email}"/></h5>
+					</div>
+					<div class="col">
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editEmail">
+						  Edit 
+						</button>
+					</div>
+					<!-- Modal to Edit First Name-->
+					<div class="modal fade" id="editEmail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered">
+					    <div class="modal-content border bg-dark">
+					      <div class="modal-header">
+					        <h5 class="modal-title color-black" id="staticBackdropLabel">Edit User Info</h5>
+					        <button type="button bg-white" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					      	<strong>
+								<p class="text-sm-left" style="font-size: larger;">${editEmailError}</p>
+							</strong>
+					     	<div class="">
+								<form:form action="/editEmail/${user.id }/update" method="post" modelAttribute="user" class="form">
+									<input type="hidden" name="_method" value="put">
+									
+									<div class="form-group">
+										<form:errors path="email" class="errors"/>
+										<form:label path="email" for="email">Edit Email</form:label>
+										<form:input path="email" type="string" name="email" id="email" value="${user.email}" class="form-control"/>
+									</div>
+									
+									<div class="modal-footer mt-4">
+					        			<input type="submit" value="Confirm" class="btn btn-outline-primary m-2">
+					      			</div>
+								</form:form>
+							</div>
+					      </div>
+					      	
+					    </div>
+					  </div>
+					</div>
 				</div>
 				<h5 class="mt-3 border-bottom">Account Overview</h5>
 				<h5 class="mt-3">Account Value: $${accountValue}</h5>
