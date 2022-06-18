@@ -128,7 +128,6 @@
 												          <c:forEach items="${CMDWebsite}" var="site">
 												          	<li><a class="dropdown-item text-white" href="${site}">${site}</a></li>
 												          </c:forEach>
-								
 												          </ul>
 													</div>
 											    </div>

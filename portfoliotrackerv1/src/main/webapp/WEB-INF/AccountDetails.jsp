@@ -95,7 +95,7 @@
 						</div>
 					</div>
 				</div> --%>
-				<div class="row">
+				<div class="row p-1">
 				 	<div class="col col-lg-auto" >
 						<div class="container bg-light rounded p-2" >
 							<h5 class="card-title">Account Value</h5>
@@ -152,12 +152,12 @@
 			<div class="col-3 bg-dark m-4 text-white border">
 				<div class="col-auto bg-dark m-3 offset-md-3 p-3 text-white border">
 				<h5 class=" border-bottom">User Info</h5>
-				<div class="row">
+				<div class="row p-2">
 					<div class="col">
 						<h5>First Name: <c:out value="${user.firstName }"/></h5>
 					</div>
-					<div class="col">
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editfirstname">
+					<div class="col-auto">
+						<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editfirstname">
 						  Edit 
 						</button>
 					</div>
@@ -196,13 +196,13 @@
 					  </div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row p-2">
 					<div class="col">
 						<h5>Last Name: <c:out value="${user.lastName }"/></h5>
 					</div>
 					
-					<div class="col">
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editlastname">
+					<div class="col-auto">
+						<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editlastname">
 						  Edit 
 						</button>
 					</div>
@@ -241,12 +241,12 @@
 					  </div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row p-2">
 					<div class="col">
 						<h5>Email: <c:out value="${user.email}"/></h5>
 					</div>
-					<div class="col">
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editEmail">
+					<div class="col-auto">
+						<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editEmail">
 						  Edit 
 						</button>
 					</div>
