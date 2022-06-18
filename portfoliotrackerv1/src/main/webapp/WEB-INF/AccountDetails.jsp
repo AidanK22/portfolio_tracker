@@ -284,8 +284,12 @@
 					</div>
 				</div>
 				<h5 class="mt-3 border-bottom">Account Overview</h5>
-				<h5 class="mt-3">Account Value: $${accountValue}</h5>
-				<h5>Amount of Positions: ${amountOfPositions}</h5>
+				<div class="row p-2">
+					<h5 class="mt-3">Account Value: $${accountValue}</h5>
+				</div>
+				<div class="row p-2">
+					<h5>Amount of Positions: ${amountOfPositions}</h5>
+				</div>
 			</div>
 			</div>
 			<div class="col bg-dark m-4 p-3  border">

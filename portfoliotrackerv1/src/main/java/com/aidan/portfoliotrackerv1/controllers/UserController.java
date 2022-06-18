@@ -232,14 +232,14 @@ public class UserController {
     	return "redirect:/"; //returns to login page
         // redirect to login page
     }
-    
+
     //edit user
-    
+
     //edit user first name **NOT WORKING** edits users name properly, but no validation atm
     @RequestMapping(value="/editFirstName/{userId}/update", method=RequestMethod.PUT)
     public String updateFirstName(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable("userId")Long userId, @RequestParam(value="firstName")String firstName, Model model, RedirectAttributes flashAttrib) {
     	if(result.hasErrors()) {
-    		flashAttrib.addFlashAttribute("editFirstError", "Error: Updated user firstname must be greater than 1 character");
+    		flashAttrib.addFlashAttribute("editFirstError", "Error: Updated user first name must be greater than 1 character");
     		return "/account_details/{userId}";
     	}else {
     	User u = userService.findUserById(userId);
@@ -251,18 +251,28 @@ public class UserController {
     //edit user last name
     @RequestMapping(value="/editLastName/{userId}/update", method=RequestMethod.PUT)
     public String updateLastName(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable("userId")Long userId, @RequestParam(value="lastName")String lastName, Model model, RedirectAttributes flashAttrib) {
-    	
+    	if(result.hasErrors()) {
+    		flashAttrib.addFlashAttribute("editLastError", "Error: Updated user email must be greater than 1 character");
+    		return "/account_details/{userId}";
+    	}else {
     	User u = userService.findUserById(userId);
     	userService.updateLastName(u, lastName);
     	return "redirect:/account_details/{userId}";
+    	}
     }
     
     //edit user email
     @RequestMapping(value="/editEmail/{userId}/update", method=RequestMethod.PUT)
     public String updateEmail(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable("userId")Long userId, @RequestParam(value="email")String email, Model model, RedirectAttributes flashAttrib) {
-    	
+    	userValidator.validate(user, result);
+    	if(result.hasErrors()) {
+    		flashAttrib.addFlashAttribute("editLastError", "Error: Updated user email must be greater than 1 character");
+    		return "/account_details/{userId}";
+    	}else {
     	User u = userService.findUserById(userId);
     	userService.updateEmail(u, email);
     	return "redirect:/account_details/{userId}";
+    	}
     }
+    
 }
