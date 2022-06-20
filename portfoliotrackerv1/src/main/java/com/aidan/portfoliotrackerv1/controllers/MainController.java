@@ -340,7 +340,7 @@ public class MainController {
     public String accountDetails(HttpSession session, Model model) {
     	Long userId = userSessionId(session);	//grab user from session
         if(userId == null) {	//check if user is in session
-        	return "redirect:/";	//if user not in session, redirect to login page
+        	return "LoginRegister.jsp";	//if user not in session, redirect to login page
         }else {		//if user IS in session
         	User u = userService.findUserById(userId);	//gets the user id from session and finds that user attaching it to u
 

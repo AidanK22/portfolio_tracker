@@ -35,6 +35,7 @@ import com.aidan.portfoliotrackerv1.services.PositionService;
 import com.aidan.portfoliotrackerv1.services.WatchlistService;
 import com.aidan.portfoliotrackerv1.services.UserService;
 import com.aidan.portfoliotrackerv1.validator.UserValidator;
+import com.aidan.portfoliotrackerv1.validator.EmailValidator;
 
 @Controller
 public class UserController {
@@ -48,6 +49,8 @@ public class UserController {
 	private UserValidator userValidator;
     @Autowired
     private WatchlistRepo watchlistRepo;
+    @Autowired
+    private EmailValidator emailValidator;
     
     //api key
     private String apiKey = PropertiesReader.getProperty("API_KEY");	//api key
@@ -64,6 +67,7 @@ public class UserController {
         this.positionService = positionService;
         this.watchlistService = watchlistService;
         this.userValidator = userValidator;
+        this.emailValidator = emailValidator;
     }
     
 
@@ -107,7 +111,7 @@ public class UserController {
 
     		return "redirect:/dashboard";
     	}else {        // else, add error messages and return the login page
-    		flashAttrib.addFlashAttribute("loginError", "Invalid username or password. Try again.");
+    		flashAttrib.addFlashAttribute("loginError", "Invalid email or password. Please try again.");
     		
     		return "redirect:/";
     	}
@@ -264,9 +268,9 @@ public class UserController {
     //edit user email
     @RequestMapping(value="/editEmail/{userId}/update", method=RequestMethod.PUT)
     public String updateEmail(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable("userId")Long userId, @RequestParam(value="email")String email, Model model, RedirectAttributes flashAttrib) {
-    	userValidator.validate(user, result);
+    	emailValidator.validate(user, result);
     	if(result.hasErrors()) {
-    		flashAttrib.addFlashAttribute("editLastError", "Error: Updated user email must be greater than 1 character");
+    		flashAttrib.addFlashAttribute("editEmailError", "Error: Updated user email must be greater than 1 character");
     		return "/account_details/{userId}";
     	}else {
     	User u = userService.findUserById(userId);

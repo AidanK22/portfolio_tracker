@@ -66,6 +66,7 @@
 	    <div class="d-flex" style="height: 100px;">
   			<div class="vr"></div>
 		</div>
+		
 		<div class="row justify-content-center">
 			<div class="col-auto bg-dark m-3 offset-md-3 text-white border">
 				<h3>Account Details</h3>
@@ -173,6 +174,7 @@
 					      	<strong>
 								<p class="text-sm-left" style="font-size: larger;">${editFirstError}</p>
 							</strong>
+							<h5>Current first name: ${user.firstName}</h5>
 					     	<div class="">
 								<form:form action="/editFirstName/${user.id }/update" method="post" modelAttribute="user" class="form">
 									<input type="hidden" name="_method" value="put">
@@ -218,6 +220,7 @@
 					      	<strong>
 								<p class="text-sm-left" style="font-size: larger;">${editLastError}</p>
 							</strong>
+							<h5>Current last name: ${user.lastName}</h5>
 					     	<div class="">
 								<form:form action="/editLastName/${user.id }/update" method="post" modelAttribute="user" class="form">
 									<input type="hidden" name="_method" value="put">
@@ -262,6 +265,7 @@
 					      	<strong>
 								<p class="text-sm-left" style="font-size: larger;">${editEmailError}</p>
 							</strong>
+							<h5>Current email: ${user.email}</h5>
 					     	<div class="">
 								<form:form action="/editEmail/${user.id }/update" method="post" modelAttribute="user" class="form">
 									<input type="hidden" name="_method" value="put">

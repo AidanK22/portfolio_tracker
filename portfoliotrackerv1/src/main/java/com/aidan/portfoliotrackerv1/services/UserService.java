@@ -51,15 +51,14 @@ public class UserService {
     	return this.userRepo.save(u);
     }
     //update users email
-    //update last name
     public User updateEmail(User u, String email) {
     	u.setEmail(email);
     	return this.userRepo.save(u);
     }
-    //find all users positions
-    
 
-	
+    
+    //authenticate edited email
+	//public boolean authenticateEmail(String email)
     // authenticate user
     public boolean authenticateUser(String email, String password) {
         // first find the user by email
