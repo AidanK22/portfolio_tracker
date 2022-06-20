@@ -18,8 +18,8 @@
 <meta charset="ISO-8859-1">
 <title>Account Details</title>
 </head>
-<body>
-	<div class="container-fluid bg-dark p-1">
+<body class="bg-dark">
+	<div class="container-fluid height-full bg-dark p-1">
 		<div class="navbar fixed-top row align-items-start  ps-3 pe-3 bg-dark border-bottom">
 		
 			<Div class="container-fluid">
