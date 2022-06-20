@@ -186,13 +186,8 @@
 									    		
 									    	</tr>
 									    	<c:choose>
-										    	<c:when test="${user.watchlist == null }">
-										    		<tr>
-										    			<td><p>Your WatchList is empty</td>
-										    		</tr>
-										    	</c:when>
-										    	<c:otherwise>	
-										    	<c:forEach items="${user.watchlist}" var="watchlistItem" varStatus="loop">
+										    	<c:when test="${user.watchlist != null }">
+										    		<c:forEach items="${user.watchlist}" var="watchlistItem" varStatus="loop">
 										    		<c:forEach items="${pcurrencies}" var="pcurrency">
 										    			<c:if test="${watchlistItem.apiId == pcurrency.id}">
 												    		<tr style="vertical-align: baseline;">
@@ -242,6 +237,11 @@
 														</c:if>
 													</c:forEach>
 										    	</c:forEach>
+										    	</c:when>
+										    	<c:otherwise>	
+										    		<tr>
+										    			<td><p>Your WatchList is empty</td>
+										    		</tr>
 												</c:otherwise>	
 									    	</c:choose>
 								    	</table>
