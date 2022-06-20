@@ -161,10 +161,12 @@ public class UserController {
 	    	//check if anything is in position
 			//positions
 	    		var amountOfPositions = 0;	//default amount of positions set to 0
+	    		var accountValue = 0;	//default account value set to 0
 	    		model.addAttribute("amountOfPositions", amountOfPositions);	//adds amount of positions default of 0 to template
+	    		model.addAttribute("accountValue", accountValue);	//account value default value of 0 passed to template
 		    	if(u.getWatchlist().size() > 0) {	//if the users watchlist size is greater than 0
 		    	
-		    	List apiIdsToGet = new ArrayList(); //creates a lit that will hold the api Id we are grabbing
+		    	List apiIdsToGet = new ArrayList(); //creates a list that will hold the api Id we are grabbing
 
 		    	String newApiIdList = "";	//create empty list to add api ids to
 		    	
@@ -195,7 +197,7 @@ public class UserController {
 				String[] finalIds = newApiIdList.split(",");	//string finalIds stores the last string of ids needed to make the api call
 				List finalPosArrayList = new ArrayList();	//the final list of positions
 				//account value
-		    	var accountValue = 0;	//default account value set to 0
+		    	accountValue = 0;	//default account value set to 0
 		    	amountOfPositions = 0;	//default amount of positions is 0
 
 		    	for(var i=0; i<positions.size(); i++) {	//for each position is positions

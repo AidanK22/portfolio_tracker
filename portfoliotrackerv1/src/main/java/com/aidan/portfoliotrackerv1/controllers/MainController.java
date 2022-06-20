@@ -354,7 +354,9 @@ public class MainController {
 	    	//check if anything is in position
 			//positions
 	    		var amountOfPositions = 0;
+		    	var accountValue = 0;	//sets account value to default of 0
 	    		model.addAttribute("amountOfPositions", amountOfPositions);	//sends amount of positions to template
+	    		model.addAttribute("accountValue", accountValue);	//account value default value of 0 passed to template
 		    	if(u.getWatchlist().size() > 0) {	//if watchlist is greater than 0
 		    	
 		    	List apiIdsToGet = new ArrayList(); 	//create list variable to store apiIds
@@ -387,7 +389,7 @@ public class MainController {
 				String[] finalIds = newApiIdList.split(",");
 				List finalPosArrayList = new ArrayList();
 				//account value
-		    	var accountValue = 0;	//sets account value to default of 0
+
 		    	amountOfPositions = 0;
 		    	System.out.println("accountValue:");
 				System.out.println(accountValue);
