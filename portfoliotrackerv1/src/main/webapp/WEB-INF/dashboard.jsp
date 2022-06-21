@@ -186,7 +186,7 @@
 									    		
 									    	</tr>
 									    	<c:choose>
-										    	<c:when test="${user.watchlist != null }">
+										    	<c:when test="${user.watchlist.size() != 0 && user.watchlist.size() != null}">
 										    		<c:forEach items="${user.watchlist}" var="watchlistItem" varStatus="loop">
 										    		<c:forEach items="${pcurrencies}" var="pcurrency">
 										    			<c:if test="${watchlistItem.apiId == pcurrency.id}">
