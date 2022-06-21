@@ -384,7 +384,7 @@
 									    		
 					    	</tr>
 					    	<c:choose>
-					    		<c:when test="${user.positions == null }">
+					    		<c:when test="${user.positions == null || user.positions.size() == 0 }">
 					    			<tr>
 										<td><p>Your Positions are empty</td>
 									</tr>
