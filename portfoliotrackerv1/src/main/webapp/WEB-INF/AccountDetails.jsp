@@ -68,7 +68,7 @@
 		</div>
 		
 		<div class="row justify-content-center">
-			<div class="col-auto bg-dark m-3 offset-md-3 text-white border">
+			<div class="col-auto bg-dark m-3 offset-md-3 p-2 text-white ">
 				<h3>Account Details</h3>
 			</div>
 		</div>
@@ -77,7 +77,7 @@
 		</div>
 		<div class="row">
 			
-			<div class="col bg-dark m-4 p-3  border">
+			<div class="col bg-dark m-4 pt-5 pb-5 border">
 				
 				<%-- <div class="row">
 					<div class="accountvalue col align-self-start border border-dark mt-1">
@@ -105,18 +105,18 @@
 							<div class="datatable-inner table-responsive ps ps--active-y" style="overflow: auto; position: relative; max-height: 620px;">
 							
 								<table id="dtDynamicVerticalScrollExample" class="table  table-sm card-text border bg-light" >
-									<tr class="table-dark">
+									<tr class="table-dark ">
 											    	
-							    		<th class="">Symbol</th>
+							    		<th class="ps-3 pt-2">Symbol</th>
 							    		<th class="">Position Size</th>
 							    		<th class="">Current Price</th>
 							    		<th class="">Position Value</th>
 							    		<th class="">Percent of Portfolio</th>
-							    		<th class="">Actions</th>
+							    		<th class="pe-3 pt-2">Actions</th>
 											    		
 							    	</tr>
 							    	<c:choose>
-							    		<c:when test="${user.positions == null }">
+							    		<c:when test="${user.positions == null || user.positions.size() == 0 }">
 							    			<tr>
 												<td><p>Your Positions are empty</td>
 											</tr>
@@ -150,8 +150,8 @@
 					</div>
 			    </div>
 			</div>
-			<div class="col-3 bg-dark m-4 text-white border">
-				<div class="col-auto bg-dark m-3 offset-md-3 p-3 text-white border">
+			<div class="col-3 bg-dark m-4 pt-5 pb-5 text-white border">
+				<div class="col-auto bg-dark m-3 offset-md-3 p-5 text-white border">
 				<h5 class=" border-bottom">User Info</h5>
 				<div class="row p-2">
 					<div class="col">

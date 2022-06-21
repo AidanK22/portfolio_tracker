@@ -357,7 +357,7 @@ public class MainController {
 		    	var accountValue = 0;	//sets account value to default of 0
 	    		model.addAttribute("amountOfPositions", amountOfPositions);	//sends amount of positions to template
 	    		model.addAttribute("accountValue", accountValue);	//account value default value of 0 passed to template
-		    	if(u.getWatchlist().size() > 0) {	//if watchlist is greater than 0
+	    		if(u.getWatchlist().size() > 0 || u.getPositions().size() > 0) {	//if watchlist is greater than 0
 		    	
 		    	List apiIdsToGet = new ArrayList(); 	//create list variable to store apiIds
 
