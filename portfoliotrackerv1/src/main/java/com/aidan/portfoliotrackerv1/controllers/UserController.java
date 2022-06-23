@@ -270,15 +270,25 @@ public class UserController {
     //edit user email
     @RequestMapping(value="/editEmail/{userId}/update", method=RequestMethod.PUT)
     public String updateEmail(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable("userId")Long userId, @RequestParam(value="email")String email, Model model, RedirectAttributes flashAttrib) {
+    	//if email is not being used and it passes the validations then allow the update to happen
+    	boolean isAuthenticated = userService.authenticateEmail(email);
     	emailValidator.validate(user, result);
-    	if(result.hasErrors()) {
-    		flashAttrib.addFlashAttribute("editEmailError", "Error: Updated user email must be greater than 1 character");
-    		return "/account_details/{userId}";
+    	
+    	if(isAuthenticated) {
+    		if(result.hasErrors()) {
+    			flashAttrib.addFlashAttribute("editEmailError", "Error: Updated user email must be greater than 1 character and contain '@' and '.com'.");
+    			return "/account_details/{userId}";
+	    	}else {
+		    	User u = userService.findUserById(userId);
+		    	userService.updateEmail(u, email);
+		    	return "redirect:/account_details/{userId}";
+	    	}
     	}else {
-    	User u = userService.findUserById(userId);
-    	userService.updateEmail(u, email);
-    	return "redirect:/account_details/{userId}";
+    		flashAttrib.addFlashAttribute("editEmailError", "This email is already taken.");
+    		return "redirect:/account_details/{userId}";
     	}
+    	
+    	
     }
     
 }
