@@ -219,6 +219,7 @@ public class MainController {
 	public String editPosition(@PathVariable("id")Long id, Model model, HttpSession session) {
 	Long userId = userSessionId(session);	//gets user in session if there is one
     if(userId == null) {	//if user is not in session
+    	System.out.println("user is null in position edit");
     	return "redirect:/";	//redirect to login page
     }else {
     	Position position = positionService.findPositionById(id);		//grab position by position's id
@@ -340,7 +341,8 @@ public class MainController {
     public String accountDetails(HttpSession session, Model model) {
     	Long userId = userSessionId(session);	//grab user from session
         if(userId == null) {	//check if user is in session
-        	return "LoginRegister.jsp";	//if user not in session, redirect to login page
+        	System.out.println("user is null");
+        	return "redirect:/";//needed to change it to this for some reason but it gave error when you try to load this page when not logged in instead of redirecting to login page>{return "LoginRegister.jsp";}	//if user not in session, redirect to login page
         }else {		//if user IS in session
         	User u = userService.findUserById(userId);	//gets the user id from session and finds that user attaching it to u
 
