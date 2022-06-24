@@ -256,22 +256,48 @@
 					    </div>
 					</div>
 			    </div>
-			    <div class="accountvalue col align-self-start border border-dark mt-1">
-				    <div class="col">
-					    <div class="card h-460">
-					    
-						    <div class="card-body">
-						    
-						    	<h5 class="card-title">Account Value</h5>
-						    	<h6>$<c:out value="${accountValue }"/></h6>
-						    	
-						    </div>
-						    <div class="card-footer">
-						    	<small class="text-muted">${currency.lastUpdated }</small>
-						    </div>
-						    
+			    <div class="row">
+				    <div class="row-fluid ">
+					    <div class="accountvalue col align-self-start border border-dark mt-1">
+						    <div class="col-auto">
+							    <div class="card ">
+							    
+								    <div class="card-body">
+								    
+								    	<h5 class="card-title">Account Value</h5>
+								    	<h6>$<c:out value="${accountValue }"/></h6>
+								    	
+								    </div>
+								    <div class="card-footer">
+								    	<small class="text-muted">${currency.lastUpdated }</small>
+								    </div>
+								    
+								</div>
+								
+							</div>
 						</div>
-						
+					</div>
+					<div class="row">
+						<div class="col col-sm me-3">
+						<!-- TradingView Widget BEGIN -->
+						<div class="tradingview-widget-container">
+						  <div class="tradingview-widget-container__widget"></div>
+						  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/cryptocurrencies/key-events/" rel="noopener" target="_blank"><span class="blue-text">Daily cryptocurrency news</span></a> by TradingView</div>
+						  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+						  {
+						  "feedMode": "market",
+						  "market": "crypto",
+						  "colorTheme": "dark",
+						  "isTransparent": true,
+						  "displayMode": "regular",
+						  "width": "100%",
+						  "height": "100%",
+						  "locale": "en"
+						}
+						  </script>
+						</div>
+						<!-- TradingView Widget END -->	
+						</div>
 					</div>
 				</div>
 				<div class="container col align-self-start border border-dark m-1">

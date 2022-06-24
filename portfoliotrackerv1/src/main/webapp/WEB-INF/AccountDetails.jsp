@@ -151,10 +151,12 @@
 			    </div>
 			</div>
 			<div class="col-3 bg-dark m-4 pt-5 pb-5 text-white border">
-				<div class="col-auto bg-dark m-3 offset-md-3 p-5 text-white border">
-				<h5 class=" border-bottom">User Info</h5>
-				<div class="row p-2">
-					<div class="col">
+				<div class="col-auto bg-dark m-3 offset-md-3  text-white ">
+				<div class="row p-2 border-bottom">
+					<h4 class=" ">User Info</h5>
+				</div>
+				<div class="row p-2 ">
+					<div class="col border-bottom">
 						<h5>First Name: <c:out value="${user.firstName }"/></h5>
 					</div>
 					<div class="col-auto">
@@ -198,8 +200,8 @@
 					  </div>
 					</div>
 				</div>
-				<div class="row p-2">
-					<div class="col">
+				<div class="row p-2 ">
+					<div class="col border-bottom">
 						<h5>Last Name: <c:out value="${user.lastName }"/></h5>
 					</div>
 					
@@ -245,7 +247,7 @@
 					</div>
 				</div>
 				<div class="row p-2">
-					<div class="col">
+					<div class="col border-bottom">
 						<h5>Email: <c:out value="${user.email}"/></h5>
 					</div>
 					<div class="col-auto">
@@ -287,9 +289,11 @@
 					  </div>
 					</div>
 				</div>
-				<h5 class="mt-3 border-bottom">Account Overview</h5>
+				<div class="row p-2 border-bottom">
+					<h4 class="mt-2 ">Account Overview</h5>
+				</div>
 				<div class="row p-2">
-					<h5 class="mt-3">Account Value: $${accountValue}</h5>
+					<h5 class="mt-2">Account Value: $${accountValue}</h5>
 				</div>
 				<div class="row p-2">
 					<h5>Amount of Positions: ${amountOfPositions}</h5>
