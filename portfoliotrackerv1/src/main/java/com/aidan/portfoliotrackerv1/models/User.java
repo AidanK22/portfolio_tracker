@@ -16,6 +16,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 
@@ -33,7 +34,7 @@ public class User {
 	private String lastName;
 	
 	@Email
-	@Size(min=1, message="Email must be valid.")
+	@NotBlank( message="Email must be valid.")
 	private String email;
 	
 	@Size(min=5, message="Password must be longer than 5 characters.")

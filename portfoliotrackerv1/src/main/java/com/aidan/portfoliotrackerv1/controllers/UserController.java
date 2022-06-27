@@ -246,7 +246,7 @@ public class UserController {
     public String updateFirstName(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable("userId")Long userId, @RequestParam(value="firstName")String firstName, Model model, RedirectAttributes flashAttrib) {
     	if(result.hasErrors()) {
     		flashAttrib.addFlashAttribute("editFirstError", "Error: Updated user first name must be greater than 1 character");
-    		return "/account_details/{userId}";
+    		return "redirect:/account_details/{userId}";
     	}else {
     	User u = userService.findUserById(userId);
     	userService.updateFirstName(u, firstName);
@@ -259,7 +259,7 @@ public class UserController {
     public String updateLastName(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable("userId")Long userId, @RequestParam(value="lastName")String lastName, Model model, RedirectAttributes flashAttrib) {
     	if(result.hasErrors()) {
     		flashAttrib.addFlashAttribute("editLastError", "Error: Updated user email must be greater than 1 character");
-    		return "/account_details/{userId}";
+    		return "redirect:/account_details/{userId}";
     	}else {
     	User u = userService.findUserById(userId);
     	userService.updateLastName(u, lastName);
@@ -274,21 +274,43 @@ public class UserController {
     	boolean isAuthenticated = userService.authenticateEmail(email);
     	emailValidator.validate(user, result);
     	
-    	if(isAuthenticated ) {
+//    	if(isAuthenticated ) {
+//    		
+//    		if(result.hasErrors()) {
+//    			flashAttrib.addFlashAttribute("editEmailError", "Error: Updated user email must be greater than 1 character and contain '@' and '.com'.");
+//    			return "redirect:/account_details/{userId}";
+//	    	}else {
+//		    	User u = userService.findUserById(userId);
+//		    	userService.updateEmail(u, email);
+//		    	return "redirect:/account_details/{userId}";
+//	    	}
+//    		
+//    	}else {
+//    		flashAttrib.addFlashAttribute("editEmailUniError", "This email is already taken.");
+//    		return "redirect:/account_details/{userId}";
+//    	}
+//    	
+    	if(result.hasErrors()) {
+    		if(result.toString().contains("codes [Special")) {
+    			flashAttrib.addFlashAttribute("editEmailUniError", "This email is already taken.");
+    			return "redirect:/account_details/{userId}";
+    		}else {
+    		System.out.println(result);
+			flashAttrib.addFlashAttribute("editEmailError", "Error: Updated user email must be greater than 1 character and contain '@' and '.com'.");
+			System.out.println("inside results if check: false");
+			return "redirect:/account_details/{userId}";
+    		}
     		
-    		if(result.hasErrors()) {
-    			flashAttrib.addFlashAttribute("editEmailError", "Error: Updated user email must be greater than 1 character and contain '@' and '.com'.");
-    			return "/account_details/{userId}";
-	    	}else {
-		    	User u = userService.findUserById(userId);
+    	}else if(isAuthenticated) {
+    		System.out.println("inside isAuthenticated if check: true");
+    			User u = userService.findUserById(userId);
 		    	userService.updateEmail(u, email);
 		    	return "redirect:/account_details/{userId}";
-	    	}
-    		
-    	}else {
-    		flashAttrib.addFlashAttribute("editEmailError", "This email is already taken.");
-    		return "redirect:/account_details/{userId}";
-    	}
+    		}else {
+    			System.out.println("inside isAuthenticated if check: false");
+    			flashAttrib.addFlashAttribute("editEmailUniError", "This email is already taken.");
+        		return "redirect:/account_details/{userId}";
+    		}
     	//check if the email already exist in the data base, if it does does it belong to the user, the user can update it's own user
 
     }

@@ -60,7 +60,7 @@ public class UserService {
     //authenticate edited email
 	public boolean authenticateEmail(String email) {
 		User user = userRepo.findByEmail(email);
-		if(user != null) {
+		if(user == null) {
 			return false;
 		}else {
 			return true;

@@ -83,6 +83,9 @@
 						<strong>
 							<p class="text-sm-left" style="font-size: larger;">${editEmailError}</p>
 						</strong>
+						<strong>
+							<p class="text-sm-left" style="font-size: larger;">${editEmailUniError}</p>
+						</strong>
 					</div>
 					
 				</div>
