@@ -333,7 +333,7 @@
 		</div>	
 		
 		<div class="container-fluid ">
-			<div class="row align-items-center m-3">
+			<div class="row align-items-start m-3">
 				
 					<div class="supply col">
 						<h3 class="m-3">Circulating Supply</h3>
@@ -366,16 +366,19 @@
 						<p class="m-4">$${currency.quote.USD.volume_24h }</p>
 						<p class="m-4">${currency.quote.USD.volume_change_24h }%</p>
 					</div>
-				
+					<div class="col  m-3">
+						<p class="size-24">${currencyMD.description}</p>
+
+					</div>
 			</div>
 			 <div class="row align-items-center m-3">
-			 	<div class="col-3 border rounded m-2">
+			 	<%-- <div class="col-auto border rounded m-2">
 					<p>${currencyMD.description}</p>
 					
 					
 					
-				</div>
-				<div class="col col-auto p-3 border rounded ">
+				</div> --%>
+				<div class="col col-auto offset-sm-2 p-3 border rounded ">
 					<h5>${currency.name } Price Chart</h5>
 					<!-- TradingView Widget BEGIN -->
 					<div class="tradingview-widget-container">
