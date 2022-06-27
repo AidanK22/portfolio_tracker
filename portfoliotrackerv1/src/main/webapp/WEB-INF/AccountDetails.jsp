@@ -69,7 +69,23 @@
 		
 		<div class="row justify-content-center">
 			<div class="col-auto bg-dark m-3 offset-md-3 p-2 text-white ">
-				<h3>Account Details</h3>
+				<div class="row">
+					<div class="col">
+						<h3>Account Details</h3>
+					</div>
+					<div class="col">
+						<strong>
+							<p class="text-sm-left" style="font-size: larger;">${editFirstError}</p>
+						</strong>
+						<strong>
+							<p class="text-sm-left" style="font-size: larger;">${editLastError}</p>
+						</strong>
+						<strong>
+							<p class="text-sm-left" style="font-size: larger;">${editEmailError}</p>
+						</strong>
+					</div>
+					
+				</div>
 			</div>
 		</div>
 		<div class="row justify-content-center">
@@ -99,6 +115,7 @@
 				<div class="row p-1">
 				 	<div class="col col-lg-auto" >
 						<div class="container bg-light rounded p-2" >
+							
 							<h5 class="card-title">Account Value</h5>
 							<h6>$<c:out value="${accountValue }"/></h6>
 							<h5 class="card-title">Your Positions (${amountOfPositions})</h5>

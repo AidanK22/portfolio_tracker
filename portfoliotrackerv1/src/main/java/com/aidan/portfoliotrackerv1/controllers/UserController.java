@@ -274,7 +274,8 @@ public class UserController {
     	boolean isAuthenticated = userService.authenticateEmail(email);
     	emailValidator.validate(user, result);
     	
-    	if(isAuthenticated) {
+    	if(isAuthenticated ) {
+    		
     		if(result.hasErrors()) {
     			flashAttrib.addFlashAttribute("editEmailError", "Error: Updated user email must be greater than 1 character and contain '@' and '.com'.");
     			return "/account_details/{userId}";
@@ -283,12 +284,13 @@ public class UserController {
 		    	userService.updateEmail(u, email);
 		    	return "redirect:/account_details/{userId}";
 	    	}
+    		
     	}else {
     		flashAttrib.addFlashAttribute("editEmailError", "This email is already taken.");
     		return "redirect:/account_details/{userId}";
     	}
-    	
-    	
+    	//check if the email already exist in the data base, if it does does it belong to the user, the user can update it's own user
+
     }
     
 }

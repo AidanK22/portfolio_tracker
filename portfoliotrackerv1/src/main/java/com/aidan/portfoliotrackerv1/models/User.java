@@ -32,7 +32,8 @@ public class User {
 	@Size(min=1, message="Last name must be longer than 1 characters.")
 	private String lastName;
 	
-	@Email(message="Email must be valid.")
+	@Email
+	@Size(min=1, message="Email must be valid.")
 	private String email;
 	
 	@Size(min=5, message="Password must be longer than 5 characters.")
