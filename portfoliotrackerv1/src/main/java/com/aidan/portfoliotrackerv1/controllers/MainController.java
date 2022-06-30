@@ -149,19 +149,36 @@ public class MainController {
     	
 	}
 	
+//	Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "id=" + apiId + "&" + apiKey, HashMap.class );//api call using the apiId to call data for correct currency
+//	Map data = (Map) QuotesBase.get("data");	//from returned json data  grab data table
+//	Map t = (Map) data.get(Integer.toString(apiId));	//using apidId grab the id from returned json data allowing access to all needed information
+//	
+	
 	//get currency by symbol **BROKE**
 	@GetMapping("/search")
 	public String search(@RequestParam("symbol") String symbol) {
-			Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "symbol=" + symbol + "&" + apiKey, HashMap.class );//api call by symbol
+			String upperCaseSymbol =  symbol.toUpperCase();
+			Map QuotesBase = restTemplate.getForObject(this.v2BaseURL + "quotes/latest?" + "symbol=" + upperCaseSymbol + "&" + apiKey, HashMap.class );//api call by symbol
 			System.out.println("Printing QuotesBase==");
 			System.out.println(QuotesBase);
 			
 			Map data = (Map) QuotesBase.get("data");	//gets data table from api call and assigns it to 'data'
+
 			System.out.println("Printing DATA==");
 			System.out.println(data);
+			
 			//stops printing
+			System.out.println("printing symbol==");
+			System.out.println(symbol);
+			
+			//Map t = (Map) data.get(Integer.toString(apiId));
 			//error says arrList cannot be cast to Map
-			Map t = (Map) data.get(symbol.toUpperCase());//error:"class java.util.ArrayList cannot be cast to class java.util.Map (java.util.ArrayList and java.util.Map are in module java.base of loader 'bootstrap')java.lang.ClassCastException: class java.util.ArrayList cannot be cast to class java.util.Map (java.util.ArrayList and java.util.Map are in module java.base of loader 'bootstrap')"
+			
+			System.out.println("printing symbol as upper case==");
+			//System.out.println(upperCaseSymbol);
+			
+			//Map t =  (Map) data.get(String.toMap(upperCaseSymbol));//error:"class java.util.ArrayList cannot be cast to class java.util.Map (java.util.ArrayList and java.util.Map are in module java.base of loader 'bootstrap')java.lang.ClassCastException: class java.util.ArrayList cannot be cast to class java.util.Map (java.util.ArrayList and java.util.Map are in module java.base of loader 'bootstrap')"
+			Map t = (Map) data.get(upperCaseSymbol);
 			System.out.println("Printing T==");
 			System.out.println(t);
 			

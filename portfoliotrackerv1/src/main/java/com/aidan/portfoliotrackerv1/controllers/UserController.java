@@ -241,7 +241,7 @@ public class UserController {
 
     //edit user
 
-    //edit user first name **NOT WORKING** edits users name properly, but no validation atm
+    //edit user first name **WORKING**
     @RequestMapping(value="/editFirstName/{userId}/update", method=RequestMethod.PUT)
     public String updateFirstName(@Valid @ModelAttribute("user")User user, BindingResult result, @PathVariable("userId")Long userId, @RequestParam(value="firstName")String firstName, Model model, RedirectAttributes flashAttrib) {
     	if(result.hasErrors()) {
