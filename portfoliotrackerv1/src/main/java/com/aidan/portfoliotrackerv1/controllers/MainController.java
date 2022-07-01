@@ -178,7 +178,18 @@ public class MainController {
 			//System.out.println(upperCaseSymbol);
 			
 			//Map t =  (Map) data.get(String.toMap(upperCaseSymbol));//error:"class java.util.ArrayList cannot be cast to class java.util.Map (java.util.ArrayList and java.util.Map are in module java.base of loader 'bootstrap')java.lang.ClassCastException: class java.util.ArrayList cannot be cast to class java.util.Map (java.util.ArrayList and java.util.Map are in module java.base of loader 'bootstrap')"
-			Map t = (Map) data.get(upperCaseSymbol);
+			System.out.println("Printing data.get(upperCaseSymbol)************************");
+			System.out.println(data.get(upperCaseSymbol));
+			
+			ArrayList tList = (ArrayList) data.get(upperCaseSymbol);
+			
+			Map t = (Map) tList.get(0);
+			System.out.println("Printing tList.get(0)************************");
+			System.out.println(tList.get(0));
+			
+//			System.out.println("Printing t.get(0)*****************");
+//			System.out.println(t.get(0));
+//			
 			System.out.println("Printing T==");
 			System.out.println(t);
 			
