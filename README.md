@@ -1,5 +1,8 @@
 # portfolio_tracker
+Description:
+A Java-based web application using Spring Boot, designed with full OOP and CRUD(create, read, update and delete) principles. User authentication with validation process, storing data in an SQL database. Integrates with CoinMarkeCap API for real-time crypto market data and TradingView API for news, ticker and interactive charts. Demonstrates skills in Java programming, object-oriented design, web development, database management, and API integration.
 
+Formal tech uses:
 Utilized wireframes using mockflow to visualize the user experience and to provide a template to build off of.
 Employed Java Spring Boot to develop a web application that uses the MVC architecture pattern and OOP principles to create a maintainable and extensible codebase.
 Incorporated Test-Driven-Development practices to ensure application’s reliability and functionality.
